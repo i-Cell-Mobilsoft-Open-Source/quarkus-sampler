@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"
             xmlns:fwservice="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
             targetNamespace="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"
             elementFormDefault="qualified" attributeFormDefault="unqualified"
-            jaxb:version="3.0" jaxb:extensionBindingPrefixes="xjc">
+           >
 
     <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
 
