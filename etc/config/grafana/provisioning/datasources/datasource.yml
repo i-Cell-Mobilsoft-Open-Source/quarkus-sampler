@@ -1,0 +1,14 @@
+apiVersion: 1
+
+datasources:
+  - name: prometheus
+    uid: P47DF7B82022F482C
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+
+  - name: jaeger
+    uid: aAzbbwKSk
+    type: jaeger
+    access: proxy
+    url: http://jaeger:16686

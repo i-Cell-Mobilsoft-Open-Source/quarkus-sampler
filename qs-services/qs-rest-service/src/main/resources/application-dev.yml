@@ -1,0 +1,14 @@
+#-------------------------------
+# Maven config
+#-------------------------------
+coffee:
+  app:
+    projectStage: dev
+quarkus:
+  log:
+    level: INFO
+    min-level: ALL
+  swagger-ui:
+    enable: true
+#  jaeger:
+#    enabled: ${JAEGER_ENABLED:true}
