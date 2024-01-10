@@ -35,6 +35,13 @@ import hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultRestClientB
  */
 public class ProjectRestClientBuilderListener extends DefaultRestClientBuilderListener {
 
+    /**
+     * Default constructor
+     */
+    public ProjectRestClientBuilderListener() {
+        // Default constructor for java 21
+    }
+
     @Override
     public void onNewBuilder(RestClientBuilder builder) {
         super.onNewBuilder(builder);

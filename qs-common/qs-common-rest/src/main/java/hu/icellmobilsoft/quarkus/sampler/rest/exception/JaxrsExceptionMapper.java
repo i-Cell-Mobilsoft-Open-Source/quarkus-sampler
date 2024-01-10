@@ -67,13 +67,20 @@ public class JaxrsExceptionMapper implements ExceptionMapper<WebApplicationExcep
 
     @Inject
     @ThisLogger
-    private AppLogger log;
+    AppLogger log;
 
     @Context
     private HttpServletRequest servletRequest;
 
     @Inject
-    private IExceptionMessageTranslator exceptionMessageTranslator;
+    IExceptionMessageTranslator exceptionMessageTranslator;
+
+    /**
+     * Default constructor
+     */
+    public JaxrsExceptionMapper() {
+        // Default constructor for java 21
+    }
 
     @Override
     public Response toResponse(WebApplicationException e) {

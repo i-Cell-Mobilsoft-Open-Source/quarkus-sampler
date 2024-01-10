@@ -34,4 +34,10 @@ import hu.icellmobilsoft.coffee.rest.exception.DefaultBaseExceptionMapper;
 @Dependent
 public class RestExceptionMapper extends DefaultBaseExceptionMapper {
 
+    /**
+     * Default constructor
+     */
+    public RestExceptionMapper() {
+        // Default constructor for java 21
+    }
 }

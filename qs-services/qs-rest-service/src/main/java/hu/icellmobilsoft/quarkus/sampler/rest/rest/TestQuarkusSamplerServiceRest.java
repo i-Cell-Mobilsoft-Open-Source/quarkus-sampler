@@ -47,6 +47,13 @@ public class TestQuarkusSamplerServiceRest extends BaseRestService implements IT
     @Inject
     SamplerPostAction samplerPostAction;
 
+    /**
+     * Default constructor
+     */
+    public TestQuarkusSamplerServiceRest() {
+        // Default constructor for java 21
+    }
+
     @Override
     public TestResponse getTest(String testString, Integer testInteger, Long testLong, Boolean testBoolean) throws BaseException {
         return wrapPathParam4(

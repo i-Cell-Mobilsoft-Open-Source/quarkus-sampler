@@ -36,6 +36,12 @@ import org.apache.commons.lang3.EnumUtils;
 public class EnumUtil extends hu.icellmobilsoft.coffee.tool.utils.enums.EnumUtil {
 
     /**
+     * Private constructor
+     */
+    private EnumUtil() {
+        // Default constructor for java 21
+    }
+    /**
      * Enum collection to enum list conversion
      * 
      * @param <A>

@@ -41,7 +41,14 @@ import org.eclipse.microprofile.metrics.Tag;
 public class MetricsHelper {
 
     @Inject
-    private MetricRegistry metricRegistry;
+    MetricRegistry metricRegistry;
+
+    /**
+     * Default constructor
+     */
+    public MetricsHelper() {
+        // Default constructor for java 21
+    }
 
     /**
      * Add Gauge type metric

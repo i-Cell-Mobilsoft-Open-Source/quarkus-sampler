@@ -37,6 +37,13 @@ public class MetricsContainer {
     private String httpMethod;
 
     /**
+     * Default constructor
+     */
+    public MetricsContainer() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Getter of startTime
      *
      * @return startTime

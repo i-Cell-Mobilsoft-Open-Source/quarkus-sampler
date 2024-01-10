@@ -34,6 +34,13 @@ import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 public abstract class AbstractBaseHealthCheck {
 
     /**
+     * Default constructor
+     */
+    protected AbstractBaseHealthCheck() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Quarkus uuid key
      */
     public static final String QUARKUS_UUID = "quarkusUUID";

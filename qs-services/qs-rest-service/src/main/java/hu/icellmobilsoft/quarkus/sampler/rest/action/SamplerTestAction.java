@@ -43,6 +43,13 @@ public class SamplerTestAction extends BaseAction {
     AppLogger log;
 
     /**
+     * Default constructor
+     */
+    public SamplerTestAction() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Test action process
      *
      * @param testString

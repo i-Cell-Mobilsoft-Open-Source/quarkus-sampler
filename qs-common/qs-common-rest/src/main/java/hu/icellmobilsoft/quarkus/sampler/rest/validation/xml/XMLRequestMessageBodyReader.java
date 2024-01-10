@@ -41,4 +41,10 @@ import hu.icellmobilsoft.coffee.rest.validation.xml.XmlMessageBodyReaderBase;
 @Priority(Priorities.ENTITY_CODER)
 public class XMLRequestMessageBodyReader extends XmlMessageBodyReaderBase<BaseRequestType> {
 
+    /**
+     * Default constructor
+     */
+    public XMLRequestMessageBodyReader() {
+        // Default constructor for java 21
+    }
 }

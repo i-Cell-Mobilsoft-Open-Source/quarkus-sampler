@@ -55,6 +55,14 @@ public class ProjectHeader implements IHttpHeaderConstant {
     private String forwardedForHost;
     private String forwardedForPort;
 
+
+    /**
+     * Default constructor
+     */
+    public ProjectHeader() {
+        // Default constructor for java 21
+    }
+
     /**
      * Create ProjectHeader instance from {@link ContainerRequestContext}
      *

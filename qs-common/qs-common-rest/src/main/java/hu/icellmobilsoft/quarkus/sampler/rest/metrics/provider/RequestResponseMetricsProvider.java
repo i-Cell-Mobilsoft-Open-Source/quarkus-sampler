@@ -74,6 +74,13 @@ public class RequestResponseMetricsProvider implements ContainerRequestFilter, W
     private UriInfo uriInfo;
 
     /**
+     * Default constructor
+     */
+    public RequestResponseMetricsProvider() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Create metrics start of request or data preparing
      *
      * @param requestContext

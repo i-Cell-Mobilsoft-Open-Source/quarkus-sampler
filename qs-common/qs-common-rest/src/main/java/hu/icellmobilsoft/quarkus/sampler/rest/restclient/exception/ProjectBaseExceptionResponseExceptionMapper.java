@@ -46,6 +46,13 @@ import hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultBaseExcepti
 @Alternative
 public class ProjectBaseExceptionResponseExceptionMapper extends DefaultBaseExceptionResponseExceptionMapper {
 
+    /**
+     * Default constructor
+     */
+    public ProjectBaseExceptionResponseExceptionMapper() {
+        // Default constructor for java 21
+    }
+
     @Override
     public BaseException toThrowable(Response response) {
         int responseStatus = response.getStatus();

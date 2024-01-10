@@ -31,4 +31,10 @@ import hu.icellmobilsoft.coffee.rest.filter.BaseCORSFilter;
 @Provider
 public class CORSFilter extends BaseCORSFilter {
 
+    /**
+     * Default constructor
+     */
+    public CORSFilter() {
+        // Default constructor for java 21
+    }
 }

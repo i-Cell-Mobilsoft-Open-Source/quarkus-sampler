@@ -42,11 +42,18 @@ import hu.icellmobilsoft.quarkus.sampler.common.core.evictable.Evictable;
 public class EvictAction extends BaseAction {
 
     @Inject
-    private ApplicationConfiguration applicationConfiguration;
+    ApplicationConfiguration applicationConfiguration;
 
     @Any
     @Inject
-    private Instance<Evictable> evictables;
+    Instance<Evictable> evictables;
+
+    /**
+     * Default constructor
+     */
+    public EvictAction() {
+        // Default constructor for java 21
+    }
 
     /**
      * Evict operation. Collect and iterate over all {@link Evictable} interface's implementation.

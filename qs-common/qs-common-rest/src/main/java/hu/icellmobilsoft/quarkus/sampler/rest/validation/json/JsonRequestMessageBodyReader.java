@@ -40,4 +40,11 @@ import hu.icellmobilsoft.coffee.rest.validation.json.JsonMessageBodyReaderBase;
 @Consumes({ MediaType.APPLICATION_JSON })
 @Priority(Priorities.ENTITY_CODER)
 public class JsonRequestMessageBodyReader extends JsonMessageBodyReaderBase<BaseRequestType> {
+
+    /**
+     * Default constructor
+     */
+    public JsonRequestMessageBodyReader() {
+        // Default constructor for java 21
+    }
 }

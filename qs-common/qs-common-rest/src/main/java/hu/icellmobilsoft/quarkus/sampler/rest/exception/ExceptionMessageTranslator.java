@@ -37,4 +37,11 @@ import hu.icellmobilsoft.coffee.rest.exception.DefaultExceptionMessageTranslator
 @Priority(Interceptor.Priority.APPLICATION + 10)
 public class ExceptionMessageTranslator extends DefaultExceptionMessageTranslator {
 
+    /**
+     * Default constructor
+     */
+    public ExceptionMessageTranslator() {
+        // Default constructor for java 21
+    }
+
 }

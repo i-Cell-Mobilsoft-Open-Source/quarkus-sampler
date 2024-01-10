@@ -43,7 +43,14 @@ public class RequestContainer {
     private ProjectHeader defaultProjectHeader = new ProjectHeader();
 
     @Inject
-    private BaseRequestContainer baseRequestContainer;
+    BaseRequestContainer baseRequestContainer;
+
+    /**
+     * Default constructor
+     */
+    public RequestContainer() {
+        // Default constructor for java 21
+    }
 
     /**
      * ProjectHeader producer over Request scope

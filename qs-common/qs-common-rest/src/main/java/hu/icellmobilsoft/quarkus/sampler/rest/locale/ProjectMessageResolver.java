@@ -69,6 +69,13 @@ public class ProjectMessageResolver extends DefaultMessageResolver {
      */
     private final ResourceBundleControl resourceBundleControl = new ResourceBundleControl();
 
+    /**
+     * Default constructor
+     */
+    public ProjectMessageResolver() {
+        // Default constructor for java 21
+    }
+
     @Override
     public String getMessage(MessageContext messageContext, String messageTemplate, String category) {
         // we can use {{ as escaping for now

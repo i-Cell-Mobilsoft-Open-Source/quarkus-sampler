@@ -34,6 +34,13 @@ import jakarta.json.bind.config.PropertyVisibilityStrategy;
  */
 public class FieldOnlyVisibilityStrategy implements PropertyVisibilityStrategy {
 
+    /**
+     * Default constructor
+     */
+    public FieldOnlyVisibilityStrategy() {
+        // Default constructor for java 21
+    }
+
     @Override
     public boolean isVisible(Field field) {
         return true;

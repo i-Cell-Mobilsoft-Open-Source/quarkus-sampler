@@ -42,6 +42,13 @@ import hu.icellmobilsoft.quarkus.sampler.rest.filter.CustomPriorities;
 @ConstrainedTo(RuntimeType.SERVER)
 public class RestLogger extends BaseRestLogger {
 
+    /**
+     * Default constructor
+     */
+    public RestLogger() {
+        // Default constructor for java 21
+    }
+
     @Override
     public String sessionKey() {
         return LogConstants.LOG_SESSION_ID;

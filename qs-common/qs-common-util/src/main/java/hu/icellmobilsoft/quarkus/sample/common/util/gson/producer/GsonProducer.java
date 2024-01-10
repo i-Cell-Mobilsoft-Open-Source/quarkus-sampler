@@ -55,6 +55,14 @@ public class GsonProducer {
 
     private Gson gson;
 
+
+    /**
+     * Default constructor
+     */
+    public GsonProducer() {
+        // Default constructor for java 21
+    }
+
     /**
      * Returns {@link Gson} with custom type adapters.
      *

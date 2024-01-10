@@ -32,6 +32,13 @@ import java.util.Objects;
 public class DateUtil extends hu.icellmobilsoft.coffee.tool.utils.date.DateUtil {
 
     /**
+     * Private constructor
+     */
+    private DateUtil() {
+        // Default constructor for java 21
+    }
+
+    /**
      *
      * Tells if the {@link OffsetDateTime} param is in the time interval between {@code intervalStart} and {@code intervalEnd} {@link OffsetDateTime}
      * params where {@code intervalStart} is inclusive and {@code intervalEnd} is exclusive. If dateTime or intervalStart parameter is null, then the

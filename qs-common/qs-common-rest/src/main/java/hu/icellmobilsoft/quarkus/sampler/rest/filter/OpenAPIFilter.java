@@ -27,4 +27,11 @@ package hu.icellmobilsoft.quarkus.sampler.rest.filter;
  */
 public class OpenAPIFilter extends hu.icellmobilsoft.coffee.rest.filter.OpenAPIFilter {
 
+    /**
+     * Default constructor
+     */
+    public OpenAPIFilter() {
+        // Default constructor for java 21
+    }
+
 }

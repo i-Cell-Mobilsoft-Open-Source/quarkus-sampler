@@ -42,6 +42,13 @@ public class ResponseFilter implements ContainerResponseFilter {
     @Context
     HttpServletRequest request;
 
+    /**
+     * Default constructor
+     */
+    public ResponseFilter() {
+        // Default constructor for java 21
+    }
+
     @Override
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
         if (responseContext.getStatus() == Response.Status.UNAUTHORIZED.getStatusCode()) {

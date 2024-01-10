@@ -40,6 +40,13 @@ import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndEx
 @Model
 public class SystemRest extends BaseRestService implements ISystemRest {
 
+    /**
+     * Default constructor
+     */
+    public SystemRest() {
+        // Default constructor for java 21
+    }
+
     @Override
     @LogMethodEntryAndExit
     public String versionInfo() throws BaseException {

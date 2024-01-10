@@ -28,6 +28,12 @@ package hu.icellmobilsoft.quarkus.sample.common.util.string;
 public class RandomUtil extends hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil {
 
     /**
+     * Private constructor
+     */
+    private RandomUtil() {
+         // Default constructor for java 21
+    }
+    /**
      * Generates random 48 characters long token.
      *
      * @return token string

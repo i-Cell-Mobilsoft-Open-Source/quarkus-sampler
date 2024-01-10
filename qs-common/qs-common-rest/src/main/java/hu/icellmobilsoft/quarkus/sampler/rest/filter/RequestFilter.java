@@ -46,6 +46,13 @@ import hu.icellmobilsoft.coffee.rest.validation.xml.exception.BaseProcessingExce
 @Priority(500)
 public class RequestFilter implements ContainerRequestFilter {
 
+    /**
+     * Default constructor
+     */
+    public RequestFilter() {
+        // Default constructor for java 21
+    }
+
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

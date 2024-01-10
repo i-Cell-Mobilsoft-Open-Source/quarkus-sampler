@@ -35,6 +35,12 @@ public class UrlStreamHandlerDelegator implements URLStreamHandlerFactory {
     private List<URLStreamHandlerFactory> urlStreamHandlerFactories = new ArrayList<>();
 
     /**
+     * Default constructor
+     */
+    public UrlStreamHandlerDelegator() {
+        // Default constructor for java 21
+    }
+    /**
      * Creates a new {@code URLStreamHandler} instance with the specified protocol.
      *
      * @param protocol

@@ -36,9 +36,12 @@ import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
  */
 public class BaseAction extends AbstractBaseAction {
 
-    @Inject
-    @ThisLogger
-    private AppLogger log;
+    /**
+     * Default constructor
+     */
+    public BaseAction() {
+        // Default constructor for java 21
+    }
 
     /**
      * Create a new Context for responses

@@ -55,6 +55,13 @@ public class HeaderColumnNameWithPositionMappingStrategy<T> extends HeaderColumn
      */
     protected Map<String, Integer> fieldIndexByName;
 
+    /**
+     * Default constructor
+     */
+    public HeaderColumnNameWithPositionMappingStrategy() {
+        // Default constructor for java 21
+    }
+
     @Override
     protected void loadFieldMap() throws CsvBadConverterException {
         fieldIndexByName = new HashMap<>();

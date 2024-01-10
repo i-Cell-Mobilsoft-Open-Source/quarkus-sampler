@@ -44,6 +44,14 @@ public class Starter {
 
     private static final Logger LOGGER = Logger.getLogger(Starter.class);
 
+
+    /**
+     * Default constructor
+     */
+    public Starter() {
+        // Default constructor for java 21
+    }
+
     /**
      * Must be set maven url resolver into URL factory
      *

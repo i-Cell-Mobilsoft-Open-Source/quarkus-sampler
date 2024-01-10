@@ -54,14 +54,21 @@ public class ProjectLocaleResolver extends DefaultLocaleResolver {
      * Project header
      */
     @Inject
-    private ProjectHeader header;
+    ProjectHeader header;
 
     /**
      * Logger
      */
     @Inject
     @ThisLogger
-    private AppLogger log;
+    AppLogger log;
+
+    /**
+     * Default constructor
+     */
+    public ProjectLocaleResolver() {
+        // Default constructor for java 21
+    }
 
     @Override
     public Locale getLocale() {

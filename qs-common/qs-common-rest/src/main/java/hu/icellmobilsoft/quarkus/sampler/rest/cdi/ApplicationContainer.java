@@ -36,6 +36,13 @@ public class ApplicationContainer {
     private Map<String, Object> objectMap;
 
     /**
+     * Default constructor
+     */
+    public ApplicationContainer() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Get objectMap
      * 
      * @return objectMap

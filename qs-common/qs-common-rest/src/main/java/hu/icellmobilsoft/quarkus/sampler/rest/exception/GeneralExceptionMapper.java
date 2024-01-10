@@ -34,4 +34,10 @@ import hu.icellmobilsoft.coffee.rest.exception.DefaultGeneralExceptionMapper;
 @Dependent
 public class GeneralExceptionMapper extends DefaultGeneralExceptionMapper {
 
+    /**
+     * Default constructor
+     */
+    public GeneralExceptionMapper() {
+        // Default constructor for java 21
+    }
 }

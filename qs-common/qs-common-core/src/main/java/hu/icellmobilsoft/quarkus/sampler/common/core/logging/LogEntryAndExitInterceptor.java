@@ -39,6 +39,12 @@ import hu.icellmobilsoft.coffee.cdi.logger.LogProducer;
 public class LogEntryAndExitInterceptor {
 
     /**
+     * Default constructor
+     */
+    public LogEntryAndExitInterceptor() {
+        // Default constructor for java 21
+    }
+    /**
      * Logging enter and exit from context. Log contains class name, method, parameters names, parameters values
      * 
      * @param ctx

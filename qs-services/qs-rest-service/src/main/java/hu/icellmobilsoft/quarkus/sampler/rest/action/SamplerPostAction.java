@@ -51,6 +51,13 @@ public class SamplerPostAction extends BaseAction {
     ProjectStage projectStage;
 
     /**
+     * Default constructor
+     */
+    public SamplerPostAction() {
+        // Default constructor for java 21
+    }
+
+    /**
      * Test logic. Test ProjectStage, use rest client
      * 
      * @param baseRequest

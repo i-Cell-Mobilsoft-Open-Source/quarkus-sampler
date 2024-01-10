@@ -37,6 +37,13 @@ import hu.icellmobilsoft.quarkus.sampler.rest.provider.util.JsonbUtil;
 @Provider
 public class CustomJsonb implements ContextResolver<Jsonb> {
 
+    /**
+     * Default constructor
+     */
+    public CustomJsonb() {
+        // Default constructor for java 21
+    }
+
     @Override
     public Jsonb getContext(Class<?> type) {
         return JsonbUtil.getContext();
