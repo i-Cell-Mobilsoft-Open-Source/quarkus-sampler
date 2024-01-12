@@ -31,8 +31,8 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.quarkus.sampler.api.test.ITestQuarkusSamplerServiceRest;
-import hu.icellmobilsoft.quarkus.sampler.dto.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 

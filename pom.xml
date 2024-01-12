@@ -19,6 +19,7 @@
     <inceptionYear>2024</inceptionYear>
 
     <modules>
+        <module>qs-api</module>
         <module>qs-bom</module>
         <module>qs-common</module>
         <module>qs-services</module>

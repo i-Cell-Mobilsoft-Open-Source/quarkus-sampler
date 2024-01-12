@@ -15,14 +15,21 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                <artifactId>qs-common-dto</artifactId>
+                <artifactId>qs-api-schema</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-api-jakarta</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                <artifactId>qs-common-api</artifactId>
+                <artifactId>qs-api-dto</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -15,6 +15,7 @@
         <module>qs-bom-all</module>
         <module>qs-bom-quarkus</module>
         <module>qs-bom-project</module>
+        <module>qs-bom-jakarta</module>
     </modules>
 
 </project>

@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <version.coffee>2.2.0</version.coffee>
+        <version.coffee>2.5.0-SNAPSHOT</version.coffee>
         <version.commons-collections4>4.4</version.commons-collections4>
 
         <version.apache.commons-csv>1.5</version.apache.commons-csv>
@@ -22,6 +22,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-bom-quarkus</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
                 <artifactId>qs-bom-project</artifactId>
@@ -29,10 +37,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                <artifactId>qs-bom-quarkus</artifactId>
+                <artifactId>qs-bom-jakarta</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -60,22 +67,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>hu.icellmobilsoft.coffee</groupId>
-                <artifactId>coffee-rest</artifactId>
-                <version>${version.coffee}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-core-spi</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
 
             <dependency>
                 <groupId>org.apache.commons</groupId>

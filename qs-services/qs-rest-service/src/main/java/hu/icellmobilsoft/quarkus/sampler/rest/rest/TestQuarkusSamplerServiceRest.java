@@ -25,7 +25,7 @@ import jakarta.inject.Inject;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.rest.rest.BaseRestService;
-import hu.icellmobilsoft.quarkus.sampler.api.test.ITestQuarkusSamplerServiceRest;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;

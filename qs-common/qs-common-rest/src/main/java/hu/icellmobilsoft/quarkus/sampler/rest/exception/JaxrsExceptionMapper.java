@@ -53,7 +53,7 @@ import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.TechnicalFault;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.rest.exception.IExceptionMessageTranslator;
-import hu.icellmobilsoft.quarkus.sampler.dto.exception.enums.FaultType;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.enums.FaultType;
 
 /**
  * JAX-RS API default exception mapper

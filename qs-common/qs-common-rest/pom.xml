@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-            <artifactId>qs-common-api</artifactId>
+            <artifactId>qs-api-jakarta</artifactId>
         </dependency>
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>

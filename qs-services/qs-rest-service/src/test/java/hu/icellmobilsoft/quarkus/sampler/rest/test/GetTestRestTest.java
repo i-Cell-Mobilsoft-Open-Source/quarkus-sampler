@@ -28,10 +28,9 @@ import org.junit.jupiter.api.Test;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.test.ITestQuarkusSamplerServiceRest;
-import hu.icellmobilsoft.quarkus.sampler.dto.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
-
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;

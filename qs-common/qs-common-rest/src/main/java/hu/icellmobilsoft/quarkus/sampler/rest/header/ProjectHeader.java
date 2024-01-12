@@ -31,6 +31,7 @@ import jakarta.ws.rs.core.MultivaluedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import hu.icellmobilsoft.coffee.se.logging.Logger;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.constant.IHttpHeaderConstant;
 
 /**
  * Project header class
@@ -54,7 +55,6 @@ public class ProjectHeader implements IHttpHeaderConstant {
     private String forwarded;
     private String forwardedForHost;
     private String forwardedForPort;
-
 
     /**
      * Default constructor

@@ -31,11 +31,10 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.ContextType;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
 import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.test.ITestQuarkusSamplerServiceRest;
-import hu.icellmobilsoft.quarkus.sampler.dto.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.rest.test.restclient.XmlITestQuarkusSamplerServiceRest;
-
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;

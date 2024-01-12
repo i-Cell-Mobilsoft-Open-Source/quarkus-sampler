@@ -28,7 +28,7 @@ import jakarta.enterprise.inject.Model;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.rest.rest.BaseRestService;
-import hu.icellmobilsoft.quarkus.sampler.api.system.ISystemRest;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.system.ISystemRest;
 import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
 
 /**
