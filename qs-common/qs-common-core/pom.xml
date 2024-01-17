@@ -12,19 +12,22 @@
     <artifactId>qs-common-core</artifactId>
 
     <dependencies>
+        <!-- Project dependencies -->
+        <dependency>
+            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+            <artifactId>qs-common-util</artifactId>
+        </dependency>
+
+        <!-- MP apis dependencies -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.opentracing</groupId>
+            <artifactId>microprofile-opentracing-api</artifactId>
+        </dependency>
+
+        <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-cdi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
         </dependency>
 
         <dependency>
@@ -32,25 +35,11 @@
             <artifactId>coffee-module-mp-opentracing</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-opentracing</artifactId>
-        </dependency>
 
+        <!-- Jakarta dependencies -->
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jaeger</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-            <artifactId>qs-common-util</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-logging-gelf</artifactId>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
         </dependency>
 
     </dependencies>

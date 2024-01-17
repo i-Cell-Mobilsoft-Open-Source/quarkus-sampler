@@ -14,16 +14,17 @@
 
     <dependencies>
 
-        <!-- Project -->
-
+        <!-- Project dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-etcd</artifactId>
         </dependency>
+
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-api-jakarta</artifactId>
         </dependency>
+
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-health</artifactId>
@@ -34,95 +35,28 @@
             <artifactId>qs-common-metrics</artifactId>
         </dependency>
 
-        <!-- Other -->
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
-
-        <!-- Coffee -->
+        <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-module-mp-restclient</artifactId>
         </dependency>
-        <dependency>
-            <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-mp-opentracing</artifactId>
-        </dependency>
 
-        <!-- Quarkus dependencies -->
-
-        <!-- Rest client -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jsonb</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jackson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jaxb</artifactId>
-        </dependency>
-
-        <!-- JaxRS implementation - resteasy -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jaxb</artifactId>
-        </dependency>
+        <!-- Quarkus - jsonb config -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-jsonb</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jackson</artifactId>
-        </dependency>
 
 
-        <!-- JsonP -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jsonp</artifactId>
-        </dependency>
-
-
-        <!-- Servlet -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-undertow</artifactId>
-        </dependency>
-
-        <!-- Yaml config use -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-config-yaml</artifactId>
-        </dependency>
-
+        <!-- MP apis dependencies -->
 
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-arc</artifactId>
-        </dependency>
-
-
-        <!-- Test -->
+        <!-- Test dependencies -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>

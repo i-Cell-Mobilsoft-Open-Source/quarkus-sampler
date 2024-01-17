@@ -12,19 +12,22 @@
     <artifactId>qs-common-etcd</artifactId>
 
     <dependencies>
+        <!-- Project dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-core</artifactId>
         </dependency>
+
+        <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-module-etcd</artifactId>
         </dependency>
-
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-module-configdoc</artifactId>
         </dependency>
+
 
     </dependencies>
 </project>

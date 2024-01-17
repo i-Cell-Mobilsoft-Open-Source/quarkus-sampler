@@ -1,0 +1,80 @@
+= Projekt configurációs beállításainak lehetőségei
+
+== Quarkus alapú configok
+
+Az alkalmazás mivel Quarkus alapú, így a quarkus alap beállításai használhatóak benne.
+
+A leírás itt található meg: https://quarkus.io/version/3.2/guides/all-config
+
+NOTE: A configuráció listából, csak azon elemek aktívak, melyek dependency szinten be vannak téve a projektbe.
+
+Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
+
+[cols="a,a,a,a"]
+|===
+| Quarkus config key | Description | Env variable | Default value
+
+| quarkus.arc.remove-unused-beans | Arc setting - remove unused beans: https://quarkus.io/version/3.2/guides/all-config#quarkus-arc_quarkus.arc.remove-unused-beans[Link] | - | false
+
+| quarkus.log.category."hu.icellmobilsoft".level | hu.icellmobilsoft category log level | SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL | INFO
+
+| quarkus.log.console.json | Json logging enable | SAMPLER_LOG_CONSOLE_JSON_ENABLED | false
+
+| quarkus.log.console.format | Console log format | - | `%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n`
+
+| quarkus.log.handler.gelf.additional-field."moduleVersion".value | Gelf log - *moduleVersion* additional-field value | SAMPLER_LOGSTASH_MODULE_VERSION | unknown
+| quarkus.log.handler.gelf.additional-field."moduleId".value | Gelf log - *moduleId* additional-field value | SAMPLER_LOGSTASH_MODULE_ID | unknown
+| quarkus.log.handler.gelf.additional-field."K8S_NAMESPACE".value | Gelf log - *K8S_NAMESPACE* additional-field value | SAMPLER_LOGSTASH_K8S_NAMESPACE | unknown
+| quarkus.handler.gelf.include-full-mdc | Gelf log - Whether to include all fields from the MDC. | SAMPLER_LOGSTASH_K8S_NAMESPACE | false
+| quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.level[Link] | SAMPLER_LOG_LEVEL | INFO
+| quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | SAMPLER_LOG_MIN_LEVEL | ALL
+
+| quarkus.jaeger.sampler-type | Jaeger - sampler type config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-type[Link] | SAMPLER_JAEGER_SAMPLER_TYPE | remote
+| quarkus.jaeger.sampler-manager-host-port | Jaeger - sampler manager host and port config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-manager-host-port[Link] | SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT | localhost:5778
+| quarkus.jaeger.reporter-log-spans | Jaeger - reporter log spans config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.reporter-log-spans[Link] | SAMPLER_JAEGER_REPORTER_LOG_SPANS |true
+| quarkus.jaeger.sampler-param | Jaeger - sampler param config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-param[Link] | SAMPLER_JAEGER_SAMPLER_PARAM |1
+| quarkus.jaeger.enabled | Jaeger - enabled config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.enabled[Link] | SAMPLER_JAEGER_ENABLED |false
+
+| quarkus.package.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.package.add-runner-suffix[Link] | - | false
+| quarkus.package.type | Quarkus package type: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.package.type[Link] | - | uber-jar
+
+| quarkus.smallrye-openapi.info-title | Openapi - info title : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-title[Link] | - |  Quarkus sampler service
+| quarkus.smallrye-openapi.info-version | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-version[Link] | - | ${quarkus.application.version}
+
+| quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
+----
+REST endpoints for operations. <br/>
+General responses in case of error:  <br/>
+* __400__ - Bad Request <br/>
+* __401__ - Unauthorized <br/>
+* __404__ - Not found <br/>
+* __418__ - Database object not found <br/>
+* __500__ - Internal Server Error <br/>
+----
+| quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/version/3.2/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
+
+|===
+
+== Coffee alapú configok
+
+Az alkalmazás ezen felül a coffee toolset használata miatt, további konfigurációs lehetőségeket tartalmaz.
+
+[cols="a,a,a,a"]
+|===
+| Coffee config key | Description | Env variable | Default value
+
+| coffee.app.name | Coffee app name in logs | - | ${quarkus.application.name}
+| coffee.config.resource.bundles | Resource bundles' config for i18n | - | i18n.common-messages,i18n.messages
+| coffee.config.xml.catalog.path | Catalog path of Super catalog.xml | - |xsd/hu/icellmobilsoft/quarkus/sampler/dto/super.catalog.xml
+|===
+
+== Microprofile Openapi configok
+
+Ezen kívül coffeehoz kapcsolódóan, tartalmaz egy microprofile openapi filter configurációt is
+
+[cols="a,a,a,a"]
+|===
+| MP Openapi config key | Description | Env variable | Default value
+
+| mp.openapi.filter | Microprofile openapi filter class with package | - | hu.icellmobilsoft.quarkus.sampler.rest.filter.OpenAPIFilter
+|===

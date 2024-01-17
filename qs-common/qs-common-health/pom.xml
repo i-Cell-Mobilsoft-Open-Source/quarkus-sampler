@@ -12,9 +12,22 @@
     <artifactId>qs-common-health</artifactId>
 
     <dependencies>
+
+        <!-- Project dependencies -->
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-health</artifactId>
+            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+            <artifactId>qs-common-core</artifactId>
+        </dependency>
+
+        <!-- MP apis dependencies -->
+
+        <dependency>
+            <groupId>org.eclipse.microprofile.health</groupId>
+            <artifactId>microprofile-health-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
         </dependency>
     </dependencies>
 

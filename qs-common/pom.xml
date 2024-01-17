@@ -13,12 +13,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>qs-common-rest</module>
-        <module>qs-common-health</module>
-        <module>qs-common-core</module>
         <module>qs-common-util</module>
+        <module>qs-common-core</module>
         <module>qs-common-etcd</module>
+        <module>qs-common-health</module>
         <module>qs-common-metrics</module>
+        <module>qs-common-rest</module>
     </modules>
 
 

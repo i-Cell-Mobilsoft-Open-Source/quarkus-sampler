@@ -7,5 +7,7 @@ include::technology.adoc[leveloffset=+1]
 
 include::useful.adoc[leveloffset=+1]
 
+include::configs.adoc[leveloffset=+1]
+
 include::releasenotes/index.adoc[leveloffset=+1]
 

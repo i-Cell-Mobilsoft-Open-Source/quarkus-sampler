@@ -19,20 +19,21 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.rest.filter;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import jakarta.annotation.Priority;
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.PreMatching;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.ext.Provider;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.rest.validation.xml.exception.BaseProcessingExceptionWrapper;
+import hu.icellmobilsoft.quarkus.sampler.rest.cdi.RequestContainer;
+import hu.icellmobilsoft.quarkus.sampler.rest.header.ProjectHeader;
 
 /**
  * General util filter, this filter's task is to process request headers
@@ -46,6 +47,9 @@ import hu.icellmobilsoft.coffee.rest.validation.xml.exception.BaseProcessingExce
 @Priority(500)
 public class RequestFilter implements ContainerRequestFilter {
 
+    @Context
+    private HttpServletRequest request;
+
     /**
      * Default constructor
      */
@@ -55,15 +59,15 @@ public class RequestFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            IOUtils.copy(requestContext.getEntityStream(), outputStream);
-            outputStream.flush();
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-            requestContext.setEntityStream(inputStream);
-        } catch (Exception e) {
-            throw new BaseProcessingExceptionWrapper(new BaseException("Error during xml message read.", e));
+        RequestContainer requestContainer = CDI.current().select(RequestContainer.class).get();
+        ProjectHeader header = ProjectHeader.readHeaders(requestContext);
+
+        // Set remote IP if in Forwarded header not specified.
+        if (StringUtils.isBlank(header.getForwarded()) && request != null) {
+            header.setForwarded(request.getRemoteAddr());
         }
+
+        requestContainer.setProjectHeader(header);
 
     }
 }

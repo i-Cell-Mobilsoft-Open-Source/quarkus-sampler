@@ -59,13 +59,13 @@ import hu.icellmobilsoft.quarkus.sampler.rest.metrics.util.HttpMethodUtil;
 public class RequestResponseMetricsProvider implements ContainerRequestFilter, WriterInterceptor {
 
     @Inject
-    private MetricsContainer metricsContainer;
+    MetricsContainer metricsContainer;
 
     @Inject
-    private MetricsHelper metricsHelper;
+    MetricsHelper metricsHelper;
 
     @Inject
-    private ProjectHeader projectHeader;
+    ProjectHeader projectHeader;
 
     @Context
     private HttpServletResponse httpServletResponse;

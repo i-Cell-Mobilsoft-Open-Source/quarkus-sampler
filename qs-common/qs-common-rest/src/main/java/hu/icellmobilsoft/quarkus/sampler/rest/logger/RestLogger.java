@@ -26,7 +26,7 @@ import jakarta.ws.rs.RuntimeType;
 import jakarta.ws.rs.ext.Provider;
 
 import hu.icellmobilsoft.coffee.dto.common.LogConstants;
-import hu.icellmobilsoft.coffee.rest.log.BaseRestLogger;
+import hu.icellmobilsoft.coffee.rest.log.optimized.BaseRestLogger;
 import hu.icellmobilsoft.quarkus.sampler.rest.filter.CustomPriorities;
 
 /**

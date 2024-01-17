@@ -12,19 +12,25 @@
     <artifactId>qs-common-metrics</artifactId>
 
     <dependencies>
+
+        <!-- Project dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-core</artifactId>
         </dependency>
 
+        <!-- Utils dependencies -->
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
         </dependency>
 
+
+        <!-- MP apis dependencies -->
+
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-metrics</artifactId>
+            <groupId>org.eclipse.microprofile.metrics</groupId>
+            <artifactId>microprofile-metrics-api</artifactId>
         </dependency>
 
     </dependencies>

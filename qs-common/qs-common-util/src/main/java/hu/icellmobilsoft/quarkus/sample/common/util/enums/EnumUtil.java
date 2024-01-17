@@ -39,7 +39,7 @@ public class EnumUtil extends hu.icellmobilsoft.coffee.tool.utils.enums.EnumUtil
      * Private constructor
      */
     private EnumUtil() {
-        // Default constructor for java 21
+        super();
     }
     /**
      * Enum collection to enum list conversion

@@ -9,7 +9,6 @@
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
     <artifactId>qs-bom-jakarta</artifactId>
     <packaging>pom</packaging>
 

@@ -24,27 +24,28 @@ quarkus:
   log:
     category:
       "hu.icellmobilsoft":
-        level: ALL
+        level: ${SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
     console:
+      json: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
       format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
     handler:
       gelf:
         additional-field:
           "moduleVersion":
-            value: ${LOGSTASH_MODULE_VERSION:unknown}
+            value: ${SAMPLER_LOGSTASH_MODULE_VERSION:unknown}
           "moduleId":
-            value: ${LOGSTASH_MODULE_ID:unknown}
+            value: ${SAMPLER_LOGSTASH_MODULE_ID:unknown}
           "K8S_NAMESPACE":
-            value: ${LOGSTASH_K8S_NAMESPACE:unknown}
+            value: ${SAMPLER_LOGSTASH_K8S_NAMESPACE:unknown}
         include-full-mdc: false
-    level: INFO
-    min-level: ALL
+    level: ${SAMPLER_LOG_LEVEL:INFO}
+    min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
   jaeger:
-    sampler-type: ${JAEGER_SAMPLER_TYPE:remote}
-    sampler-manager-host-port: ${JAEGER_SAMPLER_MANAGER_HOST_PORT:localhost:5778}
-    reporter-log-spans: ${JAEGER_REPORTER_LOG_SPANS:true}
-    sampler-param: ${JAEGER_SAMPLER_PARAM:1}
-    enabled: ${JAEGER_ENABLED:false}
+    sampler-type: ${SAMPLER_JAEGER_SAMPLER_TYPE:remote}
+    sampler-manager-host-port: ${SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT:localhost:5778}
+    reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
+    sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:1}
+    enabled: ${SAMPLER_JAEGER_ENABLED:false}
   rest-client:
     "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
       url: http://localhost:8080
@@ -59,11 +60,6 @@ quarkus:
   package:
     add-runner-suffix: false
     type: uber-jar
-  #  quartz:
-  #    clustered: false
-  #    thread-count: 5
-  #  scheduler:
-  #    start-mode: FORCED
   smallrye-openapi:
     info-title: Quarkus sampler service
     info-version: ${quarkus.application.version}
@@ -78,5 +74,3 @@ quarkus:
   swagger-ui:
     enable: false
 
-greeting:
-  message: "hello"

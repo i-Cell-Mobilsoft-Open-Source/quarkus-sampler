@@ -19,8 +19,6 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.rest.restclient.provider;
 
-import jakarta.enterprise.inject.spi.CDI;
-
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
 import hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultRestClientBuilderListener;
@@ -39,13 +37,11 @@ public class ProjectRestClientBuilderListener extends DefaultRestClientBuilderLi
      * Default constructor
      */
     public ProjectRestClientBuilderListener() {
-        // Default constructor for java 21
+        super();
     }
 
     @Override
     public void onNewBuilder(RestClientBuilder builder) {
         super.onNewBuilder(builder);
-        CDI<Object> cdi = CDI.current();
-        builder.register(cdi.select(CustomJsonbContextResolver.class).get());
     }
 }
