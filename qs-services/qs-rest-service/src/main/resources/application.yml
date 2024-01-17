@@ -13,7 +13,7 @@ coffee:
 
 mp:
   openapi:
-    filter: hu.icellmobilsoft.quarkus.sampler.rest.filter.OpenAPIFilter
+    filter: hu.icellmobilsoft.quarkus.sampler.common.rest.filter.OpenAPIFilter
 
 #-------------------------------
 # Quarkus settings

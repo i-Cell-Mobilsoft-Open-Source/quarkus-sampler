@@ -1,1 +1,1 @@
-hu.icellmobilsoft.quarkus.sampler.rest.restclient.provider.ProjectRestClientBuilderListener
+hu.icellmobilsoft.quarkus.sampler.common.rest.restclient.provider.ProjectRestClientBuilderListener

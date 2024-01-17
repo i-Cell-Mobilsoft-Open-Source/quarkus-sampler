@@ -76,5 +76,5 @@ Ezen kívül coffeehoz kapcsolódóan, tartalmaz egy microprofile openapi filter
 |===
 | MP Openapi config key | Description | Env variable | Default value
 
-| mp.openapi.filter | Microprofile openapi filter class with package | - | hu.icellmobilsoft.quarkus.sampler.rest.filter.OpenAPIFilter
+| mp.openapi.filter | Microprofile openapi filter class with package | - | hu.icellmobilsoft.quarkus.sampler.common.rest.filter.OpenAPIFilter
 |===
