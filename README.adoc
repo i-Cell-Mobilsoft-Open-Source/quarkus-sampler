@@ -1,0 +1,37 @@
+include::docs/technology.adoc[leveloffset=+0]
+
+include::docs/useful.adoc[leveloffset=+1]
+
+== Tesztelés
+
+Tesztelési lehetőségre jelenleg a quarkus saját teszt megoldása van használva, mely
+futtatható egyből a fejlesztői UI (junit plugin) vagy a maven segítségével,
+például:
+
+[source,bash]
+----
+cd local_path/quarkus-sampler/qs-services/qs-rest-service
+mvn verify
+----
+
+== Release
+
+A release elkészítése automata folyamat, amit a GitHub Actionök kezelnek.
+Release esetén nem csak maven release készül, hanem docker image is a sampler service-ekről is.
+
+
+./etc/release/Dockerfile
+Alapvetően 3 részből áll:
+
+. Base image, ami esetünkben egy java 17 image
+. jar fájl lehúzása - nexusból lehúzni a kívánt deployment fájlt
+. dockerimage finalizálása - jar fájlok bele másolása, stb.
+
+./quarkus-sampler/etc/release/docker-compose.yml
+Funkciója hogy beállítja a service-k változóit és egyszerre kezelje őket.
+
+.Futtatás
+Futtatás kézi indítással történik a https://docs.gitlab.com/ee/ci/[Gitlab CI]-el,
+konkrétan a baloldali gitlab menu: https://gitlab-dev.k8s.icellmobilsoft.hu/eter2.szabo/quarkus-sampler/-/pipelines
+konkrét pipeline kiválasztása, kívánt job kiválasztás, kézi indítás.
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+        <artifactId>qs-bom</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>qs-bom-all</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <version.coffee>2.5.0-SNAPSHOT</version.coffee>
+        <version.commons-collections4>4.4</version.commons-collections4>
+
+        <version.apache.commons-csv>1.5</version.apache.commons-csv>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-bom-quarkus</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-bom-project</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-bom-jakarta</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.coffee</groupId>
+                <artifactId>coffee-bom</artifactId>
+                <version>${version.coffee}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${version.commons-collections4}</version>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.coffee</groupId>
+                <artifactId>coffee-dto-base</artifactId>
+                <version>${version.coffee}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${version.apache.commons-csv}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"
+            xmlns:fwservice="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            targetNamespace="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"
+            elementFormDefault="qualified" attributeFormDefault="unqualified"
+           >
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <xsd:complexType name="TestResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="hu">Test response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="fwservice:BaseResponseType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="TestResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="TestResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

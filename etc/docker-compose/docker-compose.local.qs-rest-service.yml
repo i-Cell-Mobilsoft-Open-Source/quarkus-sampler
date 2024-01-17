@@ -1,0 +1,40 @@
+version: "3.8"
+
+# run
+# docker-compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compose.local.qs-rest-service.yml up --build --force-recreate
+#
+# run from project directory
+# docker-compose -f ./etc/docker-compose/docker-compose.local.qs-rest-service.yml up --build --force-recreate
+#
+# enter container
+# docker exec -it qs-rest-service-dev /bin/bash
+#
+# empty run
+# docker run --rm -it qs-rest-service:develop-local /bin/bash
+services:
+    qs-rest-service:
+        container_name: qs-rest-service-dev
+        build:
+            context: ../../
+            dockerfile: etc/docker-compose/local.Dockerfile
+            args:
+                ICELL_JAVA_17_JRE_BASE_IMAGE: 'icellmobilsoft/base-java17jre:1.4.0'
+                SERVICE: 'qs-rest-service'
+        image: "qs-rest-service:develop-local"
+        environment:
+            # With this config, service use application-dev.yml!
+            - MP_CONFIG_PROFILE=dev
+        ports:
+            - '8081:8080' # REST
+            - '5006:5005' # Debug
+        deploy:
+            resources:
+                limits:
+                    memory: 512M
+                reservations:
+                    memory: 512M
+networks:
+    default:
+        external:
+            # if it could not be found on compose up, then execute: docker network create quarkus-sampler-local-network
+            name: quarkus-sampler-local-network

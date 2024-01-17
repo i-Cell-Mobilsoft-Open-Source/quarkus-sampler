@@ -1,0 +1,7 @@
+= Quarkus Sampler 0.1.0
+
+== Release note
+
+* Base project with Quarkus 3.2.5.Final
+* Documentations
+

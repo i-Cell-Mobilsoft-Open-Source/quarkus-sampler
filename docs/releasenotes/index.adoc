@@ -1,0 +1,3 @@
+= Release notes
+
+include::quarkus-sampler-0.1.0.adoc[leveloffset=+1]

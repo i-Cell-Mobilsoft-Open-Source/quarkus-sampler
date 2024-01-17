@@ -1,0 +1,49 @@
+= Quarkus Sampler Dokumentáció
+
+image:https://img.shields.io/github/actions/workflow/status/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/ci-actions-incremental.yml?branch=main&logo=GitHub&style=plastic[Compile status, link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/actions?query=workflow%3A%22Compile+branch%3Amaster]
+image:https://img.shields.io/maven-central/v/hu.icellmobilsoft.quarkus.sampler/quarkus-sampler?logo=apache-maven&style=for-the-badge)[Maven central version of Parent pom project]
+image:https://img.shields.io/github/license/i-Cell-Mobilsoft-Open-Source/quarkus-sampler?style=plastic&logo=apache[License of Parent pom project]
+image:https://img.shields.io/badge/Use_JakartaEE_10+-project-brightgreen.svg?style=plastic&logo=jakartaee[Use JakartaEE project]
+image:https://img.shields.io/github/commit-activity/m/i-Cell-Mobilsoft-Open-Source/quarkus-sampler.svg?label=Commits&style=plastic&logo=git&logoColor=white[Commits]
+image:https://img.shields.io/badge/JVM-17--21-brightgreen.svg?style=plastic&logo=openjdk[Supported jvms]
+image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/quarkus-sampler?style=plastic[GitHub Repo Stars, link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sample/stargazers]
+
+== Általános
+
+A projekt célja hogy működő használati mintát adjon általános Quarkus projekt felépítésére.
+
+[NOTE]
+====
+Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
+====
+
+== Használt technológiák
+
+* Coffee 2.0.0+ +
+JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmusait összegyűjtse, azokra egy alapvető megoldást nyújtson, melyet, ha szükséges saját igényeinkre szabhatunk (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
+
+* Java 17+
+* Maven 3.8.2+
+* Jakarta EE 10+
+* CDI 4.0+
+* Microprofile 6.0+
+* Quarkus 3.2.5.Final+
+* Tracing with grafana
+
+== Projekt struktúra
+
+* `/.github` - GitHub beállításai
+
+* `/docs` - Dokumentációk tárhelye
+
+* `/etc` - Konfigurációk, fejlesztési környezet scriptek, stb.
+
+** `/etc/config` - Konfigurációk
+
+*** `/etc/config/grafana/**` - Grafana dashboardok, datasource-ok.
+
+*** `/etc/config/prometheus/**` - Prometheus konfiguráció localhosthoz
+
+** `/etc/docker-compose` - Docker compose fájlok és hozzájuk tartozó esetleges Dockerfile-ok.
+
+** `/etc/release` - Docker release kezelési seglet a GitHub ci-ban.

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <public publicId="http://common.dto.coffee.icellmobilsoft.hu/common"
+            uri="maven:hu.icellmobilsoft.coffee:coffee-dto-xsd:jar::!/xsd/hu/icellmobilsoft/coffee/dto/common/common.xsd" />
+    <public publicId="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            uri="maven:hu.icellmobilsoft.coffee:coffee-dto-xsd:jar::!/xsd/hu/icellmobilsoft/coffee/dto/common/commonservice.xsd" />
+    <public publicId="http://common.dto.coffee.icellmobilsoft.hu/commonsecurity"
+            uri="maven:hu.icellmobilsoft.coffee:coffee-dto-xsd:jar::!/xsd/hu/icellmobilsoft/coffee/dto/common/commonsecurity.xsd" />
+
+    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/test.xsd"/>
+    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/post" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/post.xsd"/>
+
+</catalog>

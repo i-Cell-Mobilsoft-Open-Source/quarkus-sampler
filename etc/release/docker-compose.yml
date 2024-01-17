@@ -1,0 +1,23 @@
+version: "3.8"
+
+# build inditas
+# docker-compose -f quarkus-sampler/etc/release/docker-compose.yml build --no-cache
+# image belemaszas
+# docker run --rm -it icellmobilsoft/quarkus-sampler-qs-rest-service:0.1.0-SNAPSHOT /bin/sh
+# image inditasa
+# docker run --rm -p 8080:8080 -p 9990:9990 icellmobilsoft/quarkus-sampler-qs-rest-service:0.1.0-SNAPSHOT
+
+services:
+  qs-rest-service-release:
+    build:
+      context: ../../
+      dockerfile: etc/release/Dockerfile
+      args:
+        ICELL_JAVA_17_JRE_BASE_IMAGE: '$BASE_IMAGE'
+        ARTIFACT_DOWNLOADER_IMAGE: '$ARTIFACT_DOWNLOADER_IMAGE'
+        POM_GROUP_ID: 'hu.icellmobilsoft.quarkus.sampler'
+        POM_ARTIFACT_ID: 'qs-rest-service'
+        POM_EXTENSION: 'jar'
+        # RELEASED_VERSION erteket ci scriptek betoltik az inditott folyamat szerint
+        POM_VERSION: '$RELEASED_VERSION'
+    image: "$DDOCKER_SERVICE_QUARKUS_SAMPLE_REST_SERVICE:$RELEASED_VERSION"
