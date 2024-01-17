@@ -20,4 +20,5 @@ quarkus:
       scope: jakarta.enterprise.context.ApplicationScoped
       #read-timeout: 5000
       #connect-timeout: 5000
-
+  jaxb:
+    exclude-classes: hu.icellmobilsoft.coffee.tool.utils.marshalling.TestXmlObject
