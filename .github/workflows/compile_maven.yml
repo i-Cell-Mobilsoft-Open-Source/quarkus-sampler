@@ -33,4 +33,4 @@ jobs:
 
       # Maven script [ package ]
       - name: Build with Maven
-        run: mvn package
+        run: mvn -B package --file pom.xml
