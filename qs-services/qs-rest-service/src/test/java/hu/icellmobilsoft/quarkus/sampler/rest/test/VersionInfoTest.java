@@ -27,12 +27,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.ServicePath;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.system.ISystemRest;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 
 /**
  * Quarkus test example for VersionInfo endpoint.
@@ -52,24 +49,6 @@ class VersionInfoTest {
     void versionInfo() throws BaseException {
         String testResponse = RestClientBuilder.newBuilder().baseUrl(url).build(ISystemRest.class).versionInfo();
         Assertions.assertNotNull(testResponse);
-    }
-
-    @Test
-    @DisplayName("Testing 200 response at call /versionInfo with RestAssured")
-    void versionInfoRestAssured() {
-        RestAssured.given() //
-                .baseUri(url.toString())
-                .when()
-                .log()
-                .all() //
-                .request()
-                .accept(ContentType.TEXT)
-                .get(ServicePath.VERSION_INFO) //
-                .then()
-                .log()
-                .all() //
-                .statusCode(200) //
-        ;
     }
 
 }

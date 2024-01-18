@@ -28,12 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
 
 /**
  * Quarkus test example for ITestQuarkusSamplerServiceRest interface test.
@@ -55,31 +53,6 @@ class GetTestRestTest {
                 .baseUrl(url)
                 .build(ITestQuarkusSamplerServiceRest.class)
                 .getTest(RandomUtil.generateId(), Integer.MAX_VALUE, Long.MAX_VALUE, Boolean.TRUE);
-        Assertions.assertNotNull(testResponse);
-        Assertions.assertNotNull(testResponse.getContext());
-        Assertions.assertNotNull(testResponse.getContext().getRequestId());
-    }
-
-    @Test
-    @DisplayName("test get method in the service with RestAssured")
-    void getTestRestWithRestAssured() {
-        TestResponse testResponse = RestAssured.given() //
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_STRING, RandomUtil.generateId())
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_INTEGER, Integer.MAX_VALUE)
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_LONG, Long.MAX_VALUE)
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_BOOLEAN, Boolean.FALSE)
-                .baseUri(url.toString())
-                .when()
-                .log()
-                .all() //
-                .get(QuarkusSamplerPath.TEST_QUARKUS_SAMPLER_SERVICE) //
-                .then()
-                .log()
-                .all() //
-                .statusCode(200) //
-                .extract()
-                .response()
-                .as(TestResponse.class);
         Assertions.assertNotNull(testResponse);
         Assertions.assertNotNull(testResponse.getContext());
         Assertions.assertNotNull(testResponse.getContext().getRequestId());

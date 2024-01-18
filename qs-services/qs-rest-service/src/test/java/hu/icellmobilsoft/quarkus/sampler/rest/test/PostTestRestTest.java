@@ -31,13 +31,11 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.ContextType;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
 import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.rest.test.restclient.XmlITestQuarkusSamplerServiceRest;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
 
 /**
  * Quarkus test example for ITestQuarkusSamplerServiceRest interface test.
@@ -50,36 +48,6 @@ class PostTestRestTest {
      */
     @TestHTTPResource
     URL url;
-
-    @Test
-    @DisplayName("test post method in the service with RestAssured")
-    void postTestRestWithRestAssured() {
-
-        SampleResponse sampleResponse = RestAssured.given()
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_STRING, RandomUtil.generateId())
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_INTEGER, Integer.MAX_VALUE)
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_LONG, Long.MAX_VALUE)
-                .queryParam(QuarkusSamplerPath.PARAM_TEST_BOOLEAN, Boolean.FALSE)
-                .baseUri(url.toString())
-                .basePath(QuarkusSamplerPath.TEST_QUARKUS_SAMPLER_SERVICE)
-                .body(createBaseRequest())
-                .when()
-                .log()
-                .all()
-                .post()
-                .then()
-                .log()
-                .all()
-                .statusCode(200)
-                .extract()
-                .response()
-                .as(SampleResponse.class);
-        Assertions.assertNotNull(sampleResponse);
-        Assertions.assertNotNull(sampleResponse.getContext());
-        Assertions.assertNotNull(sampleResponse.getContext().getRequestId());
-    }
 
     @Test
     @DisplayName("test post method in the service with RestClient")

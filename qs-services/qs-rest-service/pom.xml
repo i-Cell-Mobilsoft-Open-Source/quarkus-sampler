@@ -25,6 +25,10 @@
         <!--  Quarkus dependecies - JaxRS implementation - resteasy -->
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jaxb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-jaxb</artifactId>
         </dependency>
 
@@ -113,12 +117,28 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>io.rest-assured</groupId>-->
+        <!--            <artifactId>rest-assured</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.quarkus/quarkus-core-deployment &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.quarkus</groupId>-->
+        <!--            <artifactId>quarkus-core-deployment</artifactId>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.quarkus/quarkus-jaxb-deployment &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.quarkus</groupId>-->
+        <!--            <artifactId>quarkus-jaxb-deployment</artifactId>-->
+        <!--        </dependency>-->
+
+
     </dependencies>
 
 

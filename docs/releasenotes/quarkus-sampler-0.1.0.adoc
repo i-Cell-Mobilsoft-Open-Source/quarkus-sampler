@@ -4,4 +4,4 @@
 
 * Base project with Quarkus 3.2.5.Final
 * Documentations
-
+* GitHub workflows for docker build and release build

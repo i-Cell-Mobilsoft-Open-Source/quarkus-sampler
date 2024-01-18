@@ -106,7 +106,18 @@
                             <include>**/*TestCase.java</include>
                         </includes>
                         <systemPropertyVariables>
+                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                             <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        </systemPropertyVariables>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.1.2</version>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
@@ -132,13 +143,6 @@
                             <goals>
                                 <goal>jandex</goal>
                             </goals>
-                            <configuration>
-                                <fileSets>
-                                    <fileSet>
-                                        <directory>${project.build.directory}</directory>
-                                    </fileSet>
-                                </fileSets>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -152,6 +156,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
