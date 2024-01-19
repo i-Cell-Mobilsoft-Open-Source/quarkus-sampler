@@ -34,10 +34,13 @@ import org.junit.jupiter.api.Test;
 import hu.icellmobilsoft.quarkus.sampler.rest.test.dto.HealthDto;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.RestAssured;
 
 @QuarkusTest
 @DisplayName("Testing mp-health")
 class HealthTest {
+
+    private static final String STATUS_JSON_PATH = "status";
 
     /*
      * Server url like: http://localhost:8083
@@ -76,5 +79,28 @@ class HealthTest {
                 connection.disconnect();
             }
         }
+    }
+
+    @Test
+    @DisplayName("Testing /q/health with Restassured")
+    void testHealthCheckWithRestAssured() {
+        String status = HealthCheckResponse.Status.UP.name();
+        String responseStatus = RestAssured //
+                .given()
+                .baseUri(url.toString()) //
+                .when()
+                .log()
+                .all()
+                .get("/q/health") //
+                .then()
+                .log()
+                .all() //
+                .extract()
+                .response()
+                .body()
+                .jsonPath()
+                .get(STATUS_JSON_PATH);
+
+        Assertions.assertEquals(status, responseStatus);
     }
 }
