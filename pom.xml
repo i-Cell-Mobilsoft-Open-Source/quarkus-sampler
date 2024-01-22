@@ -143,9 +143,51 @@
                             <goals>
                                 <goal>jandex</goal>
                             </goals>
+                            <!-- phase is 'process-classes by default' -->
+                            <configuration>
+                                <fileSets>
+                                    <fileSet>
+                                        <directory>${project.build.directory}</directory>
+                                    </fileSet>
+                                </fileSets>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
+
+                <!--This plugin's configuration is used to store Eclipse m2e settings
+                    only. It has no influence on the Maven build itself. -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            org.codehaus.mojo
+                                        </groupId>
+                                        <artifactId>
+                                            native2ascii-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.0-beta-1,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>native2ascii</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
         <plugins>
@@ -253,26 +295,26 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
-                    </plugin>
+                    <!--                    <plugin>-->
+                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+                    <!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+                    <!--                        <version>3.1.0</version>-->
+                    <!--                        <executions>-->
+                    <!--                            <execution>-->
+                    <!--                                <id>sign-artifacts</id>-->
+                    <!--                                <phase>verify</phase>-->
+                    <!--                                <goals>-->
+                    <!--                                    <goal>sign</goal>-->
+                    <!--                                </goals>-->
+                    <!--                            </execution>-->
+                    <!--                        </executions>-->
+                    <!--                        <configuration>-->
+                    <!--                            <gpgArguments>-->
+                    <!--                                <arg>&#45;&#45;pinentry-mode</arg>-->
+                    <!--                                <arg>loopback</arg>-->
+                    <!--                            </gpgArguments>-->
+                    <!--                        </configuration>-->
+                    <!--                    </plugin>-->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
