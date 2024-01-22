@@ -22,6 +22,7 @@ package hu.icellmobilsoft.quarkus.sampler.api.jakarta.test;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
@@ -31,9 +32,11 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import hu.icellmobilsoft.coffee.cdi.annotation.xml.ValidateXML;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.rest.validation.xml.annotation.ValidateXML;
+import hu.icellmobilsoft.coffee.rest.log.annotation.LogSpecifier;
+import hu.icellmobilsoft.coffee.rest.log.annotation.enumeration.LogSpecifierTarget;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
 import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
@@ -111,9 +114,47 @@ public interface ITestQuarkusSamplerServiceRest {
             description = "Dummy operation for testing Sampler service")
     @Tag(ref = ITestQuarkusSamplerServiceRest.TAG)
     @POST
+    @LogSpecifier(target = { LogSpecifierTarget.CLIENT_REQUEST }, maxEntityLogSize = 20)
+    @LogSpecifier(target = { LogSpecifierTarget.CLIENT_RESPONSE }, noLog = true)
     @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
     @Produces(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
     SampleResponse postTest(@ValidateXML(xsdPath = XsdConstants.SUPER_XSD_PATH) BaseRequest baseRequest,
+            @QueryParam(QuarkusSamplerPath.PARAM_TEST_STRING) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_STRING,
+                    description = TEST_DESCRIPTION) String testString,
+            @QueryParam(QuarkusSamplerPath.PARAM_TEST_INTEGER) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_INTEGER,
+                    description = TEST_DESCRIPTION) Integer testInteger,
+            @QueryParam(QuarkusSamplerPath.PARAM_TEST_LONG) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_LONG,
+                    description = TEST_DESCRIPTION) Long testLong,
+            @QueryParam(QuarkusSamplerPath.PARAM_TEST_BOOLEAN) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_BOOLEAN,
+                    description = TEST_DESCRIPTION) Boolean testBoolean)
+            throws BaseException;
+
+    /**
+     * Test POST operation
+     *
+     * @param baseRequest
+     *            base request from body
+     * @param testString
+     *            {@link String} test value
+     * @param testInteger
+     *            {@link Integer} test value
+     * @param testLong
+     *            {@link Long} test value
+     * @param testBoolean
+     *            {@link Boolean} test value
+     * @return {@link SampleResponse} response
+     * @throws BaseException
+     *             if any error occurs
+     */
+    @Operation(summary = "Test POST operation", //
+            description = "Dummy operation for testing Sampler service")
+    @Tag(ref = ITestQuarkusSamplerServiceRest.TAG)
+    @PUT
+    @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
+    @Produces(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
+    @LogSpecifier(target = LogSpecifierTarget.REQUEST, maxEntityLogSize = 10)
+    @LogSpecifier(target = LogSpecifierTarget.RESPONSE, maxEntityLogSize = 5000)
+    SampleResponse putTest(@ValidateXML(xsdPath = XsdConstants.SUPER_XSD_PATH) BaseRequest baseRequest,
             @QueryParam(QuarkusSamplerPath.PARAM_TEST_STRING) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_STRING,
                     description = TEST_DESCRIPTION) String testString,
             @QueryParam(QuarkusSamplerPath.PARAM_TEST_INTEGER) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_INTEGER,

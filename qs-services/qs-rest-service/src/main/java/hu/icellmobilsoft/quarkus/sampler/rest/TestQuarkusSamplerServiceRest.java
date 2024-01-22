@@ -30,6 +30,7 @@ import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndEx
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 import hu.icellmobilsoft.quarkus.sampler.rest.action.SamplerPostAction;
+import hu.icellmobilsoft.quarkus.sampler.rest.action.SamplerPutAction;
 import hu.icellmobilsoft.quarkus.sampler.rest.action.SamplerTestAction;
 
 /**
@@ -47,6 +48,8 @@ public class TestQuarkusSamplerServiceRest extends BaseRestService implements IT
     @Inject
     SamplerPostAction samplerPostAction;
 
+    @Inject
+    SamplerPutAction samplerPutAction;
     /**
      * Default constructor
      */
@@ -76,4 +79,10 @@ public class TestQuarkusSamplerServiceRest extends BaseRestService implements IT
         return samplerPostAction.postTest(baseRequest, testString, testInteger, testLong, testBoolean);
     }
 
+    @Override
+    @LogMethodEntryAndExit
+    public SampleResponse putTest(BaseRequest baseRequest, String testString, Integer testInteger, Long testLong, Boolean testBoolean)
+            throws BaseException {
+        return samplerPutAction.putTest(baseRequest, testString, testInteger, testLong, testBoolean);
+    }
 }

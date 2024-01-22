@@ -45,7 +45,7 @@ import io.restassured.RestAssured;
  * Quarkus test example for ITestQuarkusSamplerServiceRest interface test.
  */
 @QuarkusTest
-class PostTestRestTest {
+class PutTestRestTest {
 
     /**
      * Server url like: http://localhost:8083
@@ -55,7 +55,7 @@ class PostTestRestTest {
 
     @Test
     @DisplayName("test post method in the service with RestAssured")
-    void postTestRestWithRestAssured() {
+    void putTestRestWithRestAssured() {
 
         SampleResponse sampleResponse = RestAssured.given()
                 .header("Accept", "application/json")
@@ -70,7 +70,7 @@ class PostTestRestTest {
                 .when()
                 .log()
                 .all()
-                .post()
+                .put()
                 .then()
                 .log()
                 .all()
@@ -85,11 +85,11 @@ class PostTestRestTest {
 
     @Test
     @DisplayName("test post method in the service with RestClient")
-    void postTest() throws BaseException {
+    void putTest() throws BaseException {
         SampleResponse testResponse = RestClientBuilder.newBuilder()
                 .baseUrl(url)
                 .build(ITestQuarkusSamplerServiceRest.class)
-                .postTest(createBaseRequest(), "test", 1, 1L, true);
+                .putTest(createBaseRequest(), "test", 1, 1L, true);
         Assertions.assertNotNull(testResponse);
         Assertions.assertNotNull(testResponse.getContext());
         Assertions.assertNotNull(testResponse.getContext().getRequestId());
@@ -97,25 +97,25 @@ class PostTestRestTest {
 
     @Test
     @DisplayName("test post method in the service with RestClient With xml")
-    void postTestXml() throws BaseException {
+    void putTestXml() throws BaseException {
         SampleResponse testResponse = RestClientBuilder.newBuilder()
                 .baseUrl(url)
                 .build(XmlITestQuarkusSamplerServiceRest.class)
-                .postTest(createBaseRequest(), "test", 1, 1L, true);
+                .putTest(createBaseRequest(), "test", 1, 1L, true);
         Assertions.assertNotNull(testResponse);
         Assertions.assertNotNull(testResponse.getContext());
         Assertions.assertNotNull(testResponse.getContext().getRequestId());
     }
 
     @Test
-    @Disabled("This is disabled while ")
+    @Disabled
     @DisplayName("test post method in the service with RestClient With error (dto without ContextType")
-    void postTestWithoutContextType() {
+    void putTestWithoutContextType() {
         try {
             RestClientBuilder.newBuilder()
                     .baseUrl(url)
                     .build(XmlITestQuarkusSamplerServiceRest.class)
-                    .postTest(new BaseRequest(), "test", 1, 1L, true);
+                    .putTest(new BaseRequest(), "test", 1, 1L, true);
         } catch (BaseException e) {
             Assertions.assertSame(CoffeeFaultType.INVALID_XML, e.getFaultTypeEnum());
         }

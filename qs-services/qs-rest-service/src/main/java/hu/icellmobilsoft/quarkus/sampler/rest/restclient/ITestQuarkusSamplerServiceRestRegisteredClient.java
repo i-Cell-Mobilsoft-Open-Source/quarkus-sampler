@@ -34,5 +34,5 @@ import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerSer
  */
 @RegisterRestClient
 @Path(QuarkusSamplerPath.TEST_QUARKUS_SAMPLER_SERVICE)
-public interface ITestQuarkusSamplerServiceRestRegisteredClient extends ITestQuarkusSamplerServiceRest {
+public interface ITestQuarkusSamplerServiceRestRegisteredClient extends ITestQuarkusSamplerServiceRest, AutoCloseable {
 }
