@@ -12,10 +12,7 @@ image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/quarkus-s
 
 A projekt célja hogy működő használati mintát adjon általános Quarkus projekt felépítésére.
 
-[NOTE]
-====
-Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
-====
+NOTE: Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 
 == Használt technológiák
 
@@ -29,9 +26,6 @@ JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmu
 * Microprofile 6.0+
 * Quarkus 3.2.5.Final+
 * Tracing with grafana
-
-https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/#_hasznos_parancsok_%C3%A9s_el%C3%A9r%C3%A9sek[Hasznos parancsok és elérések
-]
 
 == Tesztelés
 

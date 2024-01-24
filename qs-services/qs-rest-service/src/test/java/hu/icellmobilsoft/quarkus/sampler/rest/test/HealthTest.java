@@ -19,13 +19,19 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.rest.test;
 
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import hu.icellmobilsoft.quarkus.sampler.rest.test.dto.HealthDto;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
@@ -36,7 +42,7 @@ class HealthTest {
 
     private static final String STATUS_JSON_PATH = "status";
 
-    /**
+    /*
      * Server url like: http://localhost:8083
      */
     @TestHTTPResource
@@ -44,7 +50,40 @@ class HealthTest {
 
     @Test
     @DisplayName("Testing /q/health")
-    void testHealthCheck() {
+    void testHealthCheck() throws Exception {
+
+        String status = HealthCheckResponse.Status.UP.name();
+
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) new URL(url.toString() + "/q/health").openConnection();
+
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+
+            // Válasz olvasása, ha a kérés sikeres
+            Assertions.assertEquals(HttpURLConnection.HTTP_OK, connection.getResponseCode());
+
+            // Válasz megjelenítése
+
+            // JSON-B inicializálása
+            try (Jsonb jsonb = JsonbBuilder.create()) {
+                // Válasz JSON tartalom átalakítása Java objektummá
+                HealthDto myObject = jsonb.fromJson(new InputStreamReader(connection.getInputStream()), HealthDto.class);
+                Assertions.assertEquals(status, myObject.getStatus());
+            }
+
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Testing /q/health with Restassured")
+    void testHealthCheckWithRestAssured() {
         String status = HealthCheckResponse.Status.UP.name();
         String responseStatus = RestAssured //
                 .given()
