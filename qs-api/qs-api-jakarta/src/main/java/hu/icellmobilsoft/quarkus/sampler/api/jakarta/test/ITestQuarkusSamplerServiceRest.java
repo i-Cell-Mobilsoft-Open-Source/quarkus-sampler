@@ -36,6 +36,7 @@ import hu.icellmobilsoft.coffee.cdi.annotation.xml.ValidateXML;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.rest.log.annotation.LogSpecifier;
+import hu.icellmobilsoft.coffee.rest.log.annotation.LogSpecifiers;
 import hu.icellmobilsoft.coffee.rest.log.annotation.enumeration.LogSpecifierTarget;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
 import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
@@ -81,6 +82,10 @@ public interface ITestQuarkusSamplerServiceRest {
             description = "Dummy operation for testing Sampler service")
     @Tag(ref = ITestQuarkusSamplerServiceRest.TAG)
     @GET
+    @LogSpecifiers(value = {
+            @LogSpecifier(target = { LogSpecifierTarget.CLIENT_REQUEST }, maxEntityLogSize = 10000),
+            @LogSpecifier(target = { LogSpecifierTarget.CLIENT_RESPONSE }, maxEntityLogSize = 1000)
+    })
     @Produces(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
     TestResponse getTest(
             @QueryParam(QuarkusSamplerPath.PARAM_TEST_STRING) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_STRING,

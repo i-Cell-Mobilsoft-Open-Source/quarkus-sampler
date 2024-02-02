@@ -39,7 +39,7 @@
         <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-mp-restclient</artifactId>
+            <artifactId>coffee-module-mp-restclient-extension</artifactId>
         </dependency>
 
         <!-- Quarkus - jsonb config -->
@@ -78,7 +78,6 @@
                 <configuration>
                     <encoding>UTF8</encoding>
                     <includes>i18n/**/*.properties</includes>
-                    <dest>target/classes</dest>
                 </configuration>
                 <executions>
                     <execution>

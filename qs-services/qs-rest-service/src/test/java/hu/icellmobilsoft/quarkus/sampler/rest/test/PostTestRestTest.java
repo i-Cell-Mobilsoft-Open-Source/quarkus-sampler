@@ -23,7 +23,6 @@ import java.net.URL;
 
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -108,7 +107,6 @@ class PostTestRestTest {
     }
 
     @Test
-    @Disabled("This is disabled while ")
     @DisplayName("test post method in the service with RestClient With error (dto without ContextType")
     void postTestWithoutContextType() {
         try {

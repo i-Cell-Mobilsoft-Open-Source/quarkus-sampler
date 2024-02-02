@@ -27,6 +27,9 @@ import jakarta.inject.Inject;
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
+import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
+import hu.icellmobilsoft.coffee.rest.projectstage.ProjectStage;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 
@@ -42,6 +45,9 @@ public class SamplerTestAction extends BaseAction {
     @Inject
     @ThisLogger
     AppLogger log;
+
+    @Inject
+    ProjectStage projectStage;
 
     /**
      * Default constructor
@@ -63,10 +69,13 @@ public class SamplerTestAction extends BaseAction {
      *            Query parameter for testing
      * @return {@link TestResponse} Test response
      */
-    public TestResponse getTest(String testString, Integer testInteger, Long testLong, Boolean testBoolean) {
-
+    public TestResponse getTest(String testString, Integer testInteger, Long testLong, Boolean testBoolean) throws BaseException {
         log.info(MessageFormat.format("Query parameters: [{0}], [{1}], [{2}], [{3}]", testString, testInteger, testLong, testBoolean));
 
+
+        if (!projectStage.isProductionStage()) {
+            throw new BaseException(CoffeeFaultType.FORBIDDEN,"asdf");
+        }
         TestResponse response = new TestResponse();
         response.setFuncCode(FunctionCodeType.OK);
         handleSuccessResultType(response);

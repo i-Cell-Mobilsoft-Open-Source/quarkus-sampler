@@ -107,8 +107,16 @@
                         </includes>
                         <systemPropertyVariables>
                             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                            <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                            <maven.home>${maven.home}</maven.home>
+                            <maven.repo.local>${settings.localRepository}</maven.repo.local>
+                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>
+                            <!-- some dev tools tests need the following properties -->
+                            <project.version>${project.version}</project.version>
+                            <project.groupId>${project.groupId}</project.groupId>
                         </systemPropertyVariables>
+                        <!-- set tmpdir as early as possible because failsafe sets it too late for JDK16 -->
+                        <argLine>-Djava.io.tmpdir="${project.build.directory}"</argLine>
+                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -116,9 +124,17 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.1.2</version>
                     <configuration>
-                        <systemPropertyVariables>
+                        <systemPropertyVariables combine.self="override">
                             <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                            <maven.home>${maven.home}</maven.home>
+                            <maven.repo.local>${settings.localRepository}</maven.repo.local>
+                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>
+                            <!-- some dev tools tests need the following properties -->
+                            <project.version>${project.version}</project.version>
+                            <project.groupId>${project.groupId}</project.groupId>
                         </systemPropertyVariables>
+                        <argLine>-Xmx1500m -XX:MaxMetaspaceSize=1500m -Djava.io.tmpdir="${project.build.directory}"</argLine>
+                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -191,6 +207,10 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
@@ -271,7 +291,7 @@
         <profile>
             <id>check-javadoc</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <build>
                 <plugins>
@@ -295,26 +315,26 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
-                    </plugin>
+                    <!--                    <plugin>-->
+                    <!--                        <groupId>org.apache.maven.plugins</groupId>-->
+                    <!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+                    <!--                        <version>3.1.0</version>-->
+                    <!--                        <executions>-->
+                    <!--                            <execution>-->
+                    <!--                                <id>sign-artifacts</id>-->
+                    <!--                                <phase>verify</phase>-->
+                    <!--                                <goals>-->
+                    <!--                                    <goal>sign</goal>-->
+                    <!--                                </goals>-->
+                    <!--                            </execution>-->
+                    <!--                        </executions>-->
+                    <!--                        <configuration>-->
+                    <!--                            <gpgArguments>-->
+                    <!--                                <arg>&#45;&#45;pinentry-mode</arg>-->
+                    <!--                                <arg>loopback</arg>-->
+                    <!--                            </gpgArguments>-->
+                    <!--                        </configuration>-->
+                    <!--                    </plugin>-->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
