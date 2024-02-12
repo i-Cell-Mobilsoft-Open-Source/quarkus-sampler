@@ -26,6 +26,13 @@ Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
 | quarkus.log.handler.gelf.additional-field."moduleId".value | Gelf log - *moduleId* additional-field value | SAMPLER_LOGSTASH_MODULE_ID | unknown
 | quarkus.log.handler.gelf.additional-field."K8S_NAMESPACE".value | Gelf log - *K8S_NAMESPACE* additional-field value | SAMPLER_LOGSTASH_K8S_NAMESPACE | unknown
 | quarkus.handler.gelf.include-full-mdc | Gelf log - Whether to include all fields from the MDC. | SAMPLER_LOGSTASH_K8S_NAMESPACE | false
+
+| quarkus.handler.gelf.enabled | Gelf log - Enable it | SAMPLER_LOGSTASH_ENABLED | false
+| quarkus.handler.gelf.host | Gelf log - tcp host link of logstasth | SAMPLER_LOGSTASTH_HOST | tcp:localhost
+| quarkus.handler.gelf.port | Gelf log - port of logstasth | SAMPLER_LOGSTASTH_PORT | 12201
+| quarkus.handler.gelf.version | Gelf log - version of logstasth's communication | SAMPLER_LOGSTASTH_VERSION | 1.1
+
+
 | quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.level[Link] | SAMPLER_LOG_LEVEL | INFO
 | quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | SAMPLER_LOG_MIN_LEVEL | ALL
 

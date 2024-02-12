@@ -29,6 +29,8 @@ import java.util.Map;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.ws.rs.ConstrainedTo;
+import jakarta.ws.rs.RuntimeType;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
@@ -56,6 +58,7 @@ import hu.icellmobilsoft.quarkus.sampler.common.rest.metrics.util.HttpMethodUtil
  */
 @Provider
 @Dependent
+@ConstrainedTo(RuntimeType.SERVER)
 public class RequestResponseMetricsProvider implements ContainerRequestFilter, WriterInterceptor {
 
     @Inject

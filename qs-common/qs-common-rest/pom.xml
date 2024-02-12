@@ -39,14 +39,10 @@
         <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-mp-restclient</artifactId>
+            <artifactId>coffee-module-mp-restclient-extension</artifactId>
         </dependency>
 
         <!-- Quarkus - jsonb config -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jsonb</artifactId>
-        </dependency>
 
 
         <!-- MP apis dependencies -->
@@ -68,4 +64,35 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>native2ascii-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <encoding>UTF8</encoding>
+                    <includes>i18n/**/*.properties</includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>native2ascii-utf8</id>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                        <phase>process-resources</phase><!-- default -->
+                        <configuration>
+                            <srcDir>src/main/resources</srcDir><!-- default -->
+                            <encoding>UTF8</encoding><!-- default -->
+                            <includes>
+                                <include>**/*.properties</include><!-- default -->
+                            </includes>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

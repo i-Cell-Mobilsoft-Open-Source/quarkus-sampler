@@ -25,12 +25,12 @@ import java.net.URLStreamHandlerFactory;
 import java.text.MessageFormat;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
 
 import org.jboss.logging.Logger;
 
 import hu.icellmobilsoft.coffee.rest.validation.catalog.MavenURLStreamHandlerProvider;
+import io.quarkus.runtime.StartupEvent;
 
 /**
  * Common application starter. Starting on {@code StartupEvent} event
@@ -53,10 +53,10 @@ public class Starter {
     /**
      * Must be set maven url resolver into URL factory
      *
-     * @param init
-     *            cdi init ibject
+     * @param ev
+     *           Startup event
      */
-    public void init(@Observes @Initialized(ApplicationScoped.class) Object init) {
+    public void init(@Observes StartupEvent ev) {
         String pkgs = System.getProperty("java.protocol.handler.pkgs", "");
         LOGGER.debug(MessageFormat.format("\n\nStarter\n\npkgs: [{0}]\n\n", pkgs));
 

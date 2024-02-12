@@ -17,22 +17,22 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.rest.restclient;
+package hu.icellmobilsoft.quarkus.sampler.rest.test;
 
-import jakarta.ws.rs.Path;
+import org.eclipse.microprofile.config.ConfigProvider;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerServiceRest;
+@QuarkusTest
+@QuarkusTestResource(value = EtcdResourceProfile.class)
+class EtcdTest {
 
-/**
- * REST Registered rest client
- *
- * @author speter555
- * @since 0.1.0
- */
-@RegisterRestClient
-@Path(QuarkusSamplerPath.TEST_QUARKUS_SAMPLER_SERVICE)
-public interface ITestQuarkusSamplerServiceRestRegisteredClient extends ITestQuarkusSamplerServiceRest, AutoCloseable {
+    @Test
+    void test() {
+        String configValue = ConfigProvider.getConfig().getOptionalValue("hello", String.class).orElse("default");
+        Assertions.assertEquals("world", configValue);
+    }
 }

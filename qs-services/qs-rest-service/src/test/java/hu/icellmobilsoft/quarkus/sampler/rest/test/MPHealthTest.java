@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 
@@ -33,12 +35,11 @@ import org.junit.jupiter.api.Test;
 
 import hu.icellmobilsoft.quarkus.sampler.rest.test.dto.HealthDto;
 import io.quarkus.test.common.http.TestHTTPResource;
-import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 
 @QuarkusTest
-@DisplayName("Testing mp-health")
-class HealthTest {
+@QuarkusTestResource(value = EtcdResourceProfile.class)
+class MPHealthTest {
 
     private static final String STATUS_JSON_PATH = "status";
 

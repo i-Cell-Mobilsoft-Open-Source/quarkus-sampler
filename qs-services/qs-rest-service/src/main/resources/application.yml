@@ -6,7 +6,7 @@ coffee:
     name: ${quarkus.application.name}
   config:
     resource:
-      bundles: i18n.common-messages,i18n.messages
+      bundles: i18n.messages
     xml:
       catalog:
         path: xsd/hu/icellmobilsoft/quarkus/sampler/dto/super.catalog.xml
@@ -38,6 +38,10 @@ quarkus:
           "K8S_NAMESPACE":
             value: ${SAMPLER_LOGSTASH_K8S_NAMESPACE:unknown}
         include-full-mdc: false
+        enabled: ${SAMPLER_LOGSTASH_ENABLED:false}
+        host: ${SAMPLER_LOGSTASTH_HOST:tcp:localhost}
+        port: ${SAMPLER_LOGSTASTH_PORT:12201}
+        version: ${SAMPLER_LOGSTASTH_VERSION:1.1}
     level: ${SAMPLER_LOG_LEVEL:INFO}
     min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
   jaeger:

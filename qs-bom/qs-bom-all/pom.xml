@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
 
     <properties>
-        <version.coffee>2.4.0</version.coffee>
+        <version.coffee>2.6.0-SNAPSHOT</version.coffee>
         <version.commons-collections4>4.4</version.commons-collections4>
+        <version.commons-collections>3.2.2</version.commons-collections>
         <version.apache.commons-csv>1.5</version.apache.commons-csv>
     </properties>
 
@@ -45,10 +46,15 @@
             </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.coffee</groupId>
-                <artifactId>coffee-bom</artifactId>
+                <artifactId>coffee-bom-project</artifactId>
                 <version>${version.coffee}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${version.commons-collections}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -71,7 +77,6 @@
                 <artifactId>commons-csv</artifactId>
                 <version>${version.apache.commons-csv}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
