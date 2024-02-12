@@ -11,6 +11,9 @@
 
     <artifactId>qs-rest-service</artifactId>
 
+    <properties>
+        <failsafeArgLine>--add-opens java.base/java.lang=ALL-UNNAMED</failsafeArgLine>
+    </properties>
     <dependencies>
 
         <!-- Project dependecies-->
@@ -119,6 +122,11 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
         </dependency>
     </dependencies>
 

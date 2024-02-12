@@ -43,10 +43,6 @@
         </dependency>
 
         <!-- Quarkus - jsonb config -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-jsonb</artifactId>
-        </dependency>
 
 
         <!-- MP apis dependencies -->

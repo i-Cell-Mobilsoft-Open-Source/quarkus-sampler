@@ -1,0 +1,38 @@
+# futtatas:
+# docker compose -f <PROJECT_PATH>/etc/docker-compose/docker-compose.local.etcd.yml up
+#
+# belemaszas:
+# docker exec -it qs-etcd /bin/bash
+version: "3.8"
+
+services:
+  qs-etcd:
+    container_name: qs-etcd
+    image: 'bitnami/etcd:3'
+    ports:
+      - '2379:2379'
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '.5'
+        reservations:
+          memory: 32M
+          cpus: '.5'
+    healthcheck:
+      test: etcdctl endpoint health
+      interval: 1s
+      timeout: 3s
+      retries: 5
+  etcdsetup:
+    image: 'bitnami/etcd:3'
+    depends_on:
+      qs-etcd:
+        condition: service_healthy
+    command: ["sh", "-c", "etcdctl --endpoints=http://qs-etcd:2379 put hello world"]
+networks:
+  default:
+    external:
+      name: quarkus-sampler-local-network

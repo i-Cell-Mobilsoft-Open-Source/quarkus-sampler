@@ -28,6 +28,11 @@
             <artifactId>coffee-module-configdoc</artifactId>
         </dependency>
 
+        <!-- Quarkus dependencies -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-core</artifactId>
+        </dependency>
 
     </dependencies>
 </project>

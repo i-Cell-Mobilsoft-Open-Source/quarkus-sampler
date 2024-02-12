@@ -21,6 +21,8 @@ package hu.icellmobilsoft.quarkus.sampler.rest.test;
 
 import java.net.URL;
 
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +32,6 @@ import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.ServicePath;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.system.ISystemRest;
 import io.quarkus.test.common.http.TestHTTPResource;
-import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
@@ -38,7 +39,7 @@ import io.restassured.http.ContentType;
  * Quarkus test example for VersionInfo endpoint.
  */
 @QuarkusTest
-@DisplayName("Testing versionInfo endpoint")
+@QuarkusTestResource(value = EtcdResourceProfile.class)
 class VersionInfoTest {
 
     /**
