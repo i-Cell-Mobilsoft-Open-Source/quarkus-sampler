@@ -31,7 +31,7 @@ import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
 public class EtcdResourceProfile implements QuarkusTestResourceLifecycleManager {
 
-    private static final String ETCD_DOCKER_IMAGE = "dockerhub-dockerio.icellmobilsoft.hu/bitnami/etcd:3";
+    private static final String ETCD_DOCKER_IMAGE = "bitnami/etcd:3";
     protected static GenericContainer etcd;
     public static Network network = Network.newNetwork();
 
