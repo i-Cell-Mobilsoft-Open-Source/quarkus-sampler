@@ -19,25 +19,20 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.rest.test;
 
-import io.quarkus.test.common.QuarkusTestResource;
-import io.quarkus.test.junit.QuarkusTest;
-import jakarta.inject.Inject;
-
-import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 @QuarkusTestResource(value = EtcdResourceProfile.class)
 class EtcdTest {
 
-    @Inject
-    @ConfigProperty(name = "hello", defaultValue = "default")
-    String configValue;
-
     @Test
     void test() {
-        Assertions.assertNotNull(configValue);
+        String configValue = ConfigProvider.getConfig().getOptionalValue("hello", String.class).orElse("default");
         Assertions.assertEquals("world", configValue);
     }
 }
