@@ -19,6 +19,8 @@
         <module>qs-common-health</module>
         <module>qs-common-metrics</module>
         <module>qs-common-rest</module>
+        <module>qs-common-model</module>
+        <module>qs-common-jpa</module>
     </modules>
 
 

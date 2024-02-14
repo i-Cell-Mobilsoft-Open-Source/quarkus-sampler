@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/emptyentity"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/emptyentity"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="EmptyEntityType">
+        <xsd:annotation>
+            <xsd:documentation>EmptyEntity type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="emptyEntityId" type="coffeeCommon:EntityIdType">
+                <xsd:annotation>
+                    <xsd:documentation>ID of EmptyEntity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="EmptyEntityResponseType">
+        <xsd:annotation>
+            <xsd:documentation>EmptyEntity response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="emptyEntity" type="EmptyEntityType">
+                        <xsd:annotation>
+                            <xsd:documentation>EmptyEntity type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="EmptyEntityResponse">
+        <xsd:annotation>
+            <xsd:documentation>EmptyEntity response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="EmptyEntityResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

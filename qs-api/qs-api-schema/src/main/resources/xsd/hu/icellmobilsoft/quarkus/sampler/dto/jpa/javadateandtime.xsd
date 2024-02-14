@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadateandtime"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadateandtime"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="BaseRequestJavaDateAndTimeType">
+        <xsd:annotation>
+            <xsd:documentation>Base JavaDateAndTime type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="baseDateTime" type="xsd:dateTime" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Base date time</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDateAndTimeInsertType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseRequestJavaDateAndTimeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDateAndTimeUpdateType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseRequestJavaDateAndTimeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDateAndTimeType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="javaDateAndTimeId" type="coffeeCommon:EntityIdType">
+                <xsd:annotation>
+                    <xsd:documentation>ID of JavaDateAndTime</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="JavaDateAndTimeInsertRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime insert request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaDateAndTime" type="JavaDateAndTimeInsertType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaDateAndTime insert type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDateAndTimeUpdateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime update request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaDateAndTime" type="JavaDateAndTimeUpdateType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaDateAndTime update type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDateAndTimeResponseType">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="javaDateAndTime" type="JavaDateAndTimeType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaDateAndTime type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="JavaDateAndTimeInsertRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime insert request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDateAndTimeInsertRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaDateAndTimeUpdateRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime update request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDateAndTimeUpdateRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaDateAndTimeResponse">
+        <xsd:annotation>
+            <xsd:documentation>JavaDateAndTime response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDateAndTimeResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

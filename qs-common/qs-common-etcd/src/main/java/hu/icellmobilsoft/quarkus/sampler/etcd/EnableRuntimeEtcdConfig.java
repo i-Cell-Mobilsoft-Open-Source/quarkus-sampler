@@ -47,7 +47,7 @@ public class EnableRuntimeEtcdConfig {
      */
     void onStart(@Observes StartupEvent ev) {
         LOGGER.info("The application is starting...");
-        RuntimeEtcdConfigSource.setActive(true);
+        RuntimeEtcdConfigSource.setActive(false);
     }
 
     /**

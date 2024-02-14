@@ -37,7 +37,6 @@ public class EtcdResourceProfile implements QuarkusTestResourceLifecycleManager 
 
     static {
         etcd = new GenericContainer(ETCD_DOCKER_IMAGE).withEnv("ALLOW_NONE_AUTHENTICATION", "yes")
-                .waitingFor(Wait.forSuccessfulCommand("etcdctl endpoint health").withStartupTimeout(Duration.ofSeconds(10)))
                 .withExposedPorts(2379)
                 .withNetwork(network)
                 .withNetworkAliases("qs-etcd");

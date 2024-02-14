@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javabasetypes"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javabasetypes"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="BaseJavaBaseTypesType">
+        <xsd:annotation>
+            <xsd:documentation>Base JavaBaseTypes type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="bytePrimitive" type="xsd:byte">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive byte</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="byteWrapper" type="xsd:byte" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper byte</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="shortPrimitive" type="xsd:short">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive short</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="shortWrapper" type="xsd:short" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper short</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="intPrimitive" type="xsd:int">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive int</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="intWrapper" type="xsd:int" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper int</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="longPrimitive" type="xsd:long">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive long</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="longWrapper" type="xsd:long" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper long</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="floatPrimitive" type="xsd:float">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive float</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="floatWrapper" type="xsd:float" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper float</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="doublePrimitive" type="xsd:double">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive double</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="doubleWrapper" type="xsd:double" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper double</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="booleanPrimitive" type="xsd:boolean">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive boolean</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="booleanWrapper" type="xsd:boolean" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper boolean</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="charPrimitive" type="coffeeCommon:Character" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Primitive char</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="charWrapper" type="coffeeCommon:Character" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Wrapper char</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="string" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>String</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bigInteger" type="xsd:integer" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>BigInteger</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="BigDecimal" type="xsd:decimal" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>BigDecimal</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaBaseTypesInsertType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaBaseTypesType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaBaseTypesUpdateType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaBaseTypesType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaBaseTypesType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaBaseTypesType">
+                <xsd:sequence>
+                    <xsd:element name="javaBaseTypesId" type="coffeeCommon:EntityIdType">
+                        <xsd:annotation>
+                            <xsd:documentation>ID of JavaBaseTypes</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="JavaBaseTypesInsertRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes insert request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaBaseTypes" type="JavaBaseTypesInsertType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaBaseTypes insert type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaBaseTypesUpdateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes update request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaBaseTypes" type="JavaBaseTypesUpdateType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaBaseTypes update type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaBaseTypesResponseType">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="javaBaseTypes" type="JavaBaseTypesType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaBaseTypes type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="JavaBaseTypesInsertRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes insert request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaBaseTypesInsertRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaBaseTypesUpdateRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes update request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaBaseTypesUpdateRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaBaseTypesResponse">
+        <xsd:annotation>
+            <xsd:documentation>JavaBaseTypes response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaBaseTypesResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

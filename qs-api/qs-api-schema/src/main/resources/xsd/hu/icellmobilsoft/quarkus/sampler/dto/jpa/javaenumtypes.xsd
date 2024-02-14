@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javaenumtypes"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javaenumtypes"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <xsd:simpleType name="BatchOperationTypeType">
+        <xsd:annotation>
+            <xsd:documentation>Batch operation type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INSERT">
+                <xsd:annotation>
+                    <xsd:documentation>INSERT</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="UPDATE">
+                <xsd:annotation>
+                    <xsd:documentation>UPDATE</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DELETE">
+                <xsd:annotation>
+                    <xsd:documentation>DELETE</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="BaseJavaEnumTypesType">
+        <xsd:annotation>
+            <xsd:documentation>Base JavaEnumTypes type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="defaultEnum" type="BatchOperationTypeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Default enum</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ordinalEnum" type="BatchOperationTypeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Ordinal enum</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stringEnum" type="BatchOperationTypeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>String enum</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaEnumTypesInsertType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaEnumTypesType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaEnumTypesUpdateType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaEnumTypesType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaEnumTypesType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaEnumTypesType">
+                <xsd:sequence>
+                    <xsd:element name="javaEnumTypesId" type="coffeeCommon:EntityIdType">
+                        <xsd:annotation>
+                            <xsd:documentation>ID of JavaEnumTypes</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="JavaEnumTypesInsertRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes insert request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaEnumTypes" type="JavaEnumTypesInsertType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaEnumTypes insert type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaEnumTypesUpdateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes update request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaEnumTypes" type="JavaEnumTypesUpdateType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaEnumTypes update type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaEnumTypesResponseType">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="javaEnumTypes" type="JavaEnumTypesType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaEnumTypes type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="JavaEnumTypesInsertRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes insert request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaEnumTypesInsertRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaEnumTypesUpdateRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes update request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaEnumTypesUpdateRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaEnumTypesResponse">
+        <xsd:annotation>
+            <xsd:documentation>JavaEnumTypes response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaEnumTypesResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
