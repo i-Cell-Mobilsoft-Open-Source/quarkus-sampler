@@ -21,7 +21,6 @@ package hu.icellmobilsoft.quarkus.sampler.jpa.repository;
 
 import java.util.List;
 
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 import jakarta.persistence.QueryHint;
 
 import org.apache.deltaspike.data.api.EntityRepository;
@@ -30,8 +29,8 @@ import org.apache.deltaspike.data.api.Repository;
 import org.apache.deltaspike.data.api.criteria.CriteriaSupport;
 import org.hibernate.jpa.HibernateHints;
 
-import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 
 /**
  * SQL select collector for {@link SampleEntity} table.

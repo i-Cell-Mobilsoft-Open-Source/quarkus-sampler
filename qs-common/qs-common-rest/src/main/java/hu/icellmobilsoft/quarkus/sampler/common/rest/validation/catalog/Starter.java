@@ -38,7 +38,7 @@ import io.quarkus.runtime.StartupEvent;
  * @author speter555
  * @since 0.1.0
  */
-//@ApplicationScoped
+@ApplicationScoped
 public class Starter {
 
     private static final Logger LOGGER = Logger.getLogger(Starter.class);
@@ -54,7 +54,7 @@ public class Starter {
      * Must be set maven url resolver into URL factory
      *
      * @param ev
-     *           Startup event
+     *            Startup event
      */
     public void init(@Observes StartupEvent ev) {
         String pkgs = System.getProperty("java.protocol.handler.pkgs", "");

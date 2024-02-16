@@ -52,12 +52,14 @@ public class JpaSampleRest extends BaseRestService implements ITestQuarkusSample
     }
 
     @Override
-    public SampleResponse postTest(BaseRequest baseRequest, String testString, Integer testInteger, Long testLong, Boolean testBoolean) throws BaseException {
+    public SampleResponse postTest(BaseRequest baseRequest, String testString, Integer testInteger, Long testLong, Boolean testBoolean)
+            throws BaseException {
         return wrapPathParam1(jpaSamplePostAction::sampleWriteRead, baseRequest, "postSample", "sampleRequest");
     }
 
     @Override
-    public SampleResponse putTest(BaseRequest baseRequest, String testString, Integer testInteger, Long testLong, Boolean testBoolean) throws BaseException {
+    public SampleResponse putTest(BaseRequest baseRequest, String testString, Integer testInteger, Long testLong, Boolean testBoolean)
+            throws BaseException {
         return wrapPathParam1(jpaSamplePostAction::sampleWriteRead, baseRequest, "postSample", "sampleRequest");
     }
 

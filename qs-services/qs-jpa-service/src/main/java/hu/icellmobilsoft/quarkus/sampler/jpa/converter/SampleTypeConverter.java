@@ -19,6 +19,10 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.jpa.converter;
 
+import java.util.Objects;
+
+import jakarta.enterprise.inject.Model;
+
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.system.jpa.converter.IResponseConverter;
 import hu.icellmobilsoft.coffee.tool.utils.enums.EnumUtil;
@@ -26,9 +30,6 @@ import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleType;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleValueEnumType;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import jakarta.enterprise.inject.Model;
-
-import java.util.Objects;
 
 /**
  * Sample {@link SampleEntity} to {@link SampleType} converter

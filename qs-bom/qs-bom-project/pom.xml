@@ -76,6 +76,21 @@
                 <artifactId>qs-common-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+
+            <!-- Services -->
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-jpa-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-rest-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

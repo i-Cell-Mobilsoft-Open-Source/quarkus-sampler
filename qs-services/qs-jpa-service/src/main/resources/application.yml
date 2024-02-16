@@ -24,22 +24,32 @@ mp:
 
 quarkus:
   datasource:
-    jdbc:
-      url: jdbc:h2:mem:default
-    db-kind: h2
+    "icellmobilsoftDS":
+      jdbc:
+        min-size: 5
+        max-size: 20
+        tracing:
+          enabled: true
+        telemetry:
+          enabled: true
+        url: jdbc:h2:mem:default
+      db-kind: h2
   hibernate-orm:
-    log:
-      queries-slower-than-ms: 500
-      format-sql: true
-      sql: true
-      bind-parameters: true
+    packages: hu.icellmobilsoft.quarkus.sampler.model
+    datasource: "icellmobilsoftDS"
     dialect: org.hibernate.dialect.H2Dialect
     database:
-      charset: UTF8
-    validation:
-      enabled: true
-    packages: hu.icellmobilsoft.quarkus.sampler.model.jpatest
-    #datasource: icellmobilsoftDS
+      generation: drop-and-create
+    log:
+      #queries-slower-than-ms: 500
+      format-sql: true
+      sql: true
+      #bind-parameters: true
+    jdbc:
+      timezone: UTC
+    mapping:
+      timezone:
+        default-storage: normalize-utc
   arc:
     remove-unused-beans: false
   log:

@@ -19,14 +19,19 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.jpa.action;
 
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
+import java.time.LocalDate;
+
 import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.jpa.annotation.MyTransactional;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 import hu.icellmobilsoft.quarkus.sampler.jpa.service.SampleEntityService;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleValue;
 
 /**
  * Service for JPA querying. Represents only DB operations.
@@ -47,10 +52,17 @@ public class JpaSampleGetAction extends BaseAction {
      * @throws BaseException
      *             if error
      */
+    @MyTransactional
     public TestResponse sample() throws BaseException {
 
-        var none = sampleEntityService.findOptionalById("aaaaaa", SampleEntity.class);
+        var none = sampleEntityService.findOptionalById("4HAC3YGW0EGX0503", SampleEntity.class);
 
+        SampleEntity entity = new SampleEntity();
+        entity.setStatus(SampleStatus.PROCESSING);
+        entity.setModLocalDate(LocalDate.now());
+        entity.setInputValue("value");
+        entity.setValue(SampleValue.VALUE_A);
+        entity = sampleEntityService.save(entity);
         TestResponse response = new TestResponse();
         handleSuccessResultType(response);
         return response;

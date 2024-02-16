@@ -69,8 +69,8 @@ public class JpaConverterEntity extends AbstractIdentifiedAuditEntity {
      * Year with {@link YearAttributeConverter}.
      */
     @Convert(converter = YearAttributeConverter.class)
-    @Column(name = "YEAR")
-    private Year year;
+    @Column(name = "YEAR_NUMBER")
+    private Year yearNumber;
 
     /**
      * YearMonth with {@link YearMonthAttributeConverter}.
@@ -116,12 +116,12 @@ public class JpaConverterEntity extends AbstractIdentifiedAuditEntity {
         this.zoneOffset = zoneOffset;
     }
 
-    public Year getYear() {
-        return year;
+    public Year getYearNumber() {
+        return yearNumber;
     }
 
-    public void setYear(Year year) {
-        this.year = year;
+    public void setYearNumber(Year yearNumber) {
+        this.yearNumber = yearNumber;
     }
 
     public YearMonth getYearMonth() {

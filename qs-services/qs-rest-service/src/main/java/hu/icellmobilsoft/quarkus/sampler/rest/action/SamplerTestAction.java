@@ -57,6 +57,7 @@ public class SamplerTestAction extends BaseAction {
     }
 
     /**
+     *
      * Test action process
      *
      * @param testString
@@ -67,14 +68,15 @@ public class SamplerTestAction extends BaseAction {
      *            Query parameter for testing
      * @param testBoolean
      *            Query parameter for testing
-     * @return {@link TestResponse} Test response
+     * @return {@link TestResponse} Test respons
+     * @throws BaseException
+     *             error
      */
     public TestResponse getTest(String testString, Integer testInteger, Long testLong, Boolean testBoolean) throws BaseException {
         log.info(MessageFormat.format("Query parameters: [{0}], [{1}], [{2}], [{3}]", testString, testInteger, testLong, testBoolean));
 
-
         if (!projectStage.isProductionStage()) {
-            throw new BaseException(CoffeeFaultType.FORBIDDEN,"asdf");
+            throw new BaseException(CoffeeFaultType.FORBIDDEN, "asdf");
         }
         TestResponse response = new TestResponse();
         response.setFuncCode(FunctionCodeType.OK);

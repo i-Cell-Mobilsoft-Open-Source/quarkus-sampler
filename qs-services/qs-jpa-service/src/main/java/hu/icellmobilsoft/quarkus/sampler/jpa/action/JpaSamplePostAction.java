@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import jakarta.enterprise.inject.Model;
-import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -41,12 +40,10 @@ import hu.icellmobilsoft.coffee.dto.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
 import hu.icellmobilsoft.coffee.jpa.sql.batch.enums.Status;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.SamplerException;
 import hu.icellmobilsoft.quarkus.sampler.common.jpa.EntityHelper;
 import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.BatchService;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
-import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
 import hu.icellmobilsoft.quarkus.sampler.jpa.converter.SampleTypeConverter;
 import hu.icellmobilsoft.quarkus.sampler.jpa.service.SampleEntityService;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
@@ -91,14 +88,14 @@ public class JpaSamplePostAction extends BaseAction {
      */
     public SampleResponse sampleWriteRead(BaseRequest sampleRequest) throws BaseException {
 
-//        try {
-//            CDI.current().select(JpaSamplePostAction.class).get().createOneNeedTransaction();
-//            throw new SamplerException("Unexpected successful save without @Transactional");
-//        } catch (SamplerException e) {
-//            throw e;
-//        } catch (BaseException e) {
-//            log.info("Expected exception - no transaction: [{0}]", e.getLocalizedMessage());
-//        }
+        // try {
+        // CDI.current().select(JpaSamplePostAction.class).get().createOneNeedTransaction();
+        // throw new SamplerException("Unexpected successful save without @Transactional");
+        // } catch (SamplerException e) {
+        // throw e;
+        // } catch (BaseException e) {
+        // log.info("Expected exception - no transaction: [{0}]", e.getLocalizedMessage());
+        // }
         // create entity
         SampleEntity created = transactionHelper.executeWithTransaction(this::createOneNeedTransaction);
 

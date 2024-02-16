@@ -21,17 +21,16 @@ package hu.icellmobilsoft.quarkus.sampler.jpa.service;
 
 import java.util.List;
 
-import hu.icellmobilsoft.coffee.jpa.service.BaseService;
-import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
-import hu.icellmobilsoft.quarkus.sampler.jpa.repository.SampleEntityRepository;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.jpa.service.BaseService;
+import hu.icellmobilsoft.quarkus.sampler.jpa.repository.SampleEntityRepository;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 
 /**
  * Service for {@link SampleEntity} querying. Represents only DB operations.

@@ -68,12 +68,12 @@ public class DatabasePoolHealthCheck {
      */
     @PostConstruct
     public void initHealthConfig() {
-        String dialect = config.getValue(HIBERNATE_DIALECT, String.class);
-        if (dialect.contains(H2_DIALECT)) {
+//        String dialect = config.getValue(HIBERNATE_DIALECT, String.class);
+//        if (dialect.contains(H2_DIALECT)) {
             builderName = "h2";
-        } else {
-            builderName = "other";
-        }
+//        } else {
+//            builderName = "other";
+//        }
     }
 
     /**
