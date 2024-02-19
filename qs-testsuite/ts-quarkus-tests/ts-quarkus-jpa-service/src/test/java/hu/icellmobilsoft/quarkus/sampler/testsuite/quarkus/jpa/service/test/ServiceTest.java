@@ -4,11 +4,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import hu.icellmobilsoft.coffee.rest.provider.util.JsonbUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.system.ISystemRest;
-import hu.icellmobilsoft.quarkus.sampler.testsuite.quarkus.jpa.service.test.dto.HealthDto;
 import jakarta.json.bind.Jsonb;
-import jakarta.json.bind.JsonbBuilder;
+
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.health.HealthCheckResponse;
@@ -22,13 +19,16 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.ContextType;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
+import hu.icellmobilsoft.coffee.rest.provider.util.JsonbUtil;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
 import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IEmptyEntityRest;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJavaBaseTypesRest;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.system.ISystemRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javabasetypes.JavaBaseTypesInsertRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javabasetypes.JavaBaseTypesResponse;
+import hu.icellmobilsoft.quarkus.sampler.testsuite.quarkus.jpa.service.test.dto.HealthDto;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
@@ -75,7 +75,6 @@ class ServiceTest {
         String configValue = ConfigProvider.getConfig().getOptionalValue("hello", String.class).orElse("default");
         Assertions.assertEquals("world", configValue);
     }
-
 
     @Test
     @DisplayName("Testing /q/health")
