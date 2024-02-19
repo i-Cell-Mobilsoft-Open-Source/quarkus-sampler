@@ -37,8 +37,6 @@ import io.quarkus.test.junit.QuarkusTest;
 @QuarkusTestResource(EtcdResourceProfile.class)
 class ServiceTest {
 
-    private static final String STATUS_JSON_PATH = "status";
-
     /**
      * Server url like: http://localhost:8083
      */
