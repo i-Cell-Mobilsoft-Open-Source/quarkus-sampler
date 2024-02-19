@@ -11,9 +11,7 @@
     <dependencies>
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler.testsuite</groupId>
-            <artifactId>ts-common-rest</artifactId>
-            <exclusions>
-            </exclusions>
+            <artifactId>ts-sample-common</artifactId>
         </dependency>
     </dependencies>
 
