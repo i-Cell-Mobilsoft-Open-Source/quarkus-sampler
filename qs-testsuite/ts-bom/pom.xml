@@ -47,15 +47,12 @@
 
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                <artifactId>qs-common-model</artifactId>
+                <artifactId>qs-bom-project</artifactId>
                 <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                <artifactId>qs-api-jakarta</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>commons-logging</groupId>

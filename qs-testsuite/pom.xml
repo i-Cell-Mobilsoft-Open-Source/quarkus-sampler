@@ -17,6 +17,7 @@
         <module>ts-bom</module>
         <module>ts-common</module>
         <module>ts-sample</module>
+        <module>ts-quarkus-tests</module>
     </modules>
 
     <build>
