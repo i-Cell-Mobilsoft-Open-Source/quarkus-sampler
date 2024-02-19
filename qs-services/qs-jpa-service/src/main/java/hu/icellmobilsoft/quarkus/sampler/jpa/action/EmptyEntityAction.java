@@ -19,14 +19,13 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.jpa.action;
 
-import hu.icellmobilsoft.coffee.jpa.annotation.MyTransactional;
 import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.InvalidParameterException;
-import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
+import hu.icellmobilsoft.coffee.jpa.annotation.Transactional;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityType;
@@ -43,9 +42,6 @@ import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.EmptyEntity;
 public class EmptyEntityAction extends BaseAction {
 
     @Inject
-    TransactionHelper transactionHelper;
-
-    @Inject
     EmptyEntityService emptyEntityService;
 
     /**
@@ -57,7 +53,7 @@ public class EmptyEntityAction extends BaseAction {
      * @throws BaseException
      *             if any exception occurs during the process.
      */
-    @MyTransactional
+    @Transactional
     public EmptyEntityResponse createEmptyEntity(BaseRequest baseRequest) throws BaseException {
         if (baseRequest == null) {
             throw new InvalidParameterException("baseRequest is NULL!");

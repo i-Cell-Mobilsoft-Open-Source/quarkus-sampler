@@ -25,7 +25,7 @@ import jakarta.enterprise.inject.Model;
 import jakarta.inject.Inject;
 
 import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.jpa.annotation.MyTransactional;
+import hu.icellmobilsoft.coffee.jpa.annotation.Transactional;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 import hu.icellmobilsoft.quarkus.sampler.jpa.service.SampleEntityService;
@@ -52,7 +52,7 @@ public class JpaSampleGetAction extends BaseAction {
      * @throws BaseException
      *             if error
      */
-    @MyTransactional
+    @Transactional
     public TestResponse sample() throws BaseException {
 
         var none = sampleEntityService.findOptionalById("4HAC3YGW0EGX0503", SampleEntity.class);
