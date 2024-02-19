@@ -27,17 +27,28 @@ JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmu
 * Quarkus 3.2.5.Final+
 * Tracing with grafana
 
-== Tesztelés
 
-Tesztelési lehetőségre jelenleg a quarkus saját teszt megoldása van használva, mely
-futtatható egyből a fejlesztői UI (junit plugin) vagy a maven segítségével,
+== Tesztelés
+A végpontok nem authentikáltak, lehet használni a SwaggerUI oldalát.
+Sajnos az API "összetettsége" miatt ez az XML formátumban nem fog jól működni a XML namespace miatt,
+ezért ezt inkább a JSON formátumra használható.
+
+.Fejlesztői tesztek - qs-testsuite
+`qs-testsuite`
+
+A fejlesztői tesztek a https://github.com/i-Cell-Mobilsoft-Open-Source/roaster[Roaster] projektet használják fel.
+Ez egy teljesen önnáló REST külső hívásokat végez el a deployolt alkalmazáson.
+Futtatható egyből a fejlesztői UI (junit pligun) vagy a maven segítségével (aktiválni kell a "profile" kapcsolót),
 például:
 
 [source,bash]
 ----
-cd local_path/quarkus-sampler/qs-services/qs-rest-service
-mvn verify
+mvn verify -Dprofile <1>
+mvn verify -Dprofile=sandbox,local <2>
 ----
+<1> default paraméterek
+<2> kiválasztott profilok a konfigurációs fájlokból
+
 
 == Release
 
