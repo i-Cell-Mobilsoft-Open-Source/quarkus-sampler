@@ -6,6 +6,14 @@
         elementFormDefault="qualified" attributeFormDefault="unqualified"
 >
 
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/emptyentity"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javabasetypes"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadata"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadateandtime"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javaenumtypes"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaassociation"/>
+    <xsd:import namespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaconverterentity"/>
+
     <xsd:import namespace="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"/>
     <xsd:import namespace="http://test.dto.sampler.quarkus.icellmobilsoft.hu/post"/>
 </xsd:schema>

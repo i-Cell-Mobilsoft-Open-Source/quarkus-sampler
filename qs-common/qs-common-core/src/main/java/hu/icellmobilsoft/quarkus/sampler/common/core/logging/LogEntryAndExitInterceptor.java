@@ -22,6 +22,7 @@ package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
 import java.text.MessageFormat;
 import java.util.stream.Stream;
 
+import jakarta.annotation.Priority;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
@@ -36,6 +37,7 @@ import hu.icellmobilsoft.coffee.cdi.logger.LogProducer;
  */
 @Interceptor
 @LogMethodEntryAndExit
+@Priority(100)
 public class LogEntryAndExitInterceptor {
 
     /**

@@ -65,34 +65,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>native2ascii-maven-plugin</artifactId>
-                <version>2.1.0</version>
-                <configuration>
-                    <encoding>UTF8</encoding>
-                    <includes>i18n/**/*.properties</includes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>native2ascii-utf8</id>
-                        <goals>
-                            <goal>resources</goal>
-                        </goals>
-                        <phase>process-resources</phase><!-- default -->
-                        <configuration>
-                            <srcDir>src/main/resources</srcDir><!-- default -->
-                            <encoding>UTF8</encoding><!-- default -->
-                            <includes>
-                                <include>**/*.properties</include><!-- default -->
-                            </includes>
-                        </configuration>
-                    </execution>
-
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadata"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadata"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="BaseJavaDataType">
+        <xsd:annotation>
+            <xsd:documentation>Base JavaData type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="data" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Binary data</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDataInsertType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaDataType">
+                <xsd:sequence>
+                    <xsd:element name="lobFillEnabled" type="xsd:boolean">
+                        <xsd:annotation>
+                            <xsd:documentation>Lob fill enabled</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDataUpdateType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaDataType">
+                <xsd:sequence>
+                    <xsd:element name="lobFillEnabled" type="xsd:boolean">
+                        <xsd:annotation>
+                            <xsd:documentation>Lob fill enabled</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDataType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJavaDataType">
+                <xsd:sequence>
+                    <xsd:element name="javaDataId" type="coffeeCommon:EntityIdType">
+                        <xsd:annotation>
+                            <xsd:documentation>ID of JavaData</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="JavaDataInsertRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData insert request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaData" type="JavaDataInsertType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaData insert type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDataUpdateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData update request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="javaData" type="JavaDataUpdateType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaData update type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JavaDataResponseType">
+        <xsd:annotation>
+            <xsd:documentation>JavaData response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="javaData" type="JavaDataType">
+                        <xsd:annotation>
+                            <xsd:documentation>JavaData type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="JavaDataInsertRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaData insert request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDataInsertRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaDataUpdateRequest">
+        <xsd:annotation>
+            <xsd:documentation>JavaData update request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDataUpdateRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JavaDataResponse">
+        <xsd:annotation>
+            <xsd:documentation>JavaData response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JavaDataResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

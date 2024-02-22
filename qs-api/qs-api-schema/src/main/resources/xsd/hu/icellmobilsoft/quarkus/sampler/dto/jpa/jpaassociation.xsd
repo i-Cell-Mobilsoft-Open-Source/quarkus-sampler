@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:coffeeCommon="http://common.dto.coffee.icellmobilsoft.hu/common"
+            xmlns:coffeeCommonService="http://common.dto.coffee.icellmobilsoft.hu/commonservice"
+            xmlns="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaassociation"
+            targetNamespace="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaassociation"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/common"/>
+    <xsd:import namespace="http://common.dto.coffee.icellmobilsoft.hu/commonservice"/>
+
+    <!-- SIMPLE TYPES -->
+
+    <!-- GROUPS -->
+
+    <!-- COMPLEX TYPES -->
+
+    <xsd:complexType name="BaseJpaAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>Base JpaAssociation type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="manyToOneId" type="coffeeCommon:EntityIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>ID of the many to one entity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="JpaAssociationInsertType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJpaAssociationType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JpaAssociationUpdateType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation insert type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJpaAssociationType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JpaAssociationType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="BaseJpaAssociationType">
+                <xsd:sequence>
+                    <xsd:element name="jpaAssociationId" type="coffeeCommon:EntityIdType">
+                        <xsd:annotation>
+                            <xsd:documentation>ID of JpaAssociation</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE COMPLEX TYPES -->
+
+    <xsd:complexType name="JpaAssociationInsertRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation insert request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="jpaAssociation" type="JpaAssociationInsertType">
+                        <xsd:annotation>
+                            <xsd:documentation>JpaAssociation insert type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JpaAssociationUpdateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation update request type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseRequestType">
+                <xsd:sequence>
+                    <xsd:element name="jpaAssociation" type="JpaAssociationUpdateType">
+                        <xsd:annotation>
+                            <xsd:documentation>JpaAssociation update type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="JpaAssociationResponseType">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation response type</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="coffeeCommonService:BaseResponseType">
+                <xsd:sequence>
+                    <xsd:element name="jpaAssociation" type="JpaAssociationType">
+                        <xsd:annotation>
+                            <xsd:documentation>JpaAssociation type</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- REQUEST/RESPONSE ELEMENTS -->
+
+    <xsd:element name="JpaAssociationInsertRequest">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation insert request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JpaAssociationInsertRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JpaAssociationUpdateRequest">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation update request</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JpaAssociationUpdateRequestType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="JpaAssociationResponse">
+        <xsd:annotation>
+            <xsd:documentation>JpaAssociation response</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="JpaAssociationResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

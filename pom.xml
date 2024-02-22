@@ -23,6 +23,7 @@
         <module>qs-bom</module>
         <module>qs-common</module>
         <module>qs-services</module>
+        <module>qs-testsuite</module>
     </modules>
 
     <properties>
@@ -106,36 +107,36 @@
                             <include>**/*TestCase.java</include>
                         </includes>
                         <systemPropertyVariables>
-                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                            <maven.home>${maven.home}</maven.home>
+<!--                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>-->
+<!--                            <maven.home>${maven.home}</maven.home>-->
                             <maven.repo.local>${settings.localRepository}</maven.repo.local>
-                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>
+<!--                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>-->
                             <!-- some dev tools tests need the following properties -->
-                            <project.version>${project.version}</project.version>
-                            <project.groupId>${project.groupId}</project.groupId>
+<!--                            <project.version>${project.version}</project.version>-->
+<!--                            <project.groupId>${project.groupId}</project.groupId>-->
                         </systemPropertyVariables>
                         <!-- set tmpdir as early as possible because failsafe sets it too late for JDK16 -->
-                        <argLine>-Djava.io.tmpdir="${project.build.directory}"</argLine>
-                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>
+<!--                        <argLine>-Djava.io.tmpdir="${project.build.directory}"</argLine>-->
+<!--                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>-->
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.1.2</version>
-                    <configuration>
-                        <systemPropertyVariables combine.self="override">
-                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                            <maven.home>${maven.home}</maven.home>
-                            <maven.repo.local>${settings.localRepository}</maven.repo.local>
-                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>
+<!--                    <configuration>-->
+<!--                        <systemPropertyVariables combine.self="override">-->
+<!--                            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>-->
+<!--                            <maven.home>${maven.home}</maven.home>-->
+<!--                            <maven.repo.local>${settings.localRepository}</maven.repo.local>-->
+<!--                            <maven.settings>${session.request.userSettingsFile.path}</maven.settings>-->
                             <!-- some dev tools tests need the following properties -->
-                            <project.version>${project.version}</project.version>
-                            <project.groupId>${project.groupId}</project.groupId>
-                        </systemPropertyVariables>
-                        <argLine>-Xmx1500m -XX:MaxMetaspaceSize=1500m -Djava.io.tmpdir="${project.build.directory}"</argLine>
-                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>
-                    </configuration>
+<!--                            <project.version>${project.version}</project.version>-->
+<!--                            <project.groupId>${project.groupId}</project.groupId>-->
+<!--                        </systemPropertyVariables>-->
+<!--                        <argLine>-Xmx1500m -XX:MaxMetaspaceSize=1500m -Djava.io.tmpdir="${project.build.directory}"</argLine>-->
+<!--                        <excludedEnvironmentVariables>MAVEN_OPTS</excludedEnvironmentVariables>-->
+<!--                    </configuration>-->
                 </plugin>
                 <plugin>
                     <groupId>org.asciidoctor</groupId>
@@ -169,39 +170,6 @@
                             </configuration>
                         </execution>
                     </executions>
-                </plugin>
-
-                <!--This plugin's configuration is used to store Eclipse m2e settings
-                    only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.codehaus.mojo
-                                        </groupId>
-                                        <artifactId>
-                                            native2ascii-maven-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [2.1.0,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>native2ascii</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
                 </plugin>
 
             </plugins>

@@ -54,7 +54,7 @@ public class Starter {
      * Must be set maven url resolver into URL factory
      *
      * @param ev
-     *           Startup event
+     *            Startup event
      */
     public void init(@Observes StartupEvent ev) {
         String pkgs = System.getProperty("java.protocol.handler.pkgs", "");
