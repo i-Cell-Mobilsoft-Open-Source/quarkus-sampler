@@ -17,7 +17,6 @@
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-jpa</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -42,6 +41,29 @@
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-deltaspike-data-extension-deployment</artifactId>
+<!--            TODO + 5MB -->
+            <exclusions>
+            	<exclusion>
+            		<groupId>jakarta.faces</groupId>
+            		<artifactId>jakarta.faces-api</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>jakarta.platform</groupId>
+            		<artifactId>jakarta.jakartaee-web-api</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>jakarta.platform</groupId>
+            		<artifactId>jakarta.jakartaee-api</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.junit.jupiter</groupId>
+            		<artifactId>junit-jupiter</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.junit.platform</groupId>
+            		<artifactId>junit-platform-launcher</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Quarkus hibernate -->
@@ -149,6 +171,7 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
