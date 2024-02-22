@@ -49,4 +49,4 @@ COPY --from=download --chown=$SYSTEM_USER $HOME/download/$JAR_FILE $HOME/$APP_DI
 
 EXPOSE 8080
 
-CMD java $JAVA_OPTS -jar $HOME/$APP_DIR/$JAR_FILE
+CMD exec java $JAVA_OPTS -jar $HOME/$APP_DIR/$JAR_FILE
