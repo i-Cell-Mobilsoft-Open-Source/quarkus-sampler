@@ -7,10 +7,6 @@ on:
       - main
       - bug/14-remove-workflows
 
-env:
-  GPG_KEY_ID_GITHUB_TECHUSER: '${{ secrets.GPG_KEY_ID_GITHUB_TECHUSER }}'
-  PROJECT_NAME: ${GITHUB_REPOSITORY#*/}
-
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
@@ -20,7 +16,7 @@ jobs:
       - name: Import GPG key
         env:
           # GPG privat kulcs, ami armor-al exportalva (kezdete: '-----BEGIN PGP PRIVATE KEY BLOCK-----') ez az egesz tartalom base64 elkodolva, az betoltve a secrets tartalomnak
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY_GITHUB_TECHUSER }}
+          GPG_SIGNING_KEY: ${{ secrets.GPG_KEY_ID_GITHUB_TECHUSER }}
         # dekodoljuk a base64 elkodolt privat kulcsot es betoltjuk
         run: |
           mkdir -p ~/.gnupg/
