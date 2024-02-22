@@ -3,43 +3,27 @@ name: Deploy documentation
 on:
   push:
     branches:
-      - master
+      - main
       - bug/14-remove-workflows
 
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch [master]
+      - name: Checkout branch [main]
         uses: actions/checkout@v4
         with:
-          ref: master
-      - name: Push [master] to [gh-pages]
-        shell: bash
-        run: git push origin master:gh-pages --force
-      - name: Checkout [gh-pages]
-        uses: actions/checkout@v4
+          ref: main
+
+      # Includes the AsciiDoctor GitHub Pages Action to convert adoc files to html and publish to gh-pages branch
+      - name: Generate with asciidoctor image
+        uses: manoelcampos/asciidoctor-ghpages-action@v2
         with:
-          ref: gh-pages
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
-        with:
-          java-version: 11
-          distribution: 'temurin'
-      - name: Generate docs with Maven
-        run: |
-          mvn org.asciidoctor:asciidoctor-maven-plugin:2.2.2:process-asciidoc \
-          -Dasciidoctor.sourceDirectory=./docs \
-          -Dasciidoctor.outputDirectory=. \
-          -Dasciidoctor.preserveDirectories=true \
-          -Dasciidoctor.sourceHighlighter=coderay \
-          -Dasciidoctor.backend=html5 \
-          -Dasciidoctor.requires=asciidoctor-diagram
-      - name: Commit and push to [gh-pages]
-        shell: bash
-        run: |
-          git config --global user.email "opensource@icellmobilsoft.hu"
-          git config --global user.name "Github Action - Deploy documentation"
-          git add .
-          git commit -m "Add auto-generated documentation"
-          git push origin gh-pages --force
+          pdf_build: true
+          # asciidoctor_params: --attribute=nofooter
+          # adoc_file_ext: .ascii # default is .adoc
+          source_dir: docs/ # default is .
+          ebook_main_adoc_file: index
+          # slides_build: true
+          # pre_build:
+          # post_build:
