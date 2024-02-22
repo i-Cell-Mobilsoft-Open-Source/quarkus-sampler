@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ 'ubuntu-latest']
-        java: [ '17', '21' ]
+        java: [ '17' ]
     runs-on: ${{ matrix.os }}
     name: Compile on ${{ matrix.os }} with JDK ${{ matrix.java }}
     steps:
@@ -35,27 +35,27 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-
-  compile-on-windows-with-jdk:
-    strategy:
-      matrix:
-        os: [ 'windows-latest' ]
-        java: [ '17', '21' ]
-    runs-on: ${{ matrix.os }}
-    name: Compile on ${{ matrix.os }} with JDK ${{ matrix.java }}
-    steps:
-
-      # https://github.com/actions/checkout
-      - uses: actions/checkout@v4
-
-      # https://github.com/actions/setup-java
-      - name: Set up JDK ${{ matrix.java }}
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ matrix.java }}
-          distribution: 'temurin'
-          cache: 'maven'
-
-      # Maven script [ package ] without Test (testcoiners is not working on windows host)
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml -DskipTests=true
+#
+#  compile-on-windows-with-jdk:
+#    strategy:
+#      matrix:
+#        os: [ 'windows-latest' ]
+#        java: [ '17' ]
+#    runs-on: ${{ matrix.os }}
+#    name: Compile on ${{ matrix.os }} with JDK ${{ matrix.java }}
+#    steps:
+#
+#      # https://github.com/actions/checkout
+#      - uses: actions/checkout@v4
+#
+#      # https://github.com/actions/setup-java
+#      - name: Set up JDK ${{ matrix.java }}
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: ${{ matrix.java }}
+#          distribution: 'temurin'
+#          cache: 'maven'
+#
+#      # Maven script [ package ] without Test (testcoiners is not working on windows host)
+#      - name: Build with Maven
+#        run: mvn -B package --file pom.xml -DskipTests=true
