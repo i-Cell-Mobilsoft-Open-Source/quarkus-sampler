@@ -21,9 +21,10 @@ services:
                 ICELL_JAVA_17_JRE_BASE_IMAGE: 'icellmobilsoft/base-java17jre:1.4.0'
                 SERVICE: 'qs-jpa-service'
         image: "qs-jpa-service:develop-local"
-#        environment:
+        environment:
             # With this config, service use application-dev.yml!
-#            - MP_CONFIG_PROFILE=dev
+             - MP_CONFIG_PROFILE=dev
+             - COFFEE_ETCD_DEFAULT_URL=http://qs-etcd:2379
             #- SAMPLER_LOGSTASH_MODULE_VERSION=1.0.0-SNAPSHOT
             #- SAMPLER_LOGSTASH_MODULE_ID=qs-rest-service-dev
             #- SAMPLER_LOGSTASH_K8S_NAMESPACE=test
