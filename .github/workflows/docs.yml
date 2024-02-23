@@ -4,82 +4,26 @@ on:
   push:
     branches:
       - main
+      - bug/14-remove-workflows
 
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
     steps:
-
-      # Import GPG key
-      - name: Import GPG key
-        env:
-          # GPG privat kulcs, ami armor-al exportalva (kezdete: '-----BEGIN PGP PRIVATE KEY BLOCK-----') ez az egesz tartalom base64 elkodolva, az betoltve a secrets tartalomnak
-          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY_GITHUB_TECHUSER }}
-        # dekodoljuk a base64 elkodolt privat kulcsot es betoltjuk
-        run: |
-          mkdir -p ~/.gnupg/
-          echo "$GPG_SIGNING_KEY" | base64 --decode > ~/.gnupg/private.key
-          gpg --import ~/.gnupg/private.key
-
-      # https://github.com/shimataro/ssh-key-action
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          # A tartalma egy PEM formatumos (kezdete: '-----BEGIN RSA PRIVATE KEY-----') SSH kulcs
-          key: ${{ secrets.SSH_PRIVATE_KEY_GITHUB_TECHUSER }}
-          name: id_rsa # optional
-          known_hosts: ${{ secrets.KNOWN_HOSTS }} # jelenleg ures a tartalma
-          # config: ${{ secrets.CONFIG }} # ssh_config; optional
-
-      # Config git
-      - name: Configure GIT for signed commit
-        env:
-          # GPG kulcs azonositoja, jelenleg F0744443DCD76BF5DC11D3ED3C8AD450A27EF801
-          GPG_KEY_ID_GITHUB_TECHUSER: ${{ secrets.GPG_KEY_ID_GITHUB_TECHUSER }}
-        run: |
-          git config --global user.name "icellmobilsoft-robot"
-          git config --global user.email "github_techuser@icellmobilsoft.hu"
-          git config --global user.signingkey "$GPG_KEY_ID_GITHUB_TECHUSER"
-          git config --global commit.gpgsign true
-          git config --global tag.gpgSign true
-
-      # https://github.com/actions/checkout
       - name: Checkout branch [main]
         uses: actions/checkout@v4
-
-      # Git push to gp-pages
-      - name: Push [main] to [gh-pages]
-        shell: bash
-        run: git push origin main:gh-pages --force
-
-      # https://github.com/actions/checkout
-      - name: Checkout [gh-pages]
-        uses: actions/checkout@v4
         with:
-          ref: gh-pages
+          ref: main
 
-      # https://github.com/actions/setup-java
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      # Includes the AsciiDoctor GitHub Pages Action to convert adoc files to html and publish to gh-pages branch
+      - name: Generate with asciidoctor image
+        uses: manoelcampos/asciidoctor-ghpages-action@v2
         with:
-          java-version: 17
-          distribution: 'temurin'
-
-      # Maven script [ process-asciidoc ]
-      - name: Generate docs with Maven
-        run: |
-          mvn org.asciidoctor:asciidoctor-maven-plugin:2.2.2:process-asciidoc \
-          -Dasciidoctor.sourceDirectory=./docs \
-          -Dasciidoctor.outputDirectory=. \
-          -Dasciidoctor.preserveDirectories=true \
-          -Dasciidoctor.sourceHighlighter=coderay \
-          -Dasciidoctor.backend=html5 \
-          -Dasciidoctor.requires=asciidoctor-diagram
-
-      # Commot gh-pages
-      - name: Commit and push to [gh-pages]
-        shell: bash
-        run: |
-          git add .
-          git commit -m "Add auto-generated documentation"
-          git push origin gh-pages --force
+          pdf_build: true
+          # asciidoctor_params: --attribute=nofooter
+          # adoc_file_ext: .ascii # default is .adoc
+          source_dir: docs/ # default is .
+          ebook_main_adoc_file: index
+          # slides_build: true
+          # pre_build:
+          # post_build:
