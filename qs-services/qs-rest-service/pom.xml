@@ -135,6 +135,12 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>../../etc/config/service</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>io.quarkus.platform</groupId>

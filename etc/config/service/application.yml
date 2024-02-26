@@ -22,12 +22,6 @@ quarkus:
   arc:
 #    remove-unused-beans: false
     remove-unused-beans: true
-    unremovable-types:
-      - hu.icellmobilsoft.coffee.module.csv.**
-      - hu.icellmobilsoft.coffee.tool.utils.stream.LoggingPublisher
-      - hu.icellmobilsoft.coffee.rest.validation.xml.utils.XsdHelper
-      - hu.icellmobilsoft.coffee.rest.validation.xml.error.XsdValidationErrorCollector
-      - hu.icellmobilsoft.coffee.rest.validation.catalog.PublicCatalogResolver
   log:
     category:
       "hu.icellmobilsoft":
@@ -57,32 +51,7 @@ quarkus:
     reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
     sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:1}
     enabled: ${SAMPLER_JAEGER_ENABLED:false}
-  rest-client:
-    "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
-      url: http://localhost:8080
-      scope: jakarta.enterprise.context.ApplicationScoped
-      #read-timeout: 5000
-      #connect-timeout: 5000
-    "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestQuarkusSamplerServiceRestRegisteredClient":
-      url: http://localhost:8080
-      scope: jakarta.enterprise.context.ApplicationScoped
-      #read-timeout: 5000
-      #connect-timeout: 5000
   package:
     add-runner-suffix: false
 #    type: uber-jar
     type: fast-jar
-  smallrye-openapi:
-    info-title: Quarkus sampler service
-    info-version: ${quarkus.application.version}
-    info-description: >
-      REST endpoints for operations. <br/> 
-      General responses in case of error:  <br/> 
-      * __400__ - Bad Request <br/> 
-      * __401__ - Unauthorized <br/> 
-      * __404__ - Not found <br/> 
-      * __418__ - Database object not found <br/> 
-      * __500__ - Internal Server Error <br/>
-  swagger-ui:
-    enable: false
-
