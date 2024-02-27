@@ -1,0 +1,34 @@
+#-------------------------------
+# Quarkus datasource settings
+# mvn quarkus:dev -Dquarkus.profile=postgresql
+# clean install -Dquarkus.profile=postgresql
+#-------------------------------
+quarkus:
+  datasource:
+    "icellmobilsoftDS":
+      jdbc:
+        min-size: 5
+        max-size: 20
+        tracing:
+          enabled: true
+        telemetry:
+          enabled: true
+        url: jdbc:postgresql://localhost:5432/qs_service
+      db-kind: postgresql
+      username: qs_service
+      password: qs_service
+  hibernate-orm:
+    packages: hu.icellmobilsoft.quarkus.sampler.model,hu.icellmobilsoft.coffee.model.base
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    database:
+      generation: drop-and-create
+    log:
+      #queries-slower-than-ms: 500
+      format-sql: true
+      sql: true
+      #bind-parameters: true
+    jdbc:
+      timezone: UTC
+    mapping:
+      timezone:
+        default-storage: normalize-utc

@@ -6,9 +6,6 @@ coffee:
     projectStage: dev
 
 quarkus:
-  hibernate-orm:
-    database:
-      generation: drop-and-create
   log:
     level: INFO
     min-level: ALL

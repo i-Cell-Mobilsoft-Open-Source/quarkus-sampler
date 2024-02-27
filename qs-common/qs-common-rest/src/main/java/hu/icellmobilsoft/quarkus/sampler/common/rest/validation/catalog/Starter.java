@@ -26,10 +26,13 @@ import java.text.MessageFormat;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 
 import org.jboss.logging.Logger;
 
 import hu.icellmobilsoft.coffee.rest.validation.catalog.MavenURLStreamHandlerProvider;
+import hu.icellmobilsoft.coffee.rest.validation.xml.utils.XsdHelper;
+import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 
 /**
@@ -42,6 +45,9 @@ import io.quarkus.runtime.StartupEvent;
 public class Starter {
 
     private static final Logger LOGGER = Logger.getLogger(Starter.class);
+
+    @Inject
+    private XsdHelper xsdHelper;
 
     /**
      * Default constructor
@@ -79,4 +85,16 @@ public class Starter {
             }
         }
     }
+
+    /**
+     * Event that is fired before shutdown
+     * 
+     * @param ev
+     *            Shutdown event
+     */
+    public void init(@Observes ShutdownEvent ev) {
+        xsdHelper.clearXsdCache();
+        xsdHelper.clearJaxbContextCache();
+    }
+
 }
