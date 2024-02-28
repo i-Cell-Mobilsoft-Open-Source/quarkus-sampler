@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  postgresql:
+    container_name: qs-postgresql
+    image: postgres:16.2
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=qs_service
+      - POSTGRES_PASSWORD=qs_service
+      - POSTGRES_DB=qs_service
+
+networks:
+  default:
+    external:
+      name: quarkus-sampler-local-network

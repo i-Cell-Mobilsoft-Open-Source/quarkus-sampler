@@ -24,6 +24,7 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Named;
 
 import hu.icellmobilsoft.coffee.model.base.annotation.CurrentUser;
+import io.quarkus.arc.Unremovable;
 
 /**
  * Entity helper class
@@ -45,6 +46,7 @@ public class EntityHelper extends hu.icellmobilsoft.coffee.jpa.sql.entity.Entity
      *
      * @return customerUser id
      */
+    @Unremovable
     @Produces
     @CurrentUser
     public String currentUser() {

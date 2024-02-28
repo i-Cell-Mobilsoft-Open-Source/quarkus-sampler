@@ -1,0 +1,34 @@
+#-------------------------------
+# Quarkus datasource settings
+# mvn quarkus:dev -Dquarkus.profile=oracle
+# clean install -Dquarkus.profile=oracle
+#-------------------------------
+quarkus:
+  datasource:
+    "icellmobilsoftDS":
+      jdbc:
+        min-size: 5
+        max-size: 20
+        tracing:
+          enabled: true
+        telemetry:
+          enabled: true
+        url: jdbc:oracle:thin:@//localhost:1521/xepdb1
+      db-kind: oracle
+      username: system
+      password: oracle
+  hibernate-orm:
+    packages: hu.icellmobilsoft.quarkus.sampler.model,hu.icellmobilsoft.coffee.model.base
+    dialect: org.hibernate.dialect.OracleDialect
+    database:
+      generation: drop-and-create
+    log:
+      #queries-slower-than-ms: 500
+      format-sql: true
+      sql: true
+      #bind-parameters: true
+    jdbc:
+      timezone: UTC
+    mapping:
+      timezone:
+        default-storage: normalize-utc

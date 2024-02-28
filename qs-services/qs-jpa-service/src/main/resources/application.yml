@@ -21,7 +21,6 @@ mp:
 #-------------------------------
 # Quarkus settings
 #-------------------------------
-
 quarkus:
   datasource:
     "icellmobilsoftDS":
@@ -35,7 +34,7 @@ quarkus:
         url: jdbc:h2:mem:default
       db-kind: h2
   hibernate-orm:
-    packages: hu.icellmobilsoft.quarkus.sampler.model
+    packages: hu.icellmobilsoft.quarkus.sampler.model,hu.icellmobilsoft.coffee.model.base
     datasource: "icellmobilsoftDS"
     dialect: org.hibernate.dialect.H2Dialect
     database:
