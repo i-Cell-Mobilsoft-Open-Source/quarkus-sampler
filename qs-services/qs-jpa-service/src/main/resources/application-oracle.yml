@@ -18,6 +18,7 @@ quarkus:
       username: system
       password: oracle
   hibernate-orm:
+    datasource: "icellmobilsoftDS"
     packages: hu.icellmobilsoft.quarkus.sampler.model,hu.icellmobilsoft.coffee.model.base
     dialect: org.hibernate.dialect.OracleDialect
     database:
