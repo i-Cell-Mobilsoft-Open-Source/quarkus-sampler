@@ -20,8 +20,15 @@
 package hu.icellmobilsoft.quarkus.sampler.common.jpa.service;
 
 import hu.icellmobilsoft.quarkus.sampler.common.jpa.EntityHelper;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
+
+import org.hibernate.type.BasicType;
+import org.hibernate.type.SqlTypes;
 
 import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
@@ -38,6 +45,50 @@ public class BatchService extends hu.icellmobilsoft.coffee.jpa.sql.batch.BatchSe
 
     @Inject
     EntityHelper entityHelper;
+
+    // FIXME new batchservice modul for hibernate 6.4+
+    @Override
+    protected void setBasicTypePsObject(PreparedStatement ps, int parameterIndex, BasicType<?> basicType, Object value) throws SQLException {
+        switch (basicType.getJdbcType().getJdbcTypeCode()) {
+        case SqlTypes.DATE:
+            setDatePsObject(ps, parameterIndex, value);
+            break;
+        case SqlTypes.TIME:
+        case SqlTypes.TIME_WITH_TIMEZONE:
+            setTimePsObject(ps, parameterIndex, value);
+            break;
+        case SqlTypes.TIMESTAMP:
+        case SqlTypes.TIMESTAMP_UTC:
+        case SqlTypes.TIMESTAMP_WITH_TIMEZONE:
+            setTimestampPsObject(ps, parameterIndex, value);
+            break;
+        case SqlTypes.BOOLEAN:
+            setBooleanPsObject(ps, parameterIndex, value);
+            break;
+        case SqlTypes.CHAR:
+            ps.setString(parameterIndex, String.valueOf(value));
+            break;
+        case SqlTypes.BLOB:
+        case SqlTypes.VARBINARY:
+        case SqlTypes.LONGVARBINARY:
+            setBinaryPsObject(ps, parameterIndex, value);
+            break;
+        case SqlTypes.TINYINT:
+            if (value instanceof Enum) {
+                Enum<?> v = (Enum<?>) value;
+                ps.setInt(parameterIndex, v.ordinal());
+            }
+            if (value instanceof Byte) {
+                ps.setByte(parameterIndex, (Byte) value);
+            }
+            break;
+        case SqlTypes.VARCHAR:
+            ps.setString(parameterIndex, String.valueOf(value));
+            break;
+        default:
+            ps.setObject(parameterIndex, value);
+        }
+    }
 
     @Override
     protected <E> void handleInsertAudit(E entity) {

@@ -152,7 +152,8 @@ public class JavaDateAndTimeAction extends BaseAction {
         javaDateAndTime.setLocalDate(localDate);
         javaDateAndTime.setLocalTime(localTime);
         javaDateAndTime.setLocalDateTime(localDateTime);
-        javaDateAndTime.setOffsetTime(baseDateTime.toOffsetTime());
+        // FIXME hibernate 6.4 timezone
+        // javaDateAndTime.setOffsetTime(baseDateTime.toOffsetTime());
         javaDateAndTime.setOffsetDateTime(baseDateTime);
         javaDateAndTime.setZonedDateTime(baseDateTime.toZonedDateTime());
 
@@ -180,7 +181,8 @@ public class JavaDateAndTimeAction extends BaseAction {
         javaDateAndTime.setLocalDate(null);
         javaDateAndTime.setLocalTime(null);
         javaDateAndTime.setLocalDateTime(null);
-        javaDateAndTime.setOffsetTime(null);
+        // FIXME hibernate 6.4 timezone
+        // javaDateAndTime.setOffsetTime(null);
         javaDateAndTime.setOffsetDateTime(null);
         javaDateAndTime.setZonedDateTime(null);
         javaDateAndTime.setInstant(null);
