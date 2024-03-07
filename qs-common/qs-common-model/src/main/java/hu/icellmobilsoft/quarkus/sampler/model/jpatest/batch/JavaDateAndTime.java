@@ -71,11 +71,12 @@ public class JavaDateAndTime extends AbstractIdentifiedAuditEntity {
     @Column(name = "LOCAL_DATE_TIME")
     private LocalDateTime localDateTime;
 
+    //FIXME HIBERNATE 6.4+ timezone fix 
     /**
      * OffsetTime
      */
-    @Column(name = "OFFSET_TIME")
-    private OffsetTime offsetTime;
+//    @Column(name = "OFFSET_TIME")
+//    private OffsetTime offsetTime;
 
     /**
      * OffsetDateTime
@@ -199,13 +200,13 @@ public class JavaDateAndTime extends AbstractIdentifiedAuditEntity {
         this.localDateTime = localDateTime;
     }
 
-    public OffsetTime getOffsetTime() {
-        return offsetTime;
-    }
-
-    public void setOffsetTime(OffsetTime offsetTime) {
-        this.offsetTime = offsetTime;
-    }
+//    public OffsetTime getOffsetTime() {
+//        return offsetTime;
+//    }
+//
+//    public void setOffsetTime(OffsetTime offsetTime) {
+//        this.offsetTime = offsetTime;
+//    }
 
     public OffsetDateTime getOffsetDateTime() {
         return offsetDateTime;

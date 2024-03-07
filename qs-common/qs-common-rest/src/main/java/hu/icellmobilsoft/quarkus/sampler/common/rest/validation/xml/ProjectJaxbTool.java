@@ -47,7 +47,6 @@ public class ProjectJaxbTool extends JaxbTool {
         super();
     }
 
-    @Override
     public String getRequestVersion(InputStream entityStream) throws BaseException {
         if (entityStream == null) {
             throw new InvalidParameterException("entityStream is null!");

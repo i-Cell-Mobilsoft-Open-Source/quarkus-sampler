@@ -13,6 +13,7 @@
 
     <properties>
         <jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
+        <version.io.agroal>2.3</version.io.agroal>
     </properties>
 
     <dependencies>
@@ -75,10 +76,36 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm</artifactId>
+        <!--the current LTS version using old agroal, in the 2.1 version the connection interceptor is not available, we switch the dependency to the new agroal -->
+        	<exclusions>
+        		<exclusion>
+        			<groupId>io.agroal</groupId>
+        			<artifactId>agroal-pool</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>io.agroal</groupId>
+        			<artifactId>agroal-api</artifactId>
+        		</exclusion>
+        		<exclusion>
+        			<groupId>io.agroal</groupId>
+        			<artifactId>agroal-narayana</artifactId>
+        		</exclusion>
+        	</exclusions>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-agroal</artifactId>
+          <groupId>io.agroal</groupId>
+          <artifactId>agroal-pool</artifactId>
+          <version>${version.io.agroal}</version>
+        </dependency>
+        <dependency>
+          <groupId>io.agroal</groupId>
+          <artifactId>agroal-api</artifactId>
+          <version>${version.io.agroal}</version>
+        </dependency>
+        <dependency>
+           	<groupId>io.agroal</groupId>
+        	<artifactId>agroal-narayana</artifactId>
+          <version>${version.io.agroal}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -155,15 +182,15 @@
         <!-- Quarkus dependecies - Rest client -->
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jsonb</artifactId>
+            <artifactId>quarkus-resteasy-client-jsonb</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jackson</artifactId>
+            <artifactId>quarkus-resteasy-client-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jaxb</artifactId>
+            <artifactId>quarkus-resteasy-client-jaxb</artifactId>
         </dependency>
 
 
