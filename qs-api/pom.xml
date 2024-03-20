@@ -12,6 +12,7 @@
     <artifactId>qs-api</artifactId>
     <packaging>pom</packaging>
     <modules>
+		<module>qs-api-grpc</module>
         <module>qs-api-schema</module>
         <module>qs-api-dto</module>
         <module>qs-api-jakarta</module>

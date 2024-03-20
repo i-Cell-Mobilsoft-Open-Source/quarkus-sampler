@@ -31,7 +31,7 @@
         <sonar.junit.reportPaths>${surefire.reportsDirectory}, ${failsafe.reportsDirectory}</sonar.junit.reportPaths>
         <sonar.jacoco.reportPaths>${jacoco.ut.execution.data.file}, ${jacoco.it.execution.data.file}</sonar.jacoco.reportPaths>
 
-        <quarkus.platform.version>3.8.1</quarkus.platform.version>
+        <quarkus.platform.version>3.8.2</quarkus.platform.version>
     </properties>
 
 
