@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+		<artifactId>qs-services</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>qs-grpc-service</artifactId>
+
+	<properties>
+		<jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
+	</properties>
+
+	<dependencies>
+		<!--	 now we cant use the interceptors from coffee, dependency conflict-->
+		<!--		<dependency>-->
+		<!--			<groupId>hu.icellmobilsoft.coffee</groupId>-->
+		<!--			<artifactId>coffee-grpc-server-extension</artifactId>-->
+		<!--		</dependency>-->
+		<dependency>
+			<groupId>hu.icellmobilsoft.coffee</groupId>
+			<artifactId>coffee-tool</artifactId>
+		</dependency>
+		<!-- Project dependecies-->
+		<dependency>
+			<groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+			<artifactId>qs-common-grpc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+			<artifactId>qs-api-grpc</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependencies -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-resteasy-reactive</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-resteasy-reactive-jaxb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-grpc</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - Yaml config use -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-config-yaml</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - Openapi -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-smallrye-openapi</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - OpenTracing use -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-smallrye-opentracing</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - Jaeger -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jaeger</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - Gelf logging -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-logging-gelf</artifactId>
+		</dependency>
+
+		<!-- Quarkus dependecies - Json logging -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-logging-json</artifactId>
+		</dependency>
+
+
+		<!-- Quarkus dependecies - Health -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-smallrye-health</artifactId>
+		</dependency>
+
+
+		<!-- Quarkus dependecies - Metrics -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-smallrye-metrics</artifactId>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<!-- this way quarkus can generate its own classes from proto files -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<!--				<executions>-->
+				<!--					<execution>-->
+				<!--						<id>resource-dependencies</id>-->
+				<!--						<phase>generate-sources</phase>-->
+				<!--						<goals>-->
+				<!--							<goal>unpack</goal>-->
+				<!--						</goals>-->
+				<!--						<configuration>-->
+				<!--							<artifactItems>-->
+				<!--								<artifactItem>-->
+				<!--									<groupId>hu.icellmobilsoft.quarkus.sampler</groupId>-->
+				<!--									<artifactId>qs-api-grpc</artifactId>-->
+				<!--									<type>jar</type>-->
+				<!--									<overWrite>true</overWrite>-->
+				<!--									<includes>**/*.proto</includes>-->
+				<!--									<outputDirectory>src/main/proto</outputDirectory>-->
+				<!--								</artifactItem>-->
+				<!--							</artifactItems>-->
+				<!--						</configuration>-->
+				<!--					</execution>-->
+				<!--				</executions>-->
+			</plugin>
+			<plugin>
+				<groupId>io.quarkus.platform</groupId>
+				<artifactId>quarkus-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>io.quarkus</groupId>
+							<artifactId>quarkus-extension-processor</artifactId>
+							<version>${quarkus.platform.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

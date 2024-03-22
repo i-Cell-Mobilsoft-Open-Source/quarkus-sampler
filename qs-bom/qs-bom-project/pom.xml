@@ -15,7 +15,11 @@
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-api-grpc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
                 <artifactId>qs-api-schema</artifactId>
@@ -37,7 +41,11 @@
                 <artifactId>qs-common-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-common-grpc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
                 <artifactId>qs-common-metrics</artifactId>
@@ -89,7 +97,11 @@
                 <artifactId>qs-rest-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-grpc-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

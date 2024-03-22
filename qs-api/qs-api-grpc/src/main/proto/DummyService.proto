@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package hu.icellmobilsoft.qs.grpc.api.sample;
+
+import "google/protobuf/timestamp.proto";
+
+message BaseMessage {
+    string firstName = 1;
+    double amount = 2;
+    int32 count = 3;
+    bool isActive = 4;
+    google.protobuf.Timestamp date = 5;
+}
+
+message DummyRequest {
+    BaseMessage request = 1;
+}
+
+message DummyResponse {
+    BaseMessage response = 1;
+}
+
+service DummyService {
+    rpc getDummy(DummyRequest) returns (DummyResponse);
+}

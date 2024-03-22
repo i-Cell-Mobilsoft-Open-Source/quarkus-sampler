@@ -3,3 +3,8 @@ sampler:
         sample:
             base:
                 uri: http://localhost:8080
+        grpc:
+            server:
+              host: localhost
+              port: 9000
+          
