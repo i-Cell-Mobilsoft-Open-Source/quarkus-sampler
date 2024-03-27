@@ -30,10 +30,10 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.BusinessFault;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.TechnicalFault;
 import hu.icellmobilsoft.coffee.dto.exception.AccessDeniedException;
 import hu.icellmobilsoft.coffee.dto.exception.BONotFoundException;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.module.mp.restclient.RestClientPriority;
 import hu.icellmobilsoft.coffee.module.mp.restclient.exception.FaultTypeParser;
 import hu.icellmobilsoft.coffee.module.mp.restclient.provider.DefaultBaseExceptionResponseExceptionMapper;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * Default REST client exception converter. ExceptionMapping packs this to WebApplicationException with the same cause thrown here
