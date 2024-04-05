@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+package hu.icellmobilsoft.qs.grpc.api.sample.upload;
+
+message FileUploadRequest {
+  //If you have a message with many fields and where at most one field will be set at the same time, you can enforce this behavior and save memory by using the oneof feature.
+  oneof request {
+    // first data tag
+    MetaData metadata = 1;
+    // file bytes
+    File file = 2;
+  }
+}
+
+message FileUploadResponse {
+  string name = 1;
+  Status status = 2;
+}
+
+message MetaData {
+  string name = 1;
+  string type = 2;
+}
+
+message File {
+  bytes content = 1;
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  IN_PROGRESS = 1;
+  SUCCESS = 2;
+  FAILED = 3;
+}
+
+service FileService {
+  rpc upload(stream FileUploadRequest) returns(FileUploadResponse);
+}
