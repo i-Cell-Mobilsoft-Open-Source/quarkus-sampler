@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.enums.EnumUtil;
 import hu.icellmobilsoft.roaster.api.TestSuiteGroup;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJavaEnumTypesRest;

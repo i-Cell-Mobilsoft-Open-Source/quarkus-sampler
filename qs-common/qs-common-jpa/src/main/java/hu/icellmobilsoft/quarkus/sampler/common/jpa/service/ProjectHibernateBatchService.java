@@ -19,34 +19,41 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.jpa.service;
 
-import hu.icellmobilsoft.quarkus.sampler.common.jpa.EntityHelper;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 
 import org.hibernate.type.BasicType;
 import org.hibernate.type.SqlTypes;
 
 import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
+import hu.icellmobilsoft.frappee.hibernate.batch.HibernateBatchService;
+import hu.icellmobilsoft.frappee.hibernate.util.HibernateEntityHelper;
+import hu.icellmobilsoft.quarkus.sampler.common.jpa.EntityHelper;
 
 /**
  * Real batch save with JPA
  * 
  * @author imre.scheffer
+ * @author czenczl
  * @since 0.1.0
  *
  */
 @Dependent
-public class BatchService extends hu.icellmobilsoft.coffee.jpa.sql.batch.BatchService {
+public class ProjectHibernateBatchService extends HibernateBatchService {
+
+    private final EntityHelper entityHelper;
 
     @Inject
-    EntityHelper entityHelper;
+    public ProjectHibernateBatchService(EntityHelper entityHelper, EntityManager em, HibernateEntityHelper hibernateEntityHelper) {
+        super(em, hibernateEntityHelper);
+        this.entityHelper = entityHelper;
+    }
 
-    // FIXME new batchservice modul for hibernate 6.4+
     @Override
     protected void setBasicTypePsObject(PreparedStatement ps, int parameterIndex, BasicType<?> basicType, Object value) throws SQLException {
         switch (basicType.getJdbcType().getJdbcTypeCode()) {

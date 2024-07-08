@@ -20,7 +20,7 @@
 package hu.icellmobilsoft.ts.sample.jpa.batch.service.jpa.association.rest.base;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IEmptyEntityRest;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJpaAssociationRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityType;

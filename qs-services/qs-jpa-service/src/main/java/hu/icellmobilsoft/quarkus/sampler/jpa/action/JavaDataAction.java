@@ -32,10 +32,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequestType;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.InvalidParameterException;
+import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
-import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.BatchService;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
+import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.ProjectHibernateBatchService;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadata.JavaDataInsertRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadata.JavaDataInsertType;
@@ -56,7 +58,7 @@ import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.JavaData;
 public class JavaDataAction extends BaseAction {
 
     @Inject
-    BatchService batchService;
+    ProjectHibernateBatchService batchService;
 
     @Inject
     TransactionHelper transactionHelper;
@@ -174,7 +176,7 @@ public class JavaDataAction extends BaseAction {
         try {
             return new SerialBlob(data);
         } catch (Exception e) {
-            throw new BaseException("Could not create SerialBlob", e);
+            throw new TechnicalException(CoffeeFaultType.OPERATION_FAILED, "Could not create SerialBlob", e);
         }
     }
 

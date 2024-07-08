@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.ContextType;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.rest.provider.util.JsonbUtil;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;

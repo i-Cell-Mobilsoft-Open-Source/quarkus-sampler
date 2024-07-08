@@ -23,7 +23,7 @@ import java.util.List;
 
 import jakarta.enterprise.inject.Model;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.BaseService;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.JavaDateAndTime;
 

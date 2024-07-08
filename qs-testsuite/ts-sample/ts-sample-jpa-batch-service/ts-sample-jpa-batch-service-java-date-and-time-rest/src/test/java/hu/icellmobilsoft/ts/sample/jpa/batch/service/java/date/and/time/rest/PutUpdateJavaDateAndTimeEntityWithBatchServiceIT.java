@@ -39,7 +39,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.roaster.api.TestSuiteGroup;
 import hu.icellmobilsoft.ts.sample.jpa.batch.service.java.date.and.time.rest.base.BaseJavaDateAndTimeRestIT;
 import hu.icellmobilsoft.ts.sample.jpa.batch.service.java.date.and.time.rest.provider.BaseDateTimeArgumentsProvider;
