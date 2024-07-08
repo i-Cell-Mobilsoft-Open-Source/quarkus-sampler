@@ -19,8 +19,6 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa;
 
-import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
-import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityResponse;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -32,8 +30,10 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import hu.icellmobilsoft.coffee.cdi.annotation.xml.ValidateXML;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.JpaBatchServicePath;
+import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
+import hu.icellmobilsoft.quarkus.sampler.dto.jpa.emptyentity.EmptyEntityResponse;
 
 /**
  * REST endpoints for EmptyEntity entities.

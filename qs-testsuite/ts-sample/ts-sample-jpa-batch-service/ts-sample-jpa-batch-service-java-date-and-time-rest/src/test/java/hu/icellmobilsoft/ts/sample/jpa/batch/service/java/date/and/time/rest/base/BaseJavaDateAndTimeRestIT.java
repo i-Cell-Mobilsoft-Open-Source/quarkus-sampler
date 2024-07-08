@@ -21,7 +21,7 @@ package hu.icellmobilsoft.ts.sample.jpa.batch.service.java.date.and.time.rest.ba
 
 import java.time.OffsetDateTime;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJavaDateAndTimeRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeInsertRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeInsertType;

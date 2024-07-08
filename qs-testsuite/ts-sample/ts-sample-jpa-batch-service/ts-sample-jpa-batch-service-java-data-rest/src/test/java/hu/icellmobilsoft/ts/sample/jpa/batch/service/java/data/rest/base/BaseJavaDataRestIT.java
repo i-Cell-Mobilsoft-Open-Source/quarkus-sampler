@@ -19,7 +19,7 @@
  */
 package hu.icellmobilsoft.ts.sample.jpa.batch.service.java.data.rest.base;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJavaDataRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadata.JavaDataInsertRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadata.JavaDataInsertType;

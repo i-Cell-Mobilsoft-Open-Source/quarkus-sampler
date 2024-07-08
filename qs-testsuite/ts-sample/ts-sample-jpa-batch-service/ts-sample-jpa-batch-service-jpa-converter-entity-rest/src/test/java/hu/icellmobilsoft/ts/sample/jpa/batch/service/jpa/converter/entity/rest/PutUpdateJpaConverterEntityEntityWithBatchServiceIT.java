@@ -22,7 +22,6 @@ package hu.icellmobilsoft.ts.sample.jpa.batch.service.jpa.converter.entity.rest;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJpaConverterEntityRest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -32,7 +31,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa.IJpaConverterEntityRest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.jpaconverterentity.JpaConverterEntityResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.jpaconverterentity.JpaConverterEntityType;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.jpaconverterentity.JpaConverterEntityUpdateRequest;

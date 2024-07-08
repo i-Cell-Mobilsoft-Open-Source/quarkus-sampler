@@ -19,7 +19,7 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.rest.restclient.exception;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * Special Exception for MP rest client base exception at http 500 and hold message from response
