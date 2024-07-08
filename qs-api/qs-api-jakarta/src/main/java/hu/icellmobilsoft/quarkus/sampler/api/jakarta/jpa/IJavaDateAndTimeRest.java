@@ -19,10 +19,6 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.api.jakarta.jpa;
 
-import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
-import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeInsertRequest;
-import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeResponse;
-import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeUpdateRequest;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -38,8 +34,12 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import hu.icellmobilsoft.coffee.cdi.annotation.xml.ValidateXML;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.JpaBatchServicePath;
+import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
+import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeInsertRequest;
+import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeResponse;
+import hu.icellmobilsoft.quarkus.sampler.dto.jpa.javadateandtime.JavaDateAndTimeUpdateRequest;
 
 /**
  * REST endpoints for JavaDateAndTime entities.

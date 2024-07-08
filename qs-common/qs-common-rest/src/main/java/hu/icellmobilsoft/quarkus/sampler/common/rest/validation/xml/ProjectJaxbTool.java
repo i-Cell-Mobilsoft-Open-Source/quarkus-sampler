@@ -25,9 +25,9 @@ import jakarta.annotation.Priority;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.enterprise.inject.Model;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.InvalidParameterException;
 import hu.icellmobilsoft.coffee.rest.validation.xml.JaxbTool;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
  * JaxbTool alternative with override {@link JaxbTool#getRequestVersion(InputStream)} method without inputStream read

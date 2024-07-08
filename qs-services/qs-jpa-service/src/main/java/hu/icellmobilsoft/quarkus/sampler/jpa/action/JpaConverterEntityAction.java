@@ -36,10 +36,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequestType;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
 import hu.icellmobilsoft.coffee.dto.exception.InvalidParameterException;
 import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
-import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.BatchService;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.quarkus.sampler.common.jpa.service.ProjectHibernateBatchService;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.jpaconverterentity.JpaConverterEntityInsertRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.jpa.jpaconverterentity.JpaConverterEntityInsertType;
@@ -60,7 +60,7 @@ import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.JpaConverterEntity;
 public class JpaConverterEntityAction extends BaseAction {
 
     @Inject
-    BatchService batchService;
+    ProjectHibernateBatchService batchService;
 
     @Inject
     TransactionHelper transactionHelper;

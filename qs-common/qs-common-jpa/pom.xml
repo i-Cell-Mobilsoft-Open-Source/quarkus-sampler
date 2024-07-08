@@ -37,6 +37,23 @@
             <artifactId>coffee-deltaspike-data-extension</artifactId>
         </dependency>
 
+        <!-- Frappee dependecies-->
+        
+        <dependency>
+            <groupId>hu.icellmobilsoft.frappee</groupId>
+            <artifactId>frappee-hibernate-batch</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>hu.icellmobilsoft.frappee</groupId>
+            <artifactId>frappee-hibernate-batch-cdi</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>hu.icellmobilsoft.frappee</groupId>
+            <artifactId>frappee-hibernate-util-cdi</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

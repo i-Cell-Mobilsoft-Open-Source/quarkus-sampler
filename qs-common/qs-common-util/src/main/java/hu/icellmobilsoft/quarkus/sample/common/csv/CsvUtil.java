@@ -46,11 +46,11 @@ import com.opencsv.bean.exceptionhandler.ExceptionHandlerThrow;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
-import hu.icellmobilsoft.coffee.dto.exception.BaseException;
-import hu.icellmobilsoft.coffee.dto.exception.BusinessException;
-import hu.icellmobilsoft.coffee.dto.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.module.csv.localization.LocalizedHeaderColumnNameWithPositionMappingStrategy;
+import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
+import hu.icellmobilsoft.coffee.se.api.exception.BusinessException;
+import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
 import hu.icellmobilsoft.coffee.se.logging.Logger;
 import hu.icellmobilsoft.quarkus.sample.common.csv.strategy.HeaderColumnNameWithPositionMappingStrategy;
 
@@ -189,13 +189,13 @@ public abstract class CsvUtil {
     public static <T> List<T> parse(Supplier<T> baseObjectSupplier, Class<? extends Enum<? extends CsvFieldConverter<T>>> csvEnum, Reader csvSource)
             throws BaseException {
         if (Objects.isNull(baseObjectSupplier)) {
-            throw new BusinessException("baseObjectSupplier is NULL");
+            throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "baseObjectSupplier is NULL");
         }
         if (Objects.isNull(csvEnum)) {
-            throw new BusinessException("csvEnum is NULL");
+            throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "csvEnum is NULL");
         }
         if (Objects.isNull(csvSource)) {
-            throw new BusinessException("csvSource is NULL");
+            throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "csvSource is NULL");
         }
 
         Enum<? extends CsvFieldConverter<T>>[] enumConstants = csvEnum.getEnumConstants();
@@ -216,7 +216,7 @@ public abstract class CsvUtil {
                 }
                 results.add(target);
             } catch (Exception e) {
-                throw new BusinessException("Invalid record value");
+                throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "Invalid record value");
             }
         }
 
@@ -252,7 +252,7 @@ public abstract class CsvUtil {
 
     private static void validateEncoding(CSVParser parser) throws BaseException {
         if (parser.getHeaderMap().keySet().stream().anyMatch(v -> v.contains(UTF8_BOM))) {
-            throw new BusinessException("Invalid UTF-8 encoding, UTF-8 BOM not supported!");
+            throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "Invalid UTF-8 encoding, UTF-8 BOM not supported!");
         }
     }
 
@@ -268,7 +268,7 @@ public abstract class CsvUtil {
         try {
             return parser.getRecords();
         } catch (IOException e) {
-            throw new BusinessException("Failed to read records!");
+            throw new BusinessException(CoffeeFaultType.OPERATION_FAILED, "Failed to read records!");
         }
     }
 
