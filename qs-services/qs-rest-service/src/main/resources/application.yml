@@ -19,6 +19,9 @@ mp:
 # Quarkus settings
 #-------------------------------
 quarkus:
+  management:
+    enabled: true
+    port: 9001 
   arc:
 #    remove-unused-beans: false
     remove-unused-beans: true
@@ -37,29 +40,31 @@ quarkus:
         level: ${SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
     console:
       json: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
-      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
+      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
     handler:
       gelf:
         additional-field:
           "moduleVersion":
-            value: ${SAMPLER_LOGSTASH_MODULE_VERSION:unknown}
+            value: ${SAMPLER_GELF_MODULE_VERSION:unknown}
           "moduleId":
-            value: ${SAMPLER_LOGSTASH_MODULE_ID:unknown}
+            value: ${SAMPLER_GELF_MODULE_ID:unknown}
           "K8S_NAMESPACE":
-            value: ${SAMPLER_LOGSTASH_K8S_NAMESPACE:unknown}
+            value: ${SAMPLER_GELF_K8S_NAMESPACE:unknown}
         include-full-mdc: false
-        enabled: ${SAMPLER_LOGSTASH_ENABLED:false}
-        host: ${SAMPLER_LOGSTASTH_HOST:tcp:localhost}
-        port: ${SAMPLER_LOGSTASTH_PORT:12201}
-        version: ${SAMPLER_LOGSTASTH_VERSION:1.1}
+        enabled: ${SAMPLER_GELF_ENABLED:true}
+        host: ${SAMPLER_GELF_HOST:tcp:localhost}
+        port: ${SAMPLER_GELF_PORT:12201}
+#        host: localhost
+#        port: 12201
+        version: ${SAMPLER_GELF_VERSION:1.1}
     level: ${SAMPLER_LOG_LEVEL:INFO}
     min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
   jaeger:
-    sampler-type: ${SAMPLER_JAEGER_SAMPLER_TYPE:remote}
+    sampler-type: ${SAMPLER_JAEGER_SAMPLER_TYPE:const}
     sampler-manager-host-port: ${SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT:localhost:5778}
-    reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
-    sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:1}
-    enabled: ${SAMPLER_JAEGER_ENABLED:false}
+    agent-host-port: ${SAMPLER_JAEGER_AGENT_HOST_PORT:localhost:6831}
+#    reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
+    sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:0}
   rest-client:
     "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
       url: http://localhost:8080

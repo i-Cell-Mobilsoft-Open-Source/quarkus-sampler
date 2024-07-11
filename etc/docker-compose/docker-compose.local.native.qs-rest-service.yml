@@ -1,26 +1,27 @@
-version: "3.8"
+#version: "3.8"
 
 # run
-# docker-compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compose.local.qs-rest-service.yml up --build --force-recreate
+# docker compose -f <PROJECT_PATH>/etc/docker-compose/docker-compose.local.native.qs-rest-service.yml up --build --force-recreate
 #
 # run from project directory
-# docker-compose -f ./etc/docker-compose/docker-compose.local.qs-rest-service.yml up --build --force-recreate
+# docker compose -f ./etc/docker-compose/docker-compose.local.native.qs-rest-service.yml up --build --force-recreate
 #
 # enter container
-# docker exec -it qs-rest-service-dev /bin/bash
+# docker exec -qs-rest-service-dev-native /bin/bash
 #
 # empty run
-# docker run --rm -it qs-rest-service:develop-local /bin/bash
+# docker run --rm -it qs-rest-service:develop-local-native /bin/bash
 services:
     qs-rest-service:
-        container_name: qs-rest-service-dev
+        container_name: qs-rest-service-dev-native
         build:
             context: ../../
-            dockerfile: etc/docker-compose/local.fast-jar.Dockerfile
+#            dockerfile: etc/docker-compose/local.native-jar.Dockerfile
+            dockerfile: etc/docker-compose/local.native-micro-image.Dockerfile
             args:
-                ICELL_JAVA_17_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:1.4.0'
+                ICELL_JAVA_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:1.4.0'
                 SERVICE: 'qs-rest-service'
-        image: "qs-rest-service:develop-local"
+        image: "qs-rest-service:develop-local-native"
         environment:
             # With this config, service use application-dev.yml!
             - MP_CONFIG_PROFILE=dev
@@ -29,7 +30,7 @@ services:
             #jaeger
             - SAMPLER_JAEGER_SERVICE_NAME=qs-rest-service
             - SAMPLER_JAEGER_SAMPLER_TYPE=probabilistic
-            - SAMPLER_JAEGER_SAMPLER_PARAM=0
+            - SAMPLER_JAEGER_SAMPLER_PARAM=1
             - SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
             - SAMPLER_JAEGER_AGENT_HOST_PORT=jaeger:6831
             #gelf
@@ -39,8 +40,6 @@ services:
             - SAMPLER_GELF_MODULE_VERSION=0.1.0-SNAPSHOT
             - SAMPLER_GELF_MODULE_ID=qs-rest-service-dev
             - SAMPLER_GELF_K8S_NAMESPACE=qs-k8s
-            #opts
-            - JAVA_OPTS=-Xms2000m -Xmx2000m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -XX:+PrintCommandLineFlags -XX:+UseG1GC -Xlog:gc
         ports:
             - '8080:8080' # REST
             - '5005:5005' # Debug
@@ -48,8 +47,10 @@ services:
         deploy:
             resources:
                 limits:
+                    cpus: '1'
                     memory: 512M
                 reservations:
+                    cpus: '1'
                     memory: 512M
 networks:
     default:
