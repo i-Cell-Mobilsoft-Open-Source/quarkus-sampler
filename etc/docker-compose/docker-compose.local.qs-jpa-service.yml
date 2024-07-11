@@ -18,7 +18,7 @@ services:
             context: ../../
             dockerfile: etc/docker-compose/local.fast-jar.Dockerfile
             args:
-                ICELL_JAVA_17_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:1.4.0'
+                ICELL_JAVA_JRE_BASE_IMAGE: 'icellmobilsoft/base-java21jre:1.4.0'
                 SERVICE: 'qs-jpa-service'
         image: "qs-jpa-service:develop-local"
         environment:

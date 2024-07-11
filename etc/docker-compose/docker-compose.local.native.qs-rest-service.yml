@@ -34,7 +34,7 @@ services:
             - SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
             - SAMPLER_JAEGER_AGENT_HOST_PORT=jaeger:6831
             #gelf
-            - SAMPLER_GELF_ENABLED=true
+            - SAMPLER_GELF_ENABLED=false
             - SAMPLER_GELF_HOST=graylog
             - SAMPLER_GELF_PORT=12201
             - SAMPLER_GELF_MODULE_VERSION=0.1.0-SNAPSHOT

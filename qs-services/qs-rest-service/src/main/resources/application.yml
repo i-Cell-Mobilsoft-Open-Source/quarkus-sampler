@@ -51,7 +51,7 @@ quarkus:
           "K8S_NAMESPACE":
             value: ${SAMPLER_GELF_K8S_NAMESPACE:unknown}
         include-full-mdc: false
-        enabled: ${SAMPLER_GELF_ENABLED:true}
+        enabled: ${SAMPLER_GELF_ENABLED:false}
         host: ${SAMPLER_GELF_HOST:tcp:localhost}
         port: ${SAMPLER_GELF_PORT:12201}
 #        host: localhost
