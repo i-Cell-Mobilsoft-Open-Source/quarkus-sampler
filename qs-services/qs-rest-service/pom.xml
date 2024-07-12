@@ -134,6 +134,26 @@
     </dependencies>
 
 
+    <profiles>
+        <profile>
+            <id>native</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <!--TODO e nélkül a native build törik -->
+                <dependency>
+                    <groupId>com.ibm.async</groupId>
+                    <artifactId>asyncutil</artifactId>
+                    <version>0.1.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-grpc</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>

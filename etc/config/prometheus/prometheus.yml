@@ -23,4 +23,4 @@ scrape_configs:
     scrape_interval: 1s
     static_configs:
      - targets:
-       - 'qs-rest-service-dev:8080'
+       - 'qs-rest-service-dev:9001'

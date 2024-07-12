@@ -1,0 +1,76 @@
+version: "3.8"
+# run from project directory
+# docker compose -f ./etc/docker-compose/docker-compose.local.observability.yml up --build --force-recreate
+services:
+  ######### ELG STACK #########
+  mongo:
+    image: mongo:5.0.0
+    container_name: mongo
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+  graylog:
+    container_name: graylog
+    image: graylog/graylog:5.1.1
+    environment:
+      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      - GRAYLOG_ROTATION_STRATEGY=time
+      - GRAYLOG_RETENTION_STRATEGY=delete
+      - GRAYLOG_ELASTICSEARCH_MAX_TIME_PER_INDEX=3d
+    entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000" ]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+    restart: always
+    depends_on:
+      - mongo
+      - elasticsearch
+    ports:
+      # Graylog web interface and REST API
+      - 9000:9000
+      # GELF TCP
+      - 12201:12201
+      - 12201:12201/udp
+  graysetup:
+    image: dockerhub.icellmobilsoft.hu/curl:0.6.0
+    depends_on:
+      graylog:
+        condition: service_healthy
+    command:
+      - curl
+      - -X
+      - POST
+      - graylog:9000/api/system/inputs
+      - -u
+      - admin:admin
+      - -H
+      - "Content-Type: application/json"
+      - -H
+      - 'X-Requested-By: cli'
+      - -d
+      - '{"type": "org.graylog2.inputs.gelf.udp.GELFUDPInput","configuration": {"bind_address": "0.0.0.0","port": 12201,"recv_buffer_size": 1048576,"number_worker_threads": 12,"tls_cert_file": "","tls_key_file": "","tls_enable": false,"tls_key_password": "","tls_client_auth": "disabled","tls_client_auth_cert_file": "","tcp_keepalive": false,"use_null_delimiter": true,"max_message_size": 2097152,"override_source": null,"charset_name": "UTF-8","decompress_size_limit": 8388608},"title": "GlobalGelFInput","global": true}'
+#      - '{"type": "org.graylog2.inputs.gelf.tcp.GELFTCPInput","configuration": {"bind_address": "0.0.0.0","port": 12201,"recv_buffer_size": 1048576,"number_worker_threads": 12,"tls_cert_file": "","tls_key_file": "","tls_enable": false,"tls_key_password": "","tls_client_auth": "disabled","tls_client_auth_cert_file": "","tcp_keepalive": false,"use_null_delimiter": true,"max_message_size": 2097152,"override_source": null,"charset_name": "UTF-8","decompress_size_limit": 8388608},"title": "GlobalGelFInput","global": true}'
+networks:
+    default:
+        external:
+            # if it could not be found on compose up, then execute: docker network create quarkus-sampler-local-network
+            name: quarkus-sampler-local-network
