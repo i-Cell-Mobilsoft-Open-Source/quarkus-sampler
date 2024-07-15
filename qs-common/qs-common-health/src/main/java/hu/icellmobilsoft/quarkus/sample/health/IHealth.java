@@ -38,7 +38,7 @@ public interface IHealth {
     HealthCheckResponse checkReadiness();
 
     /**
-     * nincs liveness logika jelenleg, default működés
+     * There is currently no liveness logic implemented, default behavior
      *
      * @return the default liveness check
      */

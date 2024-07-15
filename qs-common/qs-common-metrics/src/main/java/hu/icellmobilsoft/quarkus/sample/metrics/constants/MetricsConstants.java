@@ -80,7 +80,7 @@ public interface MetricsConstants {
     }
 
     /**
-     * microprofile-metrics kezelesnel felhasznalt tag-ek (default) értékeire konstansok
+     * Constants used for default values of tags in microprofile-metrics handling
      *
      * @author speter555
      *

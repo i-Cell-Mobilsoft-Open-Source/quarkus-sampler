@@ -1,4 +1,4 @@
-# docker-compose adja
+# from docker-compose
 ARG ICELL_JAVA_17_JRE_BASE_IMAGE
 
 FROM ${ICELL_JAVA_17_JRE_BASE_IMAGE}

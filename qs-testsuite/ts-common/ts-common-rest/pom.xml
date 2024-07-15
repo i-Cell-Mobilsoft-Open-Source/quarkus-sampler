@@ -27,7 +27,7 @@
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
 
-        <!-- ez nalunk exclude org.apache.httpcomponents:httpclient-ben itt viszont kell -->
+        <!-- In our case, exclude org.apache.httpcomponents:httpclient, but here it is required-->
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>

@@ -48,7 +48,7 @@ jobs:
           # The content is in PEM format (begins with: '-----BEGIN RSA PRIVATE KEY-----') SSH key
           key: ${{ secrets.SSH_PRIVATE_KEY_GITHUB_TECHUSER }}
           name: id_rsa # optional
-          known_hosts: ${{ secrets.KNOWN_HOSTS }} # jelenleg ures a tartalma
+          known_hosts: ${{ secrets.KNOWN_HOSTS }} # its content is currently empty
           # config: ${{ secrets.CONFIG }} # ssh_config; optional
 
       # Configure GIT for signed commit

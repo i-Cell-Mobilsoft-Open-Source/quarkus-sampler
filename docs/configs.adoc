@@ -1,14 +1,14 @@
-= Projekt configurációs beállításainak lehetőségei
+= Possibilities for project configuration settings
 
-== Quarkus alapú configok
+== Quarkus-based configurations
 
-Az alkalmazás mivel Quarkus alapú, így a quarkus alap beállításai használhatóak benne.
+Since the application is based on Quarkus, it utilizes Quarkus' foundational settings.
 
-A leírás itt található meg: https://quarkus.io/version/3.2/guides/all-config
+The description can be found here: https://quarkus.io/version/3.2/guides/all-config
 
-NOTE: A configuráció listából, csak azon elemek aktívak, melyek dependency szinten be vannak téve a projektbe.
+NOTE: Only those elements from the configuration list are active which are included in the project at the dependency level.
 
-Fontosabb elemek, melyek alapból már definiálva vannak a projekttel:
+Key elements that are already defined by default in the project:
 
 [cols="a,a,a,a"]
 |===
@@ -62,9 +62,9 @@ General responses in case of error:  <br/>
 
 |===
 
-== Coffee alapú configok
+== Coffee-based configurations
 
-Az alkalmazás ezen felül a coffee toolset használata miatt, további konfigurációs lehetőségeket tartalmaz.
+In addition, due to the use of the Coffee Toolset, the application contains additional configuration options.
 
 [cols="a,a,a,a"]
 |===
@@ -75,9 +75,9 @@ Az alkalmazás ezen felül a coffee toolset használata miatt, további konfigur
 | coffee.config.xml.catalog.path | Catalog path of Super catalog.xml | - |xsd/hu/icellmobilsoft/quarkus/sampler/dto/super.catalog.xml
 |===
 
-== Microprofile Openapi configok
+== Microprofile Openapi configuration
 
-Ezen kívül coffeehoz kapcsolódóan, tartalmaz egy microprofile openapi filter configurációt is
+Furthermore, related to Coffee, it also includes a MicroProfile OpenAPI filter configuration.
 
 [cols="a,a,a,a"]
 |===
