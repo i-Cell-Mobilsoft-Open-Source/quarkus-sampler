@@ -42,3 +42,15 @@ docker-compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compo
 
 <1> Therefore, it is necessary for the jar that goes into the Docker image to be built.
 <2> Running the docker-compose command in the project root initiates the Docker Compose build (forcing recreation with the --force-recreate parameter if necessary) and starts up the services (up).
+
+== qs-rest-service native
+
+.Quarkus native
+----
+mvn install -Pnative -Dnative -Dquarkus.native.additional-build-args="--initialize-at-run-time=hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil","--initialize-at-run-time=io.grpc.internal.RetriableStream","--initialize-at-run-time=hu.icellmobilsoft.coffee.se.util.string.RandomUtil","--add-opens java.base/java.net=ALL-UNNAMED"
+----
+
+.Quarkus native in docker
+----
+docker compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compose.local.native.qs-rest-service.yml up --build --force-recreate
+----
