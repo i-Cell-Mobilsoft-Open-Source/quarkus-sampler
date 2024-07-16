@@ -20,31 +20,31 @@
 package hu.icellmobilsoft.quarkus.sample.common.csv;
 
 /**
- * CSV konvertálásnál használt interface
+ * Interface used for CSV conversion.
  * 
  * @param <T>
- *            az osztály, amelyre konvertálunk majd
+ *            The class to which we will convert
  * @author speter555
  */
 public interface CsvFieldConverter<T> {
 
     /**
-     * CSV érték lekérdezése
+     * Fetching CSV values
      * 
      * @param object
-     *            az objektum
-     * @return CSV érték
+     *            The objects
+     * @return CSV value
      */
     String getCsvValue(T object);
 
     /**
-     * Hozzárendeli a CSV értéket a megfelelő mezőhöz
+     * Assigning the CSV value to the corresponding field
      * 
      * @param object
-     *            az objektum
+     *            The objects
      * @param csvValue
-     *            a CSV érték
-     * @return az objektum, amelyhez hozzá van rendelve a CSV érték
+     *            the CSV value
+     * @return The object to which the CSV value is assigned
      */
     T assignTo(T object, String csvValue);
 }

@@ -1,4 +1,4 @@
-= Quarkus Sampler Dokumentáció
+= Quarkus Sampler Documentation
 
 image:https://img.shields.io/github/actions/workflow/status/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/compile_maven.yml?branch=main&logo=GitHub&style=plastic[Compile status,link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/actions/workflows/compile_maven.yml?query=branch%3Amain]
 image:https://img.shields.io/maven-central/v/hu.icellmobilsoft.quarkus.sampler/quarkus-sampler?logo=apache-maven&style=for-the-badge)[Maven central version of Parent pom project]
@@ -8,19 +8,19 @@ image:https://img.shields.io/github/commit-activity/m/i-Cell-Mobilsoft-Open-Sour
 image:https://img.shields.io/badge/JVM-17--21-brightgreen.svg?style=plastic&logo=openjdk[Supported jvms]
 image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/quarkus-sampler?style=plastic[GitHub Repo Stars, link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sample/stargazers]
 
-== Általános
+== General
 
-A projekt célja hogy működő használati mintát adjon általános Quarkus projekt felépítésére.
+The purpose of the project is to provide a working example for the general structure of a Quarkus project.
 
 [NOTE]
 ====
-Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
+Documentation: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 ====
 
-== Használt technológiák
+== Used technologies
 
 * Coffee 2.0.0+ +
-JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmusait összegyűjtse, azokra egy alapvető megoldást nyújtson, melyet, ha szükséges saját igényeinkre szabhatunk (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
+"Java EE solution set aimed at gathering common algorithms used in the enterprise world, providing fundamental solutions that can be customized to meet specific needs." (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
 
 * Java 17+
 * Maven 3.8.2+
@@ -30,20 +30,20 @@ JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmu
 * Quarkus 3.2.5.Final+
 * Tracing with grafana
 
-== Projekt struktúra
+== Projekt structure
 
-* `/.github` - GitHub beállításai
+* `/.github` - GitHub settings
 
-* `/docs` - Dokumentációk tárhelye
+* `/docs` - Repository of documentation
 
-* `/etc` - Konfigurációk, fejlesztési környezet scriptek, stb.
+* `/etc` - Configurations, development environment scripts, etc.
 
-** `/etc/config` - Konfigurációk
+** `/etc/config` - Configurations
 
-*** `/etc/config/grafana/**` - Grafana dashboardok, datasource-ok.
+*** `/etc/config/grafana/**` - Grafana dashboards, datasources.
 
-*** `/etc/config/prometheus/**` - Prometheus konfiguráció localhosthoz
+*** `/etc/config/prometheus/**` - Prometheus configuration for localhost
 
-** `/etc/docker-compose` - Docker compose fájlok és hozzájuk tartozó esetleges Dockerfile-ok.
+** `/etc/docker-compose` - Docker Compose files and their corresponding Dockerfiles.
 
-** `/etc/release` - Docker release kezelési seglet a GitHub ci-ban.
+** `/etc/release` - Docker release management assistance in GitHub CI.

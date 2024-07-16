@@ -1,4 +1,4 @@
-= Quarkus Sampler Dokumentáció
+= Quarkus Sampler Documentation
 
 image:https://img.shields.io/github/actions/workflow/status/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/compile_maven.yml?branch=main&logo=GitHub&style=plastic[Compile status,link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sampler/actions/workflows/compile_maven.yml?query=branch%3Amain]
 image:https://img.shields.io/maven-central/v/hu.icellmobilsoft.quarkus.sampler/quarkus-sampler?logo=apache-maven&style=for-the-badge)[Maven central version of Parent pom project]
@@ -8,16 +8,16 @@ image:https://img.shields.io/github/commit-activity/m/i-Cell-Mobilsoft-Open-Sour
 image:https://img.shields.io/badge/JVM-17--21-brightgreen.svg?style=plastic&logo=openjdk[Supported jvms]
 image:https://img.shields.io/github/stars/i-Cell-Mobilsoft-Open-Source/quarkus-sampler?style=plastic[GitHub Repo Stars,link=https://github.com/i-Cell-Mobilsoft-Open-Source/quarkus-sample/stargazers]
 
-== Általános
+== General
 
-A projekt célja hogy működő használati mintát adjon általános Quarkus projekt felépítésére.
+The project aims to provide a functional usage pattern for a general Quarkus project structure.
 
-NOTE: Dokumentáció: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
+NOTE: Documentation: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 
-== Használt technológiák
+== Used technologies
 
 * Coffee 2.0.0+ +
-JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmusait összegyűjtse, azokra egy alapvető megoldást nyújtson, melyet, ha szükséges saját igényeinkre szabhatunk (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
+JavaEE solution set aimed at gathering common algorithms used in the enterprise world, providing basic solutions that can be customized to meet our specific needs (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
 
 * Java 17+
 * Maven 3.8.2+
@@ -28,41 +28,40 @@ JavaEE solution set, melynek célja, hogy az enterprise világ gyakori algoritmu
 * Tracing with grafana
 
 
-== Tesztelés
-A végpontok nem authentikáltak, lehet használni a SwaggerUI oldalát.
-Sajnos az API "összetettsége" miatt ez az XML formátumban nem fog jól működni a XML namespace miatt,
-ezért ezt inkább a JSON formátumra használható.
+== Testing
+The endpoints are not authenticated; you can use the SwaggerUI page.
+Unfortunately, due to the complexity of the API, it won't work well in XML format because of XML namespace issues.
+Therefore, it's better to use JSON format for this.
 
-.Fejlesztői tesztek - qs-testsuite
+.Developer tests - qs-testsuite
 `qs-testsuite`
 
-A fejlesztői tesztek a https://github.com/i-Cell-Mobilsoft-Open-Source/roaster[Roaster] projektet használják fel.
-Ez egy teljesen önnáló REST külső hívásokat végez el a deployolt alkalmazáson.
-Futtatható egyből a fejlesztői UI (junit pligun) vagy a maven segítségével (aktiválni kell a "profile" kapcsolót),
-például:
+The developer tests use the https://github.com/i-Cell-Mobilsoft-Open-Source/roaster[Roaster] project.
+This performs completely autonomous REST external calls to the deployed application.
+It can be run directly from the developer UI (JUnit plugin) or using Maven (by activating the 'profile' switch),
+for example:
 
 [source,bash]
 ----
 mvn verify -Dprofile <1>
 mvn verify -Dprofile=sandbox,local <2>
 ----
-<1> default paraméterek
-<2> kiválasztott profilok a konfigurációs fájlokból
+<1> default parameters
+<2> Selected profiles from the configuration files
 
 
 == Release
 
-A release elkészítése automata folyamat, amit a GitHub Actionök kezelnek.
-Release esetén nem csak maven release készül, hanem docker image is a sampler service-ekről is.
-
+The release process is automated and managed by GitHub Actions.
+In case of a release, not only a Maven release is prepared, but also Docker images for the sampler services.
 
 ./etc/release/Dockerfile
-Alapvetően 3 részből áll:
+Fundamentally, it consists of three parts:
 
-. Base image, ami esetünkben egy java 17 image
-. jar fájl lehúzása - nexusból lehúzni a kívánt deployment fájlt
-. dockerimage finalizálása - jar fájlok bele másolása, stb.
+. Base image, which in our case is a Java 17 image.
+. Downloading the JAR file - pulling the desired deployment file from Nexus.
+. Finalizing the Docker image - including copying JAR files, etc.
 
 ./quarkus-sampler/etc/release/docker-compose.yml
-Funkciója hogy beállítja a service-k változóit és egyszerre kezelje őket.
+Its function is to configure the variables of the services and manage them collectively.
 

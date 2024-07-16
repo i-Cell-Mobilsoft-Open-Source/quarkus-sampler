@@ -1,7 +1,7 @@
-# futtatas:
+# run:
 # docker compose -f <PROJECT_PATH>/etc/docker-compose/docker-compose.local.etcd.yml up
 #
-# belemaszas:
+# running Docker in interactive mode:
 # docker exec -it qs-etcd /bin/bash
 version: "3.8"
 

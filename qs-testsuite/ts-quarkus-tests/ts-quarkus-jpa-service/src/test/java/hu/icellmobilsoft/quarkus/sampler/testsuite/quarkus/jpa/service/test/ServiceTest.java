@@ -110,14 +110,14 @@ class ServiceTest {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
 
-            // Válasz olvasása, ha a kérés sikeres
+            // Reading the response if the request is successful
             Assertions.assertEquals(HttpURLConnection.HTTP_OK, connection.getResponseCode());
 
-            // Válasz megjelenítése
+            // Displaying the response
 
-            // JSON-B inicializálása
+            // Initializing JSON-B
             try (Jsonb jsonb = JsonbUtil.getContext()) {
-                // Válasz JSON tartalom átalakítása Java objektummá
+                // Converting JSON content from the response into a Java object
                 HealthDto myObject = jsonb.fromJson(new InputStreamReader(connection.getInputStream()), HealthDto.class);
                 Assertions.assertEquals(status, myObject.getStatus());
             }

@@ -49,9 +49,9 @@
             <id>testsuite</id>
             <activation>
                 <property>
-                    <!-- engedélyezzük a teszt futtatást ha van megadva  -Dprofile
-                    (pl. "mvn clean install"-ra nem fut;
-                    "mvn clean install -Dprofile=sandbox"-ra igen a sandbox profile-al-->
+                    <!-- Enable test execution if specified -Dprofile
+                    (For example, it does not run on 'mvn clean install'
+                    Yes, it runs with the sandbox profile when using 'mvn clean install -Dprofile=sandbox'-->
                     <name>profile</name>
                 </property>
             </activation>

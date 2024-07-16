@@ -1,28 +1,28 @@
-= Hasznos parancsok és elérések
+= Useful commands and accesses
 
-Fejlesztés céljából használt parancsok,
-melyek a fejlesztői környezetek felépítésére és indítására szolgálnak.
+Commands used for development purposes,
+which are used to build and start development environments.
 
-Az alkalmazás több féle módon indítható:
+The application can be started in several ways:
 
-* Quarkus dev indítása mavennel
-* Quarkus uber-jar készítése és ezen jar fájl futtatása `java -jar` segítségével
-** Ugyan ez a jar java docker image-be téve és megfuttatva (local.Dockerfile használata)
-* Bizonyos IDE-k natívan tartalmaznak Quarkus projekt felismerő modult ami autómatikusan létrehoz egy olyan futtatási konfigurációt. amivel ugyancsak indítható a projekt.
+* Starting Quarkus dev with Maven
+* Creating a Quarkus uber-jar and running this jar file using `java -jar`
+** Placing the same jar into a Java Docker image and running it (using local.Dockerfile)
+* Certain IDEs natively include a Quarkus project recognition module that automatically creates a run configuration, which can also be used to start the project.
 
-Docker image-ek készítésére és futtatására docker-compose van használva.
+Docker-compose is used for creating and running Docker images.
 
 [NOTE]
 ====
-A projekt tartalmaz egy sampler-rest service-t ami megmutatja a modul használatát. Ez a példa képes teljes egészben csak lokális fejlesztői gépen futni.
-Tehát nincs semmi külső függősége.
+The project includes a sampler-rest service that demonstrates the usage of the module.
+This example can run entirely on a local development machine. Therefore, it has no external dependencies.
 ====
 
-== qs-rest-service Server indítása különböző módokon
+== Starting the qs-rest-service server in various ways
 
 .IDE included Quarkus run config
 ----
-Több böngésző is nyújt támogatást natívan a quarkussal kapcsolatoban, úgy mint a spring boot projektekhez, hogy felismeri és saját futtatási konfigurációt hoz létre.
+Several browsers natively support Quarkus similarly to Spring Boot projects, recognizing it and creating their own run configurations.
 ----
 
 .Maven quarkus:dev
@@ -30,18 +30,18 @@ Több böngésző is nyújt támogatást natívan a quarkussal kapcsolatoban, ú
 mvn clean compile quarkus:dev
 ----
 
-IMPORTANT: A projekt nem 1 modulból áll, mint ahogy a quarkus elvárná, emiatt kell a compile.
+IMPORTANT: The project does not consist of a single module as Quarkus would expect, hence requiring compilation.
 
-NOTE: A quarkus maven plugin segítségével dev módban indítható a projekt, így több dev tool is aktiválódik. További információ: https://quarkus.io/guides/dev-mode-differences.
+NOTE: Using the Quarkus Maven plugin, the project can be started in dev mode, activating several development tools. For more information: https://quarkus.io/guides/dev-mode-differences.
 
-.Quarkus uber-jar futtatása dockerben
+.Running Quarkus uber-jar in docker
 ----
 mvn clean install <1>
 docker-compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compose.local.qs-rest-service.yml up --build --force-recreate <2>
 ----
 
-<1> azért szükséges hogy a jar ami a docker image-be kerül előálljon.
-<2> docker compose parancs a projekt root-jában kiadva indítja a docker-compose buildet (force recreate paraméterrel kierőszakolva az image újrabuildelését, ha lenne), és a felfutást (up)
+<1> Therefore, it is necessary for the jar that goes into the Docker image to be built.
+<2> Running the docker-compose command in the project root initiates the Docker Compose build (forcing recreation with the --force-recreate parameter if necessary) and starts up the services (up).
 
 == qs-rest-service native
 
@@ -54,5 +54,3 @@ mvn install -Pnative -Dnative -Dquarkus.native.additional-build-args="--initiali
 ----
 docker compose -f <PROJECT_PATH>/quarkus-sampler/etc/docker-compose/docker-compose.local.native.qs-rest-service.yml up --build --force-recreate
 ----
-
-
