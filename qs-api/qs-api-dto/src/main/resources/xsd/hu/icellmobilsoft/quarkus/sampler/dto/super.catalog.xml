@@ -7,15 +7,24 @@
     <public publicId="http://common.dto.coffee.icellmobilsoft.hu/commonsecurity"
             uri="maven:hu.icellmobilsoft.coffee:coffee-dto-xsd:jar::!/xsd/hu/icellmobilsoft/coffee/dto/common/commonsecurity.xsd"/>
 
-    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/test.xsd"/>
-    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/post" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/post.xsd"/>
+    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/test"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/test.xsd"/>
+    <public publicId="http://test.dto.sampler.quarkus.icellmobilsoft.hu/post"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/test/post.xsd"/>
 
 
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/emptyentity" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/emptyentity.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javabasetypes" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javabasetypes.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadata" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javadata.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadateandtime" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javadateandtime.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javaenumtypes" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javaenumtypes.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaassociation" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/jpaassociation.xsd"/>
-    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaconverterentity" uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/jpaconverterentity.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/emptyentity"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/emptyentity.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javabasetypes"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javabasetypes.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadata"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javadata.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javadateandtime"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javadateandtime.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/javaenumtypes"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/javaenumtypes.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaassociation"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/jpaassociation.xsd"/>
+    <public publicId="http://jpa.dto.sampler.quarkus.icellmobilsoft.hu/jpaconverterentity"
+            uri="maven:hu.icellmobilsoft.quarkus.sampler:qs-api-schema:jar::!/xsd/hu/icellmobilsoft/quarkus/sampler/dto/jpa/jpaconverterentity.xsd"/>
 </catalog>
