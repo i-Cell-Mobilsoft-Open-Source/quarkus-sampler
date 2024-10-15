@@ -7,4 +7,10 @@ sampler:
             server:
               host: localhost
               port: 9000
-          
+
+testsuite:
+  rest:
+    sampleService:
+      sample:
+        baseUriKey: sampler.service.sample.base.uri
+        path: /test/quarkusSamplerService/check

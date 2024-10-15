@@ -16,7 +16,7 @@
 		<version.io.grpc.version>1.60.0</version.io.grpc.version>
 		<version.protoc.version>3.21.7</version.protoc.version>
 		<version.os-maven-plugin.version>1.7.1</version.os-maven-plugin.version>
-		<version.hu.icellmobilsoft.coffee>2.1.0</version.hu.icellmobilsoft.coffee>
+		<version.hu.icellmobilsoft.coffee>2.9.0</version.hu.icellmobilsoft.coffee>
 	    <jakarta.annotation-api.version>1.3.5</jakarta.annotation-api.version>
 	</properties>
 

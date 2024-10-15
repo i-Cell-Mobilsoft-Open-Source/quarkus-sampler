@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,6 +29,7 @@ import hu.icellmobilsoft.coffee.rest.projectstage.ProjectStage;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sample.common.util.string.RandomUtil;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
+import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleType;
@@ -60,7 +61,7 @@ public class SamplerPostAction extends BaseAction {
 
     /**
      * Test logic. Test ProjectStage, use rest client
-     * 
+     *
      * @param baseRequest
      *            base request parameter from post http call
      * @param testString
@@ -86,6 +87,32 @@ public class SamplerPostAction extends BaseAction {
                         .withColumnA("A")
                         .withColumnB(SampleValueEnumType.VALUE_C));
         handleSuccessResultType(response, baseRequest);
+        return response;
+    }
+
+    /**
+     * Test logic. Test ProjectStage, use rest client
+     *
+     * @param request
+     *            sample request parameter from post http call
+     * @return {@link SampleResponse} Sample response
+     * @throws BaseException
+     *             asdf
+     */
+    public SampleResponse postTest(SampleRequest request) throws BaseException {
+        projectStage.isProductionStage();
+
+        SampleResponse response = new SampleResponse();
+
+        SampleType sampleType = new SampleType();
+        sampleType.setSampleId(hu.icellmobilsoft.coffee.se.util.string.RandomUtil.generateId());
+        sampleType.setSampleStatus(SampleStatusEnumType.DONE);
+        sampleType.setColumnA(request.getSample().getColumnA());
+        sampleType.setColumnB(request.getSample().getColumnB());
+        sampleType.setColumnC(request.getSample().getColumnC());
+        response.setSample(sampleType);
+
+        handleSuccessResultType(response, request);
         return response;
     }
 

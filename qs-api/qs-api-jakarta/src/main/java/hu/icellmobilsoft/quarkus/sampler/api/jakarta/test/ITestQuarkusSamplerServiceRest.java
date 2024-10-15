@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,9 @@ import hu.icellmobilsoft.coffee.rest.log.annotation.LogSpecifiers;
 import hu.icellmobilsoft.coffee.rest.log.annotation.enumeration.LogSpecifierTarget;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.ServicePath;
 import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
+import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.test.TestResponse;
 
@@ -133,6 +135,24 @@ public interface ITestQuarkusSamplerServiceRest {
             @QueryParam(QuarkusSamplerPath.PARAM_TEST_BOOLEAN) @Parameter(name = QuarkusSamplerPath.PARAM_TEST_BOOLEAN,
                     description = TEST_DESCRIPTION) Boolean testBoolean)
             throws BaseException;
+
+    /**
+     * Test POST operation
+     *
+     * @param request
+     *            sample request from body
+     * @return {@link SampleResponse} response
+     * @throws BaseException
+     *             if any error occurs
+     */
+    @Operation(summary = "Test POST operation", //
+            description = "Dummy operation for testing Sampler service")
+    @Tag(ref = ITestQuarkusSamplerServiceRest.TAG)
+    @POST
+    @Path(QuarkusSamplerPath.CHECK)
+    @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
+    @Produces(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML, MediaType.APPLICATION_XML })
+    SampleResponse postTest(@ValidateXML(xsdPath = XsdConstants.SUPER_XSD_PATH) SampleRequest request) throws BaseException;
 
     /**
      * Test POST operation
