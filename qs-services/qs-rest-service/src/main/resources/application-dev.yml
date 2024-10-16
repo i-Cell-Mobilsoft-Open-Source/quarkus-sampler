@@ -5,6 +5,11 @@ coffee:
   app:
     projectStage: dev
 quarkus:
+  otel:
+    sdk:
+      disabled: true
+  micrometer:
+    enabled: false
   log:
     level: INFO
     min-level: ALL

@@ -5,14 +5,13 @@
 #-------------------------------
 quarkus:
   datasource:
+    metrics:
+      enabled: true
     "icellmobilsoftDS":
       jdbc:
         min-size: 5
         max-size: 20
-        tracing:
-          enabled: true
-        telemetry:
-          enabled: true
+        telemetry: true
         url: jdbc:oracle:thin:@//localhost:1521/xepdb1
       db-kind: oracle
       username: system

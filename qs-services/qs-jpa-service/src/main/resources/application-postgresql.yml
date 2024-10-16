@@ -5,14 +5,13 @@
 #-------------------------------
 quarkus:
   datasource:
+    metrics:
+      enabled: true
     "icellmobilsoftDS":
       jdbc:
         min-size: 5
         max-size: 20
-        tracing:
-          enabled: true
-        telemetry:
-          enabled: true
+        telemetry: true
         url: jdbc:postgresql://localhost:5432/qs_service
       db-kind: postgresql
       username: qs_service

@@ -13,6 +13,7 @@
 
     <properties>
         <jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
+        <quarkus-micrometer-registry-otlp.version>3.2.4</quarkus-micrometer-registry-otlp.version>
     </properties>
 
     <dependencies>
@@ -23,8 +24,28 @@
             <artifactId>qs-common-rest</artifactId>
         </dependency>
 
-        <!-- Quarkus dependencies -->
+<!--its not the same as in the otel...-->
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-micrometer-registry-prometheus</artifactId>-->
+<!--        </dependency>-->
 
+        <!-- Quarkus dependencies Telemetry -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-opentelemetry</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.micrometer.registry</groupId>
+            <artifactId>quarkus-micrometer-registry-otlp</artifactId>
+            <version>${quarkus-micrometer-registry-otlp.version}</version>
+        </dependency>
+<!-- dash not showing data due to missing instance name  -->
+<!--<dependency>-->
+<!--    <groupId>io.quarkus</groupId>-->
+<!--    <artifactId>quarkus-observability-devservices-lgtm</artifactId>-->
+<!--    <scope>provided</scope>-->
+<!--</dependency>-->
 
         <!--  Quarkus dependecies - JaxRS implementation - resteasy -->
         <dependency>
@@ -60,18 +81,6 @@
             <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
 
-        <!-- Quarkus dependecies - OpenTracing use -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-opentracing</artifactId>
-        </dependency>
-
-        <!-- Quarkus dependecies - Jaeger -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-jaeger</artifactId>
-        </dependency>
-
         <!-- Quarkus dependecies - Gelf logging -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -104,14 +113,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
-
-
-        <!-- Quarkus dependecies - Metrics -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-metrics</artifactId>
-        </dependency>
-
 
         <!-- Test dependencies -->
         <dependency>

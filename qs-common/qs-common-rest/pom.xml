@@ -44,14 +44,6 @@
 
         <!-- Quarkus - jsonb config -->
 
-
-        <!-- MP apis dependencies -->
-
-        <dependency>
-            <groupId>org.eclipse.microprofile.metrics</groupId>
-            <artifactId>microprofile-metrics-api</artifactId>
-        </dependency>
-
         <!-- Test dependencies -->
         <dependency>
             <groupId>io.quarkus</groupId>

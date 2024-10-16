@@ -29,9 +29,11 @@ services:
             #configuration is fixed at build time, so it is necessary to use the correct URL for the chosen database.
             #- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_URL=jdbc:oracle:thin:@//qs-oracle:1521/xepdb1
             #- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_URL=jdbc:postgresql://qs-postgresql:5432/qs_service
+             - OTEL_METRIC_EXPORT_INTERVAL=300
         ports:
             - '8080:8080' # REST
             - '5005:5005' # Debug
+            - '9001:9001' # Management
         deploy:
             resources:
                 limits:

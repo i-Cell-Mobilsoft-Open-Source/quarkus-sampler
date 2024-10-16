@@ -22,13 +22,16 @@ mp:
 # Quarkus settings
 #-------------------------------
 quarkus:
+  management:
+    enabled: true
+    port: 9001
   datasource:
+    metrics:
+      enabled: true
     "icellmobilsoftDS":
       jdbc:
         min-size: 5
         max-size: 20
-        tracing:
-          enabled: true
         telemetry:
           enabled: true
         url: jdbc:h2:mem:default
@@ -65,7 +68,7 @@ quarkus:
         level: ${SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
     console:
       json: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
-      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
+      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
     handler:
       gelf:
         additional-field:
@@ -82,12 +85,14 @@ quarkus:
         version: ${SAMPLER_LOGSTASTH_VERSION:1.1}
     level: ${SAMPLER_LOG_LEVEL:INFO}
     min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
-  jaeger:
-    sampler-type: ${SAMPLER_JAEGER_SAMPLER_TYPE:remote}
-    sampler-manager-host-port: ${SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT:localhost:5778}
-    reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
-    sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:1}
-    enabled: ${SAMPLER_JAEGER_ENABLED:false}
+  otel:
+    exporter:
+      otlp:
+        endpoint: http://opentelemetry-collector:4317
+  micrometer:
+    export:
+      otlp:
+        url: http://opentelemetry-collector:4318/v1/metrics
   rest-client:
     "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
       url: http://localhost:8080
@@ -100,9 +105,9 @@ quarkus:
       #read-timeout: 5000
       #connect-timeout: 5000
   package:
-    add-runner-suffix: false
-#    type: uber-jar
-    type: fast-jar
+    jar:
+      type: fast-jar
+      add-runner-suffix: false
   smallrye-openapi:
     info-title: Quarkus sampler service
     info-version: ${quarkus.application.version}
