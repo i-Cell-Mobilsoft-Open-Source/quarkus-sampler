@@ -19,8 +19,9 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   - job_name: qs-rest-service-local
-    metrics_path: /q/metrics
+    metrics_path: /metrics
     scrape_interval: 1s
     static_configs:
      - targets:
-       - 'qs-rest-service-dev:9001'
+        - 'opentelemetry-collector:1234'
+

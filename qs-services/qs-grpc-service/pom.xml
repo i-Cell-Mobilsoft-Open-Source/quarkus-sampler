@@ -13,6 +13,7 @@
 
 	<properties>
 		<jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
+		<quarkus-micrometer-registry-otlp.version>3.2.4</quarkus-micrometer-registry-otlp.version>
 	</properties>
 
 	<dependencies>
@@ -57,6 +58,23 @@
 			<artifactId>quarkus-grpc</artifactId>
 		</dependency>
 
+        <!-- Quarkus dependencies Telemetry -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-opentelemetry</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.micrometer.registry</groupId>
+            <artifactId>quarkus-micrometer-registry-otlp</artifactId>
+            <version>${quarkus-micrometer-registry-otlp.version}</version>
+        </dependency>
+<!-- dash not showing data due to missing instance name  -->
+<!--<dependency>-->
+<!--    <groupId>io.quarkus</groupId>-->
+<!--    <artifactId>quarkus-observability-devservices-lgtm</artifactId>-->
+<!--    <scope>provided</scope>-->
+<!--</dependency>-->
+
 		<!-- Quarkus dependecies - Yaml config use -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
@@ -67,18 +85,6 @@
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-smallrye-openapi</artifactId>
-		</dependency>
-
-		<!-- Quarkus dependecies - OpenTracing use -->
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-smallrye-opentracing</artifactId>
-		</dependency>
-
-		<!-- Quarkus dependecies - Jaeger -->
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-jaeger</artifactId>
 		</dependency>
 
 		<!-- Quarkus dependecies - Gelf logging -->
@@ -93,18 +99,10 @@
 			<artifactId>quarkus-logging-json</artifactId>
 		</dependency>
 
-
 		<!-- Quarkus dependecies - Health -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-smallrye-health</artifactId>
-		</dependency>
-
-
-		<!-- Quarkus dependecies - Metrics -->
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-smallrye-metrics</artifactId>
 		</dependency>
 
 		<!-- Test dependencies -->

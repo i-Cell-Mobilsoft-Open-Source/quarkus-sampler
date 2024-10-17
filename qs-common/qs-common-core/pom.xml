@@ -18,23 +18,11 @@
             <artifactId>qs-common-util</artifactId>
         </dependency>
 
-        <!-- MP apis dependencies -->
-        <dependency>
-            <groupId>org.eclipse.microprofile.opentracing</groupId>
-            <artifactId>microprofile-opentracing-api</artifactId>
-        </dependency>
-
         <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
             <artifactId>coffee-cdi</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-mp-opentracing</artifactId>
-        </dependency>
-
 
         <!-- Jakarta dependencies -->
         <dependency>

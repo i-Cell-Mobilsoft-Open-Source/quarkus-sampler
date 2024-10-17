@@ -21,7 +21,7 @@ mp:
 quarkus:
   management:
     enabled: true
-    port: 9001 
+    port: 9001
   arc:
 #    remove-unused-beans: false
     remove-unused-beans: true
@@ -59,12 +59,14 @@ quarkus:
         version: ${SAMPLER_GELF_VERSION:1.1}
     level: ${SAMPLER_LOG_LEVEL:INFO}
     min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
-  jaeger:
-    sampler-type: ${SAMPLER_JAEGER_SAMPLER_TYPE:const}
-    sampler-manager-host-port: ${SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT:localhost:5778}
-    agent-host-port: ${SAMPLER_JAEGER_AGENT_HOST_PORT:localhost:6831}
-#    reporter-log-spans: ${SAMPLER_JAEGER_REPORTER_LOG_SPANS:true}
-    sampler-param: ${SAMPLER_JAEGER_SAMPLER_PARAM:0}
+  otel:
+    exporter:
+      otlp:
+        endpoint: http://opentelemetry-collector:4317
+  micrometer:
+    export:
+      otlp:
+        url: http://opentelemetry-collector:4318/v1/metrics
   rest-client:
     "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
       url: http://localhost:8080
@@ -77,9 +79,9 @@ quarkus:
       #read-timeout: 5000
       #connect-timeout: 5000
   package:
-    add-runner-suffix: false
-#    type: uber-jar
-    type: fast-jar
+    jar:
+      type: fast-jar
+      add-runner-suffix: false
   smallrye-openapi:
     info-title: Quarkus sampler service
     info-version: ${quarkus.application.version}

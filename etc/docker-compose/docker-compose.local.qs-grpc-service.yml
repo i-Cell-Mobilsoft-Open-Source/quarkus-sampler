@@ -23,10 +23,12 @@ services:
         image: "qs-grpc-service:develop-local"
         environment:
             # With this config, service use application-dev.yml!
-            - MP_CONFIG_PROFILE=dev
+#            - MP_CONFIG_PROFILE=dev
+            - OTEL_METRIC_EXPORT_INTERVAL=300
         ports:
             - '8080:8080' # REST
             - '5005:5005' # Debug
+            - '9001:9001' # management
             - '9000:9000' # gRPC
         deploy:
             resources:
