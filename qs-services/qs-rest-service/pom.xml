@@ -22,6 +22,16 @@
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-rest</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>jakarta.enterprise</groupId>
+            		<artifactId>jakarta.enterprise.cdi-api</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>jakarta.platform</groupId>
+            		<artifactId>jakarta.jakartaee-api</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
 <!--its not the same as in the otel...-->
@@ -136,6 +146,51 @@
 
 
     <profiles>
+        <profile>
+            <id>dist</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <attach>true</attach>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <outputDirectory>${distribution.directory}</outputDirectory>
+                            <workDirectory>
+                                ${project.build.directory}/assembly/work</workDirectory>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-distribution</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>dist-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <executable-suffix>.exe</executable-suffix>
+            </properties>
+        </profile>
         <profile>
             <id>native</id>
             <activation>

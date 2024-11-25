@@ -27,7 +27,7 @@ Documentation: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 * Jakarta EE 10+
 * CDI 4.0+
 * Microprofile 6.0+
-* Quarkus 3.2.5.Final+
+* Quarkus 3.16.4+
 * Tracing with grafana
 
 == Projekt structure

@@ -18,7 +18,5 @@ quarkus:
   #        enabled: ${SAMPLER_LOGSTASH_ENABLED:true}
   swagger-ui:
     enable: true
-#  jaeger:
-#    enabled: ${JAEGER_ENABLED:true}
 
 
