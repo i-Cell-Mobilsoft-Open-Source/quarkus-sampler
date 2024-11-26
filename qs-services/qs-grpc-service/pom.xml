@@ -40,17 +40,17 @@
 		<!-- Quarkus dependencies -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-reactive</artifactId>
+			<artifactId>quarkus-rest</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-reactive-jaxb</artifactId>
+			<artifactId>quarkus-rest-jaxb</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
+			<artifactId>quarkus-rest-jsonb</artifactId>
 		</dependency>
 
 		<dependency>

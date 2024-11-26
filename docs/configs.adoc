@@ -4,7 +4,7 @@
 
 Since the application is based on Quarkus, it utilizes Quarkus' foundational settings.
 
-The description can be found here: https://quarkus.io/version/3.2/guides/all-config
+The description can be found here: https://quarkus.io/guides/all-config
 
 NOTE: Only those elements from the configuration list are active which are included in the project at the dependency level.
 
@@ -14,7 +14,7 @@ Key elements that are already defined by default in the project:
 |===
 | Quarkus config key | Description | Env variable | Default value
 
-| quarkus.arc.remove-unused-beans | Arc setting - remove unused beans: https://quarkus.io/version/3.2/guides/all-config#quarkus-arc_quarkus.arc.remove-unused-beans[Link] | - | false
+| quarkus.arc.remove-unused-beans | Arc setting - remove unused beans: https://quarkus.io/guides/all-config#quarkus-arc_quarkus.arc.remove-unused-beans[Link] | - | false
 
 | quarkus.log.category."hu.icellmobilsoft".level | hu.icellmobilsoft category log level | SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL | INFO
 
@@ -33,22 +33,18 @@ Key elements that are already defined by default in the project:
 | quarkus.handler.gelf.version | Gelf log - version of logstasth's communication | SAMPLER_LOGSTASTH_VERSION | 1.1
 
 
-| quarkus.log.level | Quarkus log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.level[Link] | SAMPLER_LOG_LEVEL | INFO
-| quarkus.log.min-level | Quarkus min log level: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | SAMPLER_LOG_MIN_LEVEL | ALL
+| quarkus.log.level | Quarkus log level: https://quarkus.io/guides/all-config#quarkus-core_quarkus.log.level[Link] | SAMPLER_LOG_LEVEL | INFO
+| quarkus.log.min-level | Quarkus min log level: https://quarkus.io/guides/all-config#quarkus-core_quarkus.log.min-level[Link] | SAMPLER_LOG_MIN_LEVEL | ALL
 
-| quarkus.jaeger.sampler-type | Jaeger - sampler type config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-type[Link] | SAMPLER_JAEGER_SAMPLER_TYPE | remote
-| quarkus.jaeger.sampler-manager-host-port | Jaeger - sampler manager host and port config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-manager-host-port[Link] | SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT | localhost:5778
-| quarkus.jaeger.reporter-log-spans | Jaeger - reporter log spans config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.reporter-log-spans[Link] | SAMPLER_JAEGER_REPORTER_LOG_SPANS |true
-| quarkus.jaeger.sampler-param | Jaeger - sampler param config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.sampler-param[Link] | SAMPLER_JAEGER_SAMPLER_PARAM |1
-| quarkus.jaeger.enabled | Jaeger - enabled config: https://quarkus.io/version/3.2/guides/all-config#quarkus-jaeger_quarkus.jaeger.enabled[Link] | SAMPLER_JAEGER_ENABLED |false
+| quarkus.otel.exporter.otlp.endpoint | Otel endpoint: https://quarkus.io/guides/all-config#quarkus-opentelemetry_quarkus-otel-exporter-otlp-endpoint[Link] | - |http://opentelemetry-collector:4317
 
-| quarkus.package.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.package.add-runner-suffix[Link] | - | false
-| quarkus.package.type | Quarkus package type: https://quarkus.io/version/3.2/guides/all-config#quarkus-core_quarkus.package.type[Link] | - | uber-jar
+| quarkus.package.add-runner-suffix | Quarkus package add runner suffix: https://quarkus.io/guides/all-config#quarkus-core_quarkus.package.add-runner-suffix[Link] | - | false
+| quarkus.package.type | Quarkus package type: https://quarkus.io/guides/all-config#quarkus-core_quarkus-package-jar-type[Link] | - | fast-jar
 
-| quarkus.smallrye-openapi.info-title | Openapi - info title : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-title[Link] | - |  Quarkus sampler service
-| quarkus.smallrye-openapi.info-version | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-version[Link] | - | ${quarkus.application.version}
+| quarkus.smallrye-openapi.info-title | Openapi - info title : https://quarkus.io/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-title[Link] | - |  Quarkus sampler service
+| quarkus.smallrye-openapi.info-version | Quartz - info version : https://quarkus.io/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-version[Link] | - | ${quarkus.application.version}
 
-| quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/version/3.2/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
+| quarkus.smallrye-openapi.info-description | Quartz - info version : https://quarkus.io/guides/all-config#quarkus-smallrye-openapi_quarkus.smallrye-openapi.info-description[Link] | - |[source,html]
 ----
 REST endpoints for operations. <br/>
 General responses in case of error:  <br/>
@@ -58,7 +54,7 @@ General responses in case of error:  <br/>
 * __418__ - Database object not found <br/>
 * __500__ - Internal Server Error <br/>
 ----
-| quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/version/3.2/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
+| quarkus.swagger-ui.enable | Enable swagger ui: https://quarkus.io/guides/all-config#quarkus-swagger-ui_quarkus.swagger-ui.enable[Link] | - | false
 
 |===
 
@@ -85,3 +81,24 @@ Furthermore, related to Coffee, it also includes a MicroProfile OpenAPI filter c
 
 | mp.openapi.filter | Microprofile openapi filter class with package | - | hu.icellmobilsoft.quarkus.sampler.common.rest.filter.OpenAPIFilter
 |===
+
+== Agroal configurations
+
+The database connection management is similar to the pool managed by WildFly IronJacamar.
+Configuration and tuning options:
+
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_MIN_SIZE: The minimum number of connections. It is worth setting this if we need continuously initialized database connections.
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_MAX_SIZE: The maximum number of connections. It is essential to set an upper limit for the pool. Its size should be tuned according to the database-side maximum connection limits and the number of application instances.
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_INITIAL_SIZE: Specifies the number of pre-initialized connections at service startup. This is useful when preparing for burst loads or peak periods.
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_ACQUISITION_TIMEOUT: This operates similarly to the parameter in this script. This defines the time the pool has to provide a database connection. If the pool is full and the time expires, an exception will be thrown.
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_IDLE_REMOVAL_INTERVAL: The duration for which an initialized but idle connection remains in the pool. This parameter can be tuned to ensure that unnecessary active connections do not burden the database.
+- QUARKUS_DATASOURCE_ICELLMOBILSOFTDS_JDBC_NEW_CONNECTION_SQL: For example, setting the schema or character encoding.
+- QUARKUS.TRANSACTION-MANAGER.DEFAULT-TRANSACTION-TIMEOUT: The transaction timeout. This differs significantly from WildFly's 5-minute default, being set to 1 minute by default. This is the time a transaction has to complete.
+
+Useful metrics have been implemented for a sample dashboard. TODO: Define and interpret the metrics.
+ 
+ 
+ 
+ 
+
+

@@ -27,12 +27,6 @@ services:
             - MP_CONFIG_PROFILE=dev
             #etcd
             - COFFEE_ETCD_DEFAULT_URL=http://qs-etcd:2379
-            #jaeger
-            - SAMPLER_JAEGER_SERVICE_NAME=qs-rest-service
-            - SAMPLER_JAEGER_SAMPLER_TYPE=probabilistic
-            - SAMPLER_JAEGER_SAMPLER_PARAM=1
-            - SAMPLER_JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
-            - SAMPLER_JAEGER_AGENT_HOST_PORT=jaeger:6831
             #gelf
             - SAMPLER_GELF_ENABLED=false
             - SAMPLER_GELF_HOST=graylog

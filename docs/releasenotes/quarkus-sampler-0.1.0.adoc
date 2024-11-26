@@ -2,6 +2,6 @@
 
 == Release note
 
-* Base project with Quarkus 3.2.5.Final
+* Base project with Quarkus 3.16.x
 * Documentations
 * GitHub workflows for docker build and release build

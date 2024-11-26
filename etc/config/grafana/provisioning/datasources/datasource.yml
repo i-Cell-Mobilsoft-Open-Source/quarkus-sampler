@@ -6,7 +6,7 @@ datasources:
     uid: P47DF7B82022F482C
     url: http://prometheus:9090
     jsonData:
-      timeInterval: 60s
+      timeInterval: 2s
       exemplarTraceIdDestinations:
         - name: traceID
           datasourceUid: tempo

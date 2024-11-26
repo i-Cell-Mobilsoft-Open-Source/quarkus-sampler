@@ -4,6 +4,8 @@ ARG ICELL_JAVA_JRE_BASE_IMAGE
 FROM ${ICELL_JAVA_JRE_BASE_IMAGE}
 
 ENV JAVA_OPTS="-XshowSettings:vm -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5005 -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Dquarkus.http.host=0.0.0.0"
+ENV JAVA_DEBUG=true
+ENV JAVA_DEBUG_PORT=*:5005
 
 ARG SERVICE
 
