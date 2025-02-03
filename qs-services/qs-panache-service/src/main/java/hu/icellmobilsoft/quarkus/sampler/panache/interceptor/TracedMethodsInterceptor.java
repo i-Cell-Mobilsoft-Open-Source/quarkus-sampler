@@ -85,16 +85,14 @@ public class TracedMethodsInterceptor {
         Span span = tracer.spanBuilder(methodName).startSpan();
 
         // Attach span to the current scope
-        try (Scope scope = span.makeCurrent()) {
-            try {
-                return ctx.proceed();
-            } catch (Exception e) {
-                span.recordException(e);
-                span.setStatus(StatusCode.ERROR);
-                throw e;
-            } finally {
-                span.end();
-            }
+        try (Scope ignored = span.makeCurrent()) {
+            return ctx.proceed();
+        } catch (Exception e) {
+            span.recordException(e);
+            span.setStatus(StatusCode.ERROR);
+            throw e;
+        } finally {
+            span.end();
         }
     }
 }

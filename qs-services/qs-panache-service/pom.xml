@@ -21,18 +21,7 @@
         <!-- Project dependecies-->
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-            <artifactId>qs-common-model</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-jpa</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
-                    <artifactId>qs-common-model</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
