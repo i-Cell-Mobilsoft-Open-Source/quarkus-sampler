@@ -39,7 +39,6 @@ import hu.icellmobilsoft.coffee.rest.log.annotation.LogSpecifiers;
 import hu.icellmobilsoft.coffee.rest.log.annotation.enumeration.LogSpecifierTarget;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.QuarkusSamplerPath;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.path.ServicePath;
 import hu.icellmobilsoft.quarkus.sampler.api.schema.XsdConstants;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleRequest;
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;

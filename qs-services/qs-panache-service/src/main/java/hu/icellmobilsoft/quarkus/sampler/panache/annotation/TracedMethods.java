@@ -2,7 +2,7 @@
  * #%L
  * Quarkus-sampler
  * %%
- * Copyright (C) 2024 i-Cell Mobilsoft Zrt.
+ * Copyright (C) 2024 - 2025 i-Cell Mobilsoft Zrt.
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
+package hu.icellmobilsoft.quarkus.sampler.panache.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -28,14 +28,34 @@ import java.lang.annotation.Target;
 import jakarta.interceptor.InterceptorBinding;
 
 /**
- * Annotation of interceptor of Logging entry and exit event at a class' method
+ * Annotation for enabling method-level tracing using OpenTelemetry.
+ * <p>
+ * This annotation is used to automatically trace the execution of methods or classes by applying an OpenTelemetry-based interceptor.
+ * <p>
+ * Features:
+ * <ul>
+ * <li>Records method execution duration</li>
+ * <li>Captures method parameters and exceptions</li>
+ * <li>Integrates with OpenTelemetry-compatible tracing tools (e.g., Jaeger, Grafana Tempo)</li>
+ * </ul>
+ * <p>
+ * Usage:
+ * 
+ * <pre>{@code
+ * @TracedMethods
+ * public void process(String data) {
+ *     // Business logic
+ * }
+ * }</pre>
+ * <p>
  *
- * @author speter555
+ * @see jakarta.interceptor.InterceptorBinding
+ * @author balazs.joo
  * @since 0.1.0
  */
 @Inherited
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.TYPE })
-public @interface LogMethodEntryAndExit {
+public @interface TracedMethods {
 }

@@ -17,25 +17,30 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
+package hu.icellmobilsoft.quarkus.sampler.panache.shutdown;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import jakarta.enterprise.event.Observes;
 
-import jakarta.interceptor.InterceptorBinding;
+import io.quarkus.runtime.ShutdownEvent;
 
 /**
- * Annotation of interceptor of Logging entry and exit event at a class' method
- *
- * @author speter555
+ * Support for shutdown event
+ * 
+ * @author czenczl
  * @since 0.1.0
  */
-@Inherited
-@InterceptorBinding
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD, ElementType.TYPE })
-public @interface LogMethodEntryAndExit {
+public class ShutDownSupport {
+
+    public static boolean shutDown = false;
+
+    /**
+     * collect shutdown event information
+     * 
+     * @param ev
+     *            shutdown event
+     */
+    public void init(@Observes ShutdownEvent ev) {
+        shutDown = true;
+    }
+
 }
