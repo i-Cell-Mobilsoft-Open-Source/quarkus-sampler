@@ -85,7 +85,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <!-- Services -->
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>

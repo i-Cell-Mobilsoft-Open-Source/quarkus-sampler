@@ -1,0 +1,128 @@
+#-------------------------------
+# Coffee config
+#-------------------------------
+coffee:
+#  app:
+#    name: ${quarkus.application.name}
+  config:
+    datasource:
+      default:
+        name: icellmobilsoftDS
+    resource:
+      bundles: i18n.messages
+    xml:
+      catalog:
+        path: xsd/hu/icellmobilsoft/quarkus/sampler/dto/super.catalog.xml
+
+mp:
+  openapi:
+    filter: hu.icellmobilsoft.quarkus.sampler.common.rest.filter.OpenAPIFilter
+
+#-------------------------------
+# Quarkus settings
+#-------------------------------
+quarkus:
+  management:
+    enabled: true
+    port: 9001
+  datasource:
+    metrics:
+      enabled: true
+    "icellmobilsoftDS":
+      jdbc:
+        min-size: 5
+        max-size: 20
+        telemetry:
+          enabled: true
+        url: jdbc:h2:mem:default
+      db-kind: h2
+  hibernate-orm:
+    packages: hu.icellmobilsoft.quarkus.sampler.model,hu.icellmobilsoft.coffee.model.base
+    datasource: "icellmobilsoftDS"
+    dialect: org.hibernate.dialect.H2Dialect
+    database:
+      generation: drop-and-create
+    log:
+      #queries-slower-than-ms: 500
+      format-sql: true
+      sql: true
+      #bind-parameters: true
+    jdbc:
+      timezone: UTC
+    mapping:
+      timezone:
+        default-storage: normalize-utc
+  arc:
+#    remove-unused-beans: false
+    remove-unused-beans: true
+    unremovable-types:
+      - hu.icellmobilsoft.coffee.module.csv.**
+      - org.apache.deltaspike.data.impl.handler.QueryHandler
+      - hu.icellmobilsoft.coffee.tool.utils.stream.LoggingPublisher
+      - hu.icellmobilsoft.coffee.rest.validation.xml.utils.XsdHelper
+      - hu.icellmobilsoft.coffee.rest.validation.xml.error.XsdValidationErrorCollector
+      - hu.icellmobilsoft.coffee.rest.validation.catalog.PublicCatalogResolver
+  log:
+    category:
+      "hu.icellmobilsoft":
+        level: ${SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
+    console:
+      json: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
+      format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
+    handler:
+      gelf:
+        additional-field:
+          "moduleVersion":
+            value: ${SAMPLER_LOGSTASH_MODULE_VERSION:unknown}
+          "moduleId":
+            value: ${SAMPLER_LOGSTASH_MODULE_ID:unknown}
+          "K8S_NAMESPACE":
+            value: ${SAMPLER_LOGSTASH_K8S_NAMESPACE:unknown}
+        include-full-mdc: false
+        enabled: ${SAMPLER_LOGSTASH_ENABLED:false}
+        host: ${SAMPLER_LOGSTASTH_HOST:tcp:localhost}
+        port: ${SAMPLER_LOGSTASTH_PORT:12201}
+        version: ${SAMPLER_LOGSTASTH_VERSION:1.1}
+    level: ${SAMPLER_LOG_LEVEL:INFO}
+    min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
+  otel:
+    exporter:
+      otlp:
+        endpoint: http://opentelemetry-collector:4317
+  micrometer:
+    export:
+      otlp:
+        url: http://opentelemetry-collector:4318/v1/metrics
+  rest-client:
+    "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestSecondQuarkusSamplerServiceRestRegisteredClient":
+      url: http://localhost:8080
+      scope: jakarta.enterprise.context.ApplicationScoped
+      #read-timeout: 5000
+      #connect-timeout: 5000
+    "hu.icellmobilsoft.quarkus.sampler.rest.restclient.ITestQuarkusSamplerServiceRestRegisteredClient":
+      url: http://localhost:8080
+      scope: jakarta.enterprise.context.ApplicationScoped
+      #read-timeout: 5000
+      #connect-timeout: 5000
+  package:
+    jar:
+      type: fast-jar
+      add-runner-suffix: false
+  smallrye-openapi:
+    info-title: Quarkus sampler service
+    info-version: ${quarkus.application.version}
+    info-description: >
+      REST endpoints for operations. <br/> 
+      General responses in case of error:  <br/> 
+      * __400__ - Bad Request <br/> 
+      * __401__ - Unauthorized <br/> 
+      * __404__ - Not found <br/> 
+      * __418__ - Database object not found <br/> 
+      * __500__ - Internal Server Error <br/>
+    path: openapi
+  swagger-ui:
+    enable: false
+    always-include: true
+    filter: false
+    path: swagger-ui
+
