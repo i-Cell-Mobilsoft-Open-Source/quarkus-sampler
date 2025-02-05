@@ -37,7 +37,7 @@ import hu.icellmobilsoft.coffee.tool.utils.validation.ParamValidatorUtil;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleContainerEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntityProjection;
+import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.EmptyEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 import hu.icellmobilsoft.quarkus.sampler.panache.service.SampleContainerEntityService;

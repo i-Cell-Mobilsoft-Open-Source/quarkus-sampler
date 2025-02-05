@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.jpa.shutdown;
+package hu.icellmobilsoft.quarkus.sampler.common.jpa.shutdown;
 
 import jakarta.enterprise.event.Observes;
 

@@ -25,9 +25,9 @@ import java.util.List;
 import jakarta.enterprise.inject.Model;
 
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ParamName;
+import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.panache.repository.SampleEntityRepository;
 import io.quarkus.micrometer.runtime.MicrometerCounted;
 

@@ -79,7 +79,7 @@ public class TracedMethodsInterceptor {
      */
     @AroundInvoke
     public Object handleParameters(final InvocationContext ctx) throws Exception {
-        String methodName = ctx.getMethod().getDeclaringClass().getSimpleName() + "." + ctx.getMethod().getName();
+        String methodName = ((Class<?>) ctx.getTarget().getClass().getGenericSuperclass()).getSimpleName() + "." + ctx.getMethod().getName();
 
         // Retrieve or create a span
         Span span = tracer.spanBuilder(methodName).startSpan();

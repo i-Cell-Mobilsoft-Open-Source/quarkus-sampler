@@ -54,6 +54,13 @@
             <artifactId>frappee-hibernate-util-cdi</artifactId>
         </dependency>
 
+        <!-- Quarkus dependencies -->
+        <!-- Quarkus hibernate -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

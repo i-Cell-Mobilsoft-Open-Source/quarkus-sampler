@@ -27,9 +27,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.hibernate.jpa.HibernateHints;
 
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity_;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
+import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import io.quarkus.panache.common.Parameters;
 

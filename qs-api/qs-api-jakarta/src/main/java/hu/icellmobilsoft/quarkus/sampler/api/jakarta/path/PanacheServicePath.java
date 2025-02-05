@@ -22,8 +22,8 @@ package hu.icellmobilsoft.quarkus.sampler.api.jakarta.path;
 /**
  * PATHS for panache-service
  * 
- * @author csaba.balogh
- * @since 2.0.0
+ * @author balazs.joo
+ * @since 0.1.0
  */
 public class PanacheServicePath extends ServicePath {
 
@@ -31,11 +31,6 @@ public class PanacheServicePath extends ServicePath {
      * /rest/panacheService
      */
     public static final String REST_PANACHE_SERVICE = REST + "/panacheService";
-
-    /**
-     * /rest/jpaBatchService/emptyEntity
-     */
-    public static final String REST_PANACHE_SERVICE_TEST = REST_PANACHE_SERVICE + TEST;
 
     private PanacheServicePath() {
         super();

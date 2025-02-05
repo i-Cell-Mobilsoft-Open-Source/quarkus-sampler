@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.sampler.ts.sample.rest.client;
+package hu.icellmobilsoft.sampler.ts.sample.panache.client;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;

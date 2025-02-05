@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.sampler.ts.sample.rest;
+package hu.icellmobilsoft.sampler.ts.sample.panache;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

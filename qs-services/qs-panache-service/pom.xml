@@ -15,6 +15,7 @@
         <jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
         <version.io.agroal>2.3</version.io.agroal>
         <quarkus-micrometer-registry-otlp.version>3.2.4</quarkus-micrometer-registry-otlp.version>
+        <quarkus-opentelemetry-exporter-otlp.version>3.9.2</quarkus-opentelemetry-exporter-otlp.version>
     </properties>
 
     <dependencies>
@@ -51,7 +52,7 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-opentelemetry-exporter-otlp</artifactId>
-            <version>3.9.2</version>
+            <version>${quarkus-opentelemetry-exporter-otlp.version}</version>
         </dependency>
 <!-- dash not showing data due to missing instance name  -->
 <!--<dependency>-->

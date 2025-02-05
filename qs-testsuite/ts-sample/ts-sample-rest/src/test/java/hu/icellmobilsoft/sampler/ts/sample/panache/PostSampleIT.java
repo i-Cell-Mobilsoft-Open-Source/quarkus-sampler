@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.sampler.ts.sample.rest;
+package hu.icellmobilsoft.sampler.ts.sample.panache;
 
 import jakarta.inject.Inject;
 
@@ -38,8 +38,8 @@ import hu.icellmobilsoft.quarkus.sampler.ts.common.rest.DtoHelper;
 import hu.icellmobilsoft.roaster.api.TestSuiteGroup;
 import hu.icellmobilsoft.roaster.jaxrs.response.producer.RestProcessor;
 import hu.icellmobilsoft.roaster.restassured.response.producer.impl.ConfigurableResponseProcessor;
-import hu.icellmobilsoft.sampler.ts.sample.rest.builder.SampleRequestBuilder;
-import hu.icellmobilsoft.sampler.ts.sample.rest.client.IXmlTestQuarkusSamplerServiceRest;
+import hu.icellmobilsoft.sampler.ts.sample.panache.builder.SampleRequestBuilder;
+import hu.icellmobilsoft.sampler.ts.sample.panache.client.IXmlTestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.ts.quarkus.sample.common.base.BaseSampleIT;
 
 /**

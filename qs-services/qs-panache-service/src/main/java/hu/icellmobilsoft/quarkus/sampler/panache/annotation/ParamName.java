@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
  * Example usage:
  * 
  * <pre>{@code
- * public void process(@ParamName("username") String name) {
+ * public void process(@ParamName("username") String username) {
  *     // Business logic
  * }
  * }</pre>

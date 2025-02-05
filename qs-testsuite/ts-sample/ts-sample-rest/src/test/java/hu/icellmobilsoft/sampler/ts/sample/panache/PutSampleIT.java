@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.sampler.ts.sample.rest;
+package hu.icellmobilsoft.sampler.ts.sample.panache;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +31,7 @@ import hu.icellmobilsoft.quarkus.sampler.api.jakarta.test.ITestQuarkusSamplerSer
 import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleResponse;
 import hu.icellmobilsoft.quarkus.sampler.ts.common.rest.DtoHelper;
 import hu.icellmobilsoft.roaster.api.TestSuiteGroup;
-import hu.icellmobilsoft.sampler.ts.sample.rest.client.IXmlTestQuarkusSamplerServiceRest;
+import hu.icellmobilsoft.sampler.ts.sample.panache.client.IXmlTestQuarkusSamplerServiceRest;
 import hu.icellmobilsoft.ts.quarkus.sample.common.base.BaseSampleIT;
 
 /**

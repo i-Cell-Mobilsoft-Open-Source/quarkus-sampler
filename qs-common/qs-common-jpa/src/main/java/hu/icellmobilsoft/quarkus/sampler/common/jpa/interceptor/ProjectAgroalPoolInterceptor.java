@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.jpa.interceptor;
+package hu.icellmobilsoft.quarkus.sampler.common.jpa.interceptor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import hu.icellmobilsoft.coffee.se.logging.Logger;
-import hu.icellmobilsoft.quarkus.sampler.jpa.shutdown.ShutDownSupport;
+import hu.icellmobilsoft.quarkus.sampler.common.jpa.shutdown.ShutDownSupport;
 import io.agroal.api.AgroalPoolInterceptor;
 import io.quarkus.agroal.DataSource;
 
@@ -48,15 +48,16 @@ public class ProjectAgroalPoolInterceptor implements AgroalPoolInterceptor {
      */
     @Override
     public void onConnectionDestroy(Connection connection) {
-        if (ShutDownSupport.shutDown) {
-            try {
-                // prevent unexpected commit on shutdown
-                connection.rollback();
-            } catch (SQLException e) {
-                logger.error("Failed to rollback under shutdown", e);
-                // in that case, the data source connection will not close properly, and an unwanted commit will not occur
-                throw new RuntimeException(e);
-            }
+        if (!ShutDownSupport.shutDown) {
+            return;
+        }
+        try {
+            // prevent unexpected commit on shutdown
+            connection.rollback();
+        } catch (SQLException e) {
+            logger.error("Failed to rollback under shutdown", e);
+            // in that case, the data source connection will not close properly, and an unwanted commit will not occur
+            throw new RuntimeException(e);
         }
     }
 

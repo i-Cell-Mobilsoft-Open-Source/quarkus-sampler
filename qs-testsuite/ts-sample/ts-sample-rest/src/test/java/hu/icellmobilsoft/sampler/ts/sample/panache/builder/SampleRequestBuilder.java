@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.sampler.ts.sample.rest.builder;
+package hu.icellmobilsoft.sampler.ts.sample.panache.builder;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.inject.Model;

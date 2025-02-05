@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.model.jpatest;
+package hu.icellmobilsoft.quarkus.sampler.panache.dto;
 
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleValue;

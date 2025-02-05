@@ -119,7 +119,7 @@ public class HandleServiceExceptionsInterceptor {
      * @return formatted method signature.
      */
     private String generateMethodInfo(InvocationContext ctx) {
-        return ctx.getMethod().getDeclaringClass().getSimpleName() + "." + ctx.getMethod().getName() + "("
+        return ((Class<?>) ctx.getTarget().getClass().getGenericSuperclass()).getSimpleName() + "." + ctx.getMethod().getName() + "("
                 + Arrays.stream(ctx.getMethod().getParameters())
                         .map(param -> getName(param) + " [" + param.getType().getSimpleName() + "]")
                         .collect(Collectors.joining(", "))
