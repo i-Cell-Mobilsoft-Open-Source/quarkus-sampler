@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
 import jakarta.interceptor.InterceptorBinding;
 
 /**
- * Annotation of interctor of Logging entry and exit event at a class' method
+ * Annotation of interceptor of Logging entry and exit event at a class' method
  *
  * @author speter555
  * @since 0.1.0
