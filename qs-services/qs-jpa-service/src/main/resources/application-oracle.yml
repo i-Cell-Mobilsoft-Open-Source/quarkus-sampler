@@ -31,4 +31,4 @@ quarkus:
       timezone: UTC
     mapping:
       timezone:
-        default-storage: normalize-utc
+        default-storage: normalize
