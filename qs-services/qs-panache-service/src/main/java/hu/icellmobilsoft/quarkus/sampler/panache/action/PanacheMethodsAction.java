@@ -33,7 +33,8 @@ import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
 import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
-import hu.icellmobilsoft.coffee.tool.utils.validation.ParamValidatorUtil;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleContainerEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
@@ -51,6 +52,7 @@ import hu.icellmobilsoft.quarkus.sampler.panache.service.SampleEntityService;
  * @since 0.1.0
  */
 @Model
+@ValidateIncomingParameters
 public class PanacheMethodsAction extends BaseAction {
 
     private static final String FAILED_TO_DELETE_SAMPLE_ENTITY = "Failed to delete sampleEntity!";
@@ -77,9 +79,7 @@ public class PanacheMethodsAction extends BaseAction {
      * @throws BaseException
      *             if any exception occurs during the process.
      */
-    public BaseResponse postPanacheMethods(BaseRequest baseRequest) throws BaseException {
-        ParamValidatorUtil.requireNonNull(baseRequest, "baseRequest");
-
+    public BaseResponse postPanacheMethods(@ParamName("baseRequest") BaseRequest baseRequest) throws BaseException {
         BaseResponse response = new BaseResponse();
 
         try {

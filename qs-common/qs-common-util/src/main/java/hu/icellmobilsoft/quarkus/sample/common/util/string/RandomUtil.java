@@ -25,7 +25,7 @@ package hu.icellmobilsoft.quarkus.sample.common.util.string;
  * @author speter555
  * @since 0.1.0
  */
-public class RandomUtil extends hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil {
+public class RandomUtil extends hu.icellmobilsoft.coffee.se.util.string.RandomUtil {
 
     /**
      * Private constructor
@@ -39,6 +39,6 @@ public class RandomUtil extends hu.icellmobilsoft.coffee.tool.utils.string.Rando
      * @return token string
      */
     public static String generateToken() {
-        return hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil.generateToken();
+        return hu.icellmobilsoft.coffee.se.util.string.RandomUtil.generateToken();
     }
 }
