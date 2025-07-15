@@ -19,7 +19,9 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
 
+import java.lang.reflect.Parameter;
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import jakarta.annotation.Priority;
@@ -27,7 +29,10 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 import hu.icellmobilsoft.coffee.cdi.logger.LogProducer;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 
 /**
  * Interceptor of logging entry and exit around a method
@@ -46,6 +51,7 @@ public class LogEntryAndExitInterceptor {
     public LogEntryAndExitInterceptor() {
         // Default constructor for java 21
     }
+
     /**
      * Logging enter and exit from context. Log contains class name, method, parameters names, parameters values
      * 
@@ -60,7 +66,7 @@ public class LogEntryAndExitInterceptor {
         Class<?> originalClass = ctx.getMethod().getDeclaringClass();
         String methodName = ctx.getMethod().getName();
         String[] paramsName = Stream.of(ctx.getMethod().getParameters())
-                .map(parameter -> MessageFormat.format("{0} [{1}]", parameter.getName(), parameter.getType().getName()))
+                .map(parameter -> MessageFormat.format("{0} [{1}]", getName(parameter), parameter.getType().getName()))
                 .toArray(String[]::new);
         Object[] paramsValue = ctx.getParameters();
         String methodInfo = getCalledMethodWithOnlyPathParams(originalClass, methodName, paramsName);
@@ -96,4 +102,15 @@ public class LogEntryAndExitInterceptor {
         LogProducer.logToAppLogger(logger -> logger.trace(">>" + methodInfo, params), originalClass);
     }
 
+    /**
+     * Retrieves the name of the given parameter, either from the {@link ParamName} annotation or from the reflection metadata.
+     *
+     * @param parameter
+     *            the parameter to get the name of.
+     * @return the extracted parameter name.
+     */
+    private String getName(final Parameter parameter) {
+        ParamName annotation = parameter.getAnnotation(ParamName.class);
+        return (Objects.nonNull(annotation) && StringUtils.isNotBlank(annotation.value())) ? annotation.value() : parameter.getName();
+    }
 }

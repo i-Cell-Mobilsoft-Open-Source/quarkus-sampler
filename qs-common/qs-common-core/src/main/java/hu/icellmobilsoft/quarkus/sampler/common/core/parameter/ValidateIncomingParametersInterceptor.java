@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.panache.interceptor;
+package hu.icellmobilsoft.quarkus.sampler.common.core.parameter;
 
 import java.lang.reflect.Parameter;
 import java.util.Collection;
@@ -30,12 +30,11 @@ import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.validation.ParamValidatorUtil;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.BaseRuntimeException;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ParamName;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ValidateIncomingParameters;
+import hu.icellmobilsoft.qs.common.se.exception.BaseRuntimeException;
 
 /**
  * An interceptor to validate incoming method parameters before the method execution. This interceptor ensures that parameters annotated with
@@ -145,6 +144,6 @@ public class ValidateIncomingParametersInterceptor {
      */
     private String getName(final Parameter parameter) {
         ParamName annotation = parameter.getAnnotation(ParamName.class);
-        return (Objects.nonNull(annotation)) ? annotation.value() : parameter.getName();
+        return (Objects.nonNull(annotation) && StringUtils.isNotBlank(annotation.value())) ? annotation.value() : parameter.getName();
     }
 }

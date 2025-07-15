@@ -27,9 +27,8 @@ import jakarta.inject.Inject;
 import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
 import hu.icellmobilsoft.quarkus.sampler.panache.annotation.HandleServiceExceptions;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ParamName;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.TracedMethods;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ValidateIncomingParameters;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import io.quarkus.panache.common.Page;
 
@@ -44,7 +43,6 @@ import io.quarkus.panache.common.Page;
 @LogMethodEntryAndExit
 @ValidateIncomingParameters
 @HandleServiceExceptions
-@TracedMethods
 public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity, R extends PanacheRepositoryBase<E, String>> {
 
     @Inject

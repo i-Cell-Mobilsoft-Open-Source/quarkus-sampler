@@ -26,10 +26,9 @@ import jakarta.enterprise.inject.Model;
 
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ParamName;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.panache.repository.SampleEntityRepository;
-import io.quarkus.micrometer.runtime.MicrometerCounted;
 
 /**
  * Service for {@link SampleEntity} querying. Represents only DB operations. Provides methods for fetching SampleEntity objects with different
@@ -48,7 +47,6 @@ public class SampleEntityService extends BasePanacheService<SampleEntity, Sample
      *            sample status
      * @return A list of entities matching the given status.
      */
-    @MicrometerCounted(value = "findAllByStatus", description = "Számolja hányszor lett a findAllByStatus meghívva")
     public List<SampleEntity> findAllByStatus(@ParamName("status") SampleStatus status) {
         return repository.findAllByStatus(status);
     }
@@ -90,5 +88,18 @@ public class SampleEntityService extends BasePanacheService<SampleEntity, Sample
      */
     public List<SampleEntityProjection> getAllBetweenWithProjection(@ParamName("from") OffsetDateTime from, @ParamName("to") OffsetDateTime to) {
         return repository.getAllBetweenWithProjection(from, to);
+    }
+
+    /**
+     * Retrieves all entities between the given timestamps, using Native query.
+     *
+     * @param from
+     *            Start timestamp.
+     * @param to
+     *            End timestamp.
+     * @return A list of entities in the given date range.
+     */
+    public List<SampleEntity> getAllBetweenNative(@ParamName("from") OffsetDateTime from, @ParamName("to") OffsetDateTime to) {
+        return repository.getAllBetweenNative(from, to);
     }
 }

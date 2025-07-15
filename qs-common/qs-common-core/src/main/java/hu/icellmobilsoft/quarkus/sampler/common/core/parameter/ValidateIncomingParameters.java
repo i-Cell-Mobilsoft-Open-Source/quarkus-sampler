@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.panache.annotation;
+package hu.icellmobilsoft.quarkus.sampler.common.core.parameter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

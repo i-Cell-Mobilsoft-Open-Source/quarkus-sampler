@@ -41,7 +41,7 @@ import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
 import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.BaseRuntimeException;
 import hu.icellmobilsoft.quarkus.sampler.panache.annotation.HandleServiceExceptions;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.ParamName;
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 
 /**
  * Interceptor for handling service exceptions in a consistent manner.

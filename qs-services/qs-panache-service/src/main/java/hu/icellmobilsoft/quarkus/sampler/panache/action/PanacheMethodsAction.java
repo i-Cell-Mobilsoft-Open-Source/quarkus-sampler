@@ -37,9 +37,9 @@ import hu.icellmobilsoft.coffee.tool.utils.validation.ParamValidatorUtil;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleContainerEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch.EmptyEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
+import hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection;
 import hu.icellmobilsoft.quarkus.sampler.panache.service.SampleContainerEntityService;
 import hu.icellmobilsoft.quarkus.sampler.panache.service.SampleEntityService;
 
@@ -89,6 +89,13 @@ public class PanacheMethodsAction extends BaseAction {
             log.warn("Failed to save sampleEntity!", e);
         }
 
+        try {
+            log.info("Creating a new SampleEntity...");
+            sampleEntityService.save(new SampleEntity()); // Intentional failure, no transaction, to test exception handling
+        } catch (Exception e) {
+            log.warn("Failed to save sampleEntity!", e);
+        }
+
         // Creating and updating entity status
         SampleEntity se = new SampleEntity();
         se.setStatus(SampleStatus.PROCESSING);
@@ -99,6 +106,14 @@ public class PanacheMethodsAction extends BaseAction {
 
         // Querying different data retrieval methods
         log.debug("Querying entities...");
+
+        try {
+            log.info("Trying to find SampleEntity...");
+            sampleEntityService.findById("NOT_EXISTING"); // Intentional failure to test exception handling
+        } catch (Exception e) {
+            log.warn("Failed to find sampleEntity!", e);
+        }
+
         var now = DateUtil.nowUTC();
 
         List<SampleEntity> list1 = sampleEntityService.findAllByStatus(SampleStatus.DONE);
@@ -123,6 +138,11 @@ public class PanacheMethodsAction extends BaseAction {
             log.warn("No projected SampleEntity entries found in the given time range.");
         }
 
+        List<SampleEntity> list5 = sampleEntityService.getAllBetweenNative(now.minusHours(1), now.plusMinutes(1));
+        if (CollectionUtils.isEmpty(list5)) {
+            log.warn("No SampleEntity entries found in the given time range.");
+        }
+
         // Persisting SampleContainerEntity in a transaction
         log.debug("Saving SampleContainerEntity...");
         var sce = new SampleContainerEntity();
@@ -130,8 +150,8 @@ public class PanacheMethodsAction extends BaseAction {
         sce = saveSampleContainerEntity(sce);
 
         // Querying SampleContainerEntity by SampleEntity creation timestamp
-        List<String> list5 = sampleContainerEntityService.getAllIdsBetweenSampleEntityCreation(now.minusHours(1), now.plusMinutes(1));
-        if (CollectionUtils.isEmpty(list5)) {
+        List<String> list6 = sampleContainerEntityService.getAllIdsBetweenSampleEntityCreation(now.minusHours(1), now.plusMinutes(1));
+        if (CollectionUtils.isEmpty(list6)) {
             log.warn("No SampleContainerEntity entries found with SampleEntity creation date in the given range.");
         }
 

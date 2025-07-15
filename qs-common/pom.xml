@@ -22,6 +22,7 @@
         <module>qs-common-grpc</module>
         <module>qs-common-model</module>
         <module>qs-common-jpa</module>
+        <module>qs-common-se-api</module>
     </modules>
 
 
