@@ -12,6 +12,10 @@
     <artifactId>qs-bom-quarkus</artifactId>
     <packaging>pom</packaging>
 
+    <properties>
+        <version.quarkus-micrometer-registry-otlp>3.3.1</version.quarkus-micrometer-registry-otlp>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -20,6 +24,11 @@
                 <version>${quarkus.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkiverse.micrometer.registry</groupId>
+                <artifactId>quarkus-micrometer-registry-otlp</artifactId>
+                <version>${version.quarkus-micrometer-registry-otlp}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

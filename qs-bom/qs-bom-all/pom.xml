@@ -13,10 +13,9 @@
     <packaging>pom</packaging>
 
     <properties>
-        <version.coffee>2.9.0</version.coffee>
-        <version.hu.icellmobilsoft.frappee>1.0.0</version.hu.icellmobilsoft.frappee>
+        <version.coffee>2.11.0</version.coffee>
+        <version.hu.icellmobilsoft.frappee>2.0.0</version.hu.icellmobilsoft.frappee>
         <version.commons-collections4>4.4</version.commons-collections4>
-        <version.commons-collections>3.2.2</version.commons-collections>
         <version.apache.commons-csv>1.5</version.apache.commons-csv>
     </properties>
 
@@ -24,6 +23,7 @@
     <dependencyManagement>
         <dependencies>
 
+            <!-- Sampler BOM -->
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
                 <artifactId>qs-bom-quarkus</artifactId>
@@ -45,6 +45,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- COFFEE BOM -->
             <dependency>
                 <groupId>hu.icellmobilsoft.coffee</groupId>
                 <artifactId>coffee-bom-project</artifactId>
@@ -52,27 +54,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${version.commons-collections}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${version.commons-collections4}</version>
-            </dependency>
-            <dependency>
-                <groupId>hu.icellmobilsoft.coffee</groupId>
-                <artifactId>coffee-dto-base</artifactId>
-                <version>${version.coffee}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.glassfish.jaxb</groupId>
-                        <artifactId>jaxb-runtime</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
+            <!-- FRAPPEE -->
             <dependency>
                 <groupId>hu.icellmobilsoft.frappee</groupId>
                 <artifactId>frappee-hibernate-batch</artifactId>
@@ -88,11 +71,19 @@
                 <artifactId>frappee-hibernate-util-cdi</artifactId>
                 <version>${version.hu.icellmobilsoft.frappee}</version>
             </dependency>
+
+            <!-- 3rd PARTY -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${version.commons-collections4}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
                 <version>${version.apache.commons-csv}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
