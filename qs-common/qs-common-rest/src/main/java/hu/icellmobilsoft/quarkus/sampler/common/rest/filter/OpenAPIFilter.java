@@ -19,6 +19,11 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.rest.filter;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.eclipse.microprofile.openapi.models.media.Schema;
+
 /**
  * Openapi filter.
  *
@@ -32,6 +37,15 @@ public class OpenAPIFilter extends hu.icellmobilsoft.coffee.rest.filter.OpenAPIF
      */
     public OpenAPIFilter() {
         // Default constructor for java 21
+    }
+
+    @Override
+    public Schema filterSchema(Schema schema) {
+        if (schema != null && StringUtils.isNotBlank(schema.getPattern())) {
+            schema.setType(List.of(Schema.SchemaType.STRING));
+        }
+
+        return schema;
     }
 
 }

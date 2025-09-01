@@ -13,7 +13,6 @@
 
     <properties>
         <jvm.args>--add-opens=java.base/java.net=ALL-UNNAMED</jvm.args>
-        <quarkus-micrometer-registry-otlp.version>3.2.4</quarkus-micrometer-registry-otlp.version>
     </properties>
 
     <dependencies>
@@ -48,7 +47,6 @@
         <dependency>
             <groupId>io.quarkiverse.micrometer.registry</groupId>
             <artifactId>quarkus-micrometer-registry-otlp</artifactId>
-            <version>${quarkus-micrometer-registry-otlp.version}</version>
         </dependency>
 <!-- dash not showing data due to missing instance name  -->
 <!--<dependency>-->
