@@ -25,7 +25,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
 
 /**
  * Entity for java associations.

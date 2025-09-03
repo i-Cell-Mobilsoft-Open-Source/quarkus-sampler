@@ -19,7 +19,7 @@ Documentation: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 
 == Used technologies
 
-* Coffee 2.0.0+ +
+* Coffee 2.11.0+ +
 "Java EE solution set aimed at gathering common algorithms used in the enterprise world, providing fundamental solutions that can be customized to meet specific needs." (https://github.com/i-Cell-Mobilsoft-Open-Source/coffee) +
 
 * Java 17+
@@ -27,7 +27,7 @@ Documentation: `https://i-cell-mobilsoft-open-source.github.io/quarkus-sampler/`
 * Jakarta EE 10+
 * CDI 4.0+
 * Microprofile 6.0+
-* Quarkus 3.16.4+
+* Quarkus 3.26.1+
 * Tracing with grafana
 
 == Projekt structure

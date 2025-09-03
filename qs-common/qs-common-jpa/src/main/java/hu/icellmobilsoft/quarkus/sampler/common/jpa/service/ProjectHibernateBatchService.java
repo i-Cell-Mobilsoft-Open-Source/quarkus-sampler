@@ -29,11 +29,11 @@ import jakarta.persistence.EntityManager;
 import org.hibernate.type.BasicType;
 import org.hibernate.type.SqlTypes;
 
-import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
 import hu.icellmobilsoft.frappee.hibernate.batch.HibernateBatchService;
 import hu.icellmobilsoft.frappee.hibernate.util.HibernateEntityHelper;
 import hu.icellmobilsoft.quarkus.sampler.common.jpa.EntityHelper;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
 
 /**
  * Real batch save with JPA

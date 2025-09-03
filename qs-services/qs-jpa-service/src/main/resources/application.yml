@@ -120,5 +120,5 @@ quarkus:
       * __418__ - Database object not found <br/> 
       * __500__ - Internal Server Error <br/>
   swagger-ui:
-    enable: false
+    enabled: false
 

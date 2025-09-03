@@ -27,6 +27,12 @@ import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.DurationAttributeConverter;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.MonthDayAttributeConverter;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.PeriodAttributeConverter;
@@ -34,12 +40,6 @@ import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.YearAttributeCo
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.YearMonthAttributeConverter;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.ZoneIdAttributeConverter;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.converter.ZoneOffsetAttributeConverter;
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 
 /**
  * Entity for jpa converters.
