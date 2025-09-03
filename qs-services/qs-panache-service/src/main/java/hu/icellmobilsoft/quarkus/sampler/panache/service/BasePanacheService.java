@@ -24,8 +24,8 @@ import java.util.Optional;
 
 import jakarta.inject.Inject;
 
-import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.quarkus.sampler.panache.annotation.HandleServiceExceptions;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;

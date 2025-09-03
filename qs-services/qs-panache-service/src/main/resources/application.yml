@@ -2,8 +2,8 @@
 # Coffee config
 #-------------------------------
 coffee:
-#  app:
-#    name: ${quarkus.application.name}
+  #  app:
+  #    name: ${quarkus.application.name}
   config:
     datasource:
       default:
@@ -53,7 +53,7 @@ quarkus:
       timezone:
         default-storage: normalize-utc
   arc:
-#    remove-unused-beans: false
+    #    remove-unused-beans: false
     remove-unused-beans: true
     unremovable-types:
       - hu.icellmobilsoft.coffee.module.csv.**
@@ -119,10 +119,6 @@ quarkus:
       * __404__ - Not found <br/> 
       * __418__ - Database object not found <br/> 
       * __500__ - Internal Server Error <br/>
-    path: openapi
   swagger-ui:
-    enable: false
-    always-include: true
-    filter: false
-    path: swagger-ui
+    enabled: false
 
