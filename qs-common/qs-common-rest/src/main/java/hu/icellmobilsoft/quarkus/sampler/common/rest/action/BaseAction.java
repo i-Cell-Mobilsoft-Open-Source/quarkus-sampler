@@ -21,8 +21,8 @@ package hu.icellmobilsoft.quarkus.sampler.common.rest.action;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.ContextType;
 import hu.icellmobilsoft.coffee.rest.action.AbstractBaseAction;
+import hu.icellmobilsoft.coffee.se.util.string.RandomUtil;
 import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
-import hu.icellmobilsoft.coffee.tool.utils.string.RandomUtil;
 
 /**
  * Base class for all other business logic action class

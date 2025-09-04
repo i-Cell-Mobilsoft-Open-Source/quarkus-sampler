@@ -17,6 +17,6 @@ quarkus:
   #      gelf:
   #        enabled: ${SAMPLER_LOGSTASH_ENABLED:true}
   swagger-ui:
-    enable: true
+    enabled: true
 
 

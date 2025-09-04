@@ -22,16 +22,15 @@ package hu.icellmobilsoft.quarkus.sampler.model.jpatest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-
-import hu.icellmobilsoft.coffee.model.base.javatime.AbstractIdentifiedAuditEntity;
 import jakarta.validation.constraints.Size;
+
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleStatus;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.enums.SampleValue;
 
 /**
  * 

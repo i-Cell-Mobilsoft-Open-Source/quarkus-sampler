@@ -1,8 +1,8 @@
 /*-
  * #%L
- * Sampler
+ * Quarkus-sampler
  * %%
- * Copyright (C) 2022 - 2024 i-Cell Mobilsoft Zrt.
+ * Copyright (C) 2024 - 2025 i-Cell Mobilsoft Zrt.
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,23 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.model.jpatest.batch;
+package hu.icellmobilsoft.quarkus.sampler.model.jpatest.idgenerator;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
 
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
+import hu.icellmobilsoft.coffee.se.util.string.RandomUtil;
 
 /**
- * Empty entity, which is used in the JpaAssociation entity.
- * 
- * @author csaba.balogh
- * @since 2.0.0
+ * Coffee id generator
+ *
+ * @author balazs.joo
+ * @since 1.0.0
  */
-@Entity
-@Table(name = "EMPTY_ENTITY")
-public class EmptyEntity extends AbstractIdentifiedAuditEntity {
+public class CoffeeIdGenerator implements IdentifierGenerator {
+
+    @Override
+    public Object generate(SharedSessionContractImplementor s, Object entity) {
+        return RandomUtil.generateId();
+    }
 }
