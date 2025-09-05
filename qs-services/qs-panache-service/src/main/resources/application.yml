@@ -46,7 +46,11 @@ quarkus:
       #queries-slower-than-ms: 500
       format-sql: true
       sql: true
-      #bind-parameters: true
+#      bind-parameters: true
+#    statistics:
+#      enabled: true
+    metrics:
+      enabled: true
     jdbc:
       timezone: UTC
     mapping:
@@ -67,7 +71,8 @@ quarkus:
       "hu.icellmobilsoft":
         level: ${SAMPLER_LOG_HU_ICELLMOBILSOFT_LEVEL:INFO}
     console:
-      json: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
+      json:
+        enabled: ${SAMPLER_LOG_CONSOLE_JSON_ENABLED:false}
       format: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [traceId=%X{traceId}] [spanId=%X{spanId}] [thread:%t] [%c{10}] [sid:%X{extSessionId}] - %s%E%n"
     handler:
       gelf:
@@ -86,11 +91,16 @@ quarkus:
     level: ${SAMPLER_LOG_LEVEL:INFO}
     min-level: ${SAMPLER_LOG_MIN_LEVEL:ALL}
   otel:
+    enabled: true
     exporter:
       otlp:
-        endpoint: http://opentelemetry-collector:4317
+        traces:
+          endpoint: http://opentelemetry-collector:4317
   micrometer:
+    enabled: true
     export:
+      prometheus:
+        enabled: true
       otlp:
         url: http://opentelemetry-collector:4318/v1/metrics
   rest-client:

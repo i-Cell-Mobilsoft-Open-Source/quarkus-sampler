@@ -46,7 +46,7 @@ import io.quarkus.panache.common.Page;
 public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity, R extends PanacheRepositoryBase<E, String>> {
 
     @Inject
-    R repository;
+    protected R repository;
 
     /**
      * Saves or updates an entity in the database. If the entity is new, it will be persisted; otherwise, it will be merged.

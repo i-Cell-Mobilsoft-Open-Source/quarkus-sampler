@@ -54,4 +54,9 @@ public class SampleContainerEntity extends AbstractIdentifiedAuditEntity {
     public void setSampleEntity(SampleEntity sampleEntity) {
         this.sampleEntity = sampleEntity;
     }
+
+    @Override
+    public String toString() {
+        return "SampleContainerEntity{" + "sampleEntity=" + sampleEntity + '}';
+    }
 }

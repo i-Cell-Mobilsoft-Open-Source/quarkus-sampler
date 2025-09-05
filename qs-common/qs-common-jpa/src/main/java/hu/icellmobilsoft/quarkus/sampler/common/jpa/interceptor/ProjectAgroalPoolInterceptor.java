@@ -45,6 +45,8 @@ public class ProjectAgroalPoolInterceptor implements AgroalPoolInterceptor {
 
     /**
      * temporarily workaround for autocommit on connection close
+     * TODO: remove when tested and confirmed that autocommit on close is disabled in Agroal
+     * https://github.com/quarkusio/quarkus/pull/45301
      */
     @Override
     public void onConnectionDestroy(Connection connection) {

@@ -48,12 +48,6 @@
             <groupId>io.quarkiverse.micrometer.registry</groupId>
             <artifactId>quarkus-micrometer-registry-otlp</artifactId>
         </dependency>
-<!-- dash not showing data due to missing instance name  -->
-<!--<dependency>-->
-<!--    <groupId>io.quarkus</groupId>-->
-<!--    <artifactId>quarkus-observability-devservices-lgtm</artifactId>-->
-<!--    <scope>provided</scope>-->
-<!--</dependency>-->
 
         <!--  Quarkus dependecies - JaxRS implementation - resteasy -->
         <dependency>

@@ -24,9 +24,9 @@ import java.util.List;
 
 import jakarta.enterprise.inject.Model;
 
+import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleContainerEntity;
 import hu.icellmobilsoft.quarkus.sampler.model.jpatest.SampleEntity;
-import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.panache.repository.SampleContainerEntityRepository;
 
 /**

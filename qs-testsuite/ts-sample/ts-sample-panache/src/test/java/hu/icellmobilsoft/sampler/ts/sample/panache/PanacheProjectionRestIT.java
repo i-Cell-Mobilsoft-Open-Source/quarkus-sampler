@@ -19,34 +19,51 @@
  */
 package hu.icellmobilsoft.sampler.ts.sample.panache;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseRequest;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.FunctionCodeType;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.panache.IPanacheServiceRest;
-import hu.icellmobilsoft.quarkus.sampler.ts.common.rest.DtoHelper;
+import hu.icellmobilsoft.coffee.tool.utils.date.DateUtil;
+import hu.icellmobilsoft.quarkus.sampler.api.jakarta.panache.IPanacheProjectionRest;
+import hu.icellmobilsoft.quarkus.sampler.dto.test.post.SampleStatusEnumType;
 import hu.icellmobilsoft.roaster.api.TestSuiteGroup;
 import hu.icellmobilsoft.ts.quarkus.sample.common.base.BaseSampleIT;
 
 /**
- * Panache service {@link IPanacheServiceRest#postPanacheMethods(BaseRequest)}
+ * Panache service {@link IPanacheProjectionRest} tests
  *
  * @author balazs.joo
  * @since 0.1.0
  */
-@DisplayName("Testing Panache service postPanacheMethods")
+@DisplayName("Testing Panache service - Projection")
 @Tag(TestSuiteGroup.JAXRS)
-class PostPanacheMethodsIT extends BaseSampleIT {
+class PanacheProjectionRestIT extends BaseSampleIT {
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    OffsetDateTime now = DateUtil.nowUTC();
+    String from = now.minusDays(1).format(formatter);
+    String to = now.plusDays(1).format(formatter);
 
     @Test
-    @DisplayName("Testing JSON: empty request")
-    void testEmptyJsonBaseRequest() throws BaseException {
-        BaseResponse response = getRestClient(IPanacheServiceRest.class).postPanacheMethods(new BaseRequest().withContext(DtoHelper.createContext()));
+    @DisplayName("Testing getAllByStatusProjection()")
+    void testGetAllByStatusProjection() {
+        BaseResponse response = getRestClient(IPanacheProjectionRest.class).getAllByStatusProjection(SampleStatusEnumType.DONE);
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(FunctionCodeType.OK, response.getFuncCode());
+    }
+
+    @Test
+    @DisplayName("Testing getAllBetweenWithProjection()")
+    void testGetAllBetweenWithProjection() throws BaseException {
+
+        BaseResponse response = getRestClient(IPanacheProjectionRest.class).getAllBetweenWithProjection(from, to);
         Assertions.assertNotNull(response);
         Assertions.assertEquals(FunctionCodeType.OK, response.getFuncCode());
     }

@@ -114,4 +114,10 @@ public class SampleEntity extends AbstractIdentifiedAuditEntity {
     public void setModLocalDate(LocalDate modLocalDate) {
         this.modLocalDate = modLocalDate;
     }
+
+    @Override
+    public String toString() {
+        return "SampleEntity{" + "status=" + status + ", value=" + value + ", inputValue='" + inputValue + '\'' + ", localDateTime=" + localDateTime
+                + ", modLocalDate=" + modLocalDate + '}';
+    }
 }

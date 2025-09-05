@@ -79,14 +79,28 @@ public class SampleEntityRepository implements PanacheRepositoryBase<SampleEntit
                 .list();
     }
 
+    /**
+     * Retrieves all {@link SampleEntity} records where the {@link SampleEntity#getCreationDate()} falls within the specified range.
+     *
+     * @param from
+     *            Start date for filtering.
+     * @param to
+     *            End date for filtering.
+     * @return A list of matching entities.
+     */
     public List<SampleEntity> getAllBetween(OffsetDateTime from, OffsetDateTime to) {
-        /*
-         * a kettő ugyan azt a query-t futtatja return find("SELECT * FROM SampleEntity  WHERE " + SampleEntity_.CREATION_DATE +
-         * " BETWEEN :from AND :to", Parameters.with(FROM_PARAM, from).and(TO_PARAM, to)).list();
-         */
         return find(SampleEntity_.CREATION_DATE + " BETWEEN :from AND :to", Parameters.with(FROM_PARAM, from).and(TO_PARAM, to)).list();
     }
 
+    /**
+     * Retrieves all {@link SampleEntity#getId()} where the {@link SampleEntity#getCreationDate()} falls within the specified range.
+     *
+     * @param from
+     *            Start date for filtering.
+     * @param to
+     *            End date for filtering.
+     * @return A list of matching entity IDs.
+     */
     public List<String> getAllIdsBetween(OffsetDateTime from, OffsetDateTime to) {
         return getEntityManager().createQuery("SELECT se.id FROM SampleEntity se WHERE se.creationDate BETWEEN :from AND :to", String.class)
                 .setParameter(FROM_PARAM, from)
@@ -94,19 +108,63 @@ public class SampleEntityRepository implements PanacheRepositoryBase<SampleEntit
                 .getResultList();
     }
 
+    /**
+     * Retrieves a projection of {@link SampleEntity} records where the {@link SampleEntity#getStatus()} matches the specified status.
+     *
+     * @param status
+     *            Status to filter by.
+     * @return A list of projections containing the status and value of matching entities.
+     */
+    public List<SampleEntityProjection> findAllByStatusProjection(SampleStatus status) {
+        return find("status = ?1", status).project(SampleEntityProjection.class).list();
+    }
+
+    /**
+     * Retrieves a projection of {@link SampleEntity} records where the {@link SampleEntity#getCreationDate()} falls within the specified range.
+     *
+     * @param from
+     *            Start date for filtering.
+     * @param to
+     *            End date for filtering.
+     * @return A list of projections containing the status and value of matching entities.
+     */
     public List<SampleEntityProjection> getAllBetweenWithProjection(OffsetDateTime from, OffsetDateTime to) {
         return getEntityManager().createQuery("""
                 SELECT new hu.icellmobilsoft.quarkus.sampler.panache.dto.SampleEntityProjection(se.status, se.value)
                 FROM SampleEntity se
-                WHERE se.creationDate BETWEEN :from AND :to
-                """, SampleEntityProjection.class).setParameter(FROM_PARAM, from).setParameter(TO_PARAM, to).getResultList();
+                WHERE se.creationDate BETWEEN :from AND :to""", SampleEntityProjection.class)
+                .setParameter(FROM_PARAM, from)
+                .setParameter(TO_PARAM, to)
+                .getResultList();
     }
 
+    /**
+     * Retrieves all {@link SampleEntity} records using a native SQL query where the {@link SampleEntity#getCreationDate()} falls within the specified
+     * range.
+     *
+     * @param from
+     *            Start date for filtering.
+     * @param to
+     *            End date for filtering.
+     * @return A list of matching entities.
+     */
     @SuppressWarnings("unchecked")
     public List<SampleEntity> getAllBetweenNative(OffsetDateTime from, OffsetDateTime to) {
         return getEntityManager().createNativeQuery("SELECT * FROM SAMPLE se WHERE se.X__INSDATE BETWEEN :from AND :to", SampleEntity.class)
                 .setParameter(FROM_PARAM, from)
                 .setParameter(TO_PARAM, to)
                 .getResultList();
+    }
+
+    /**
+     * Updates the status of a {@link SampleEntity} identified by its ID using dirty checking.
+     *
+     * @param ids
+     *            The ID of the entity to update.
+     * @param status
+     *            The new status to set.
+     */
+    public int bulkUpdateStatus(List<String> ids, SampleStatus status) {
+        return update("status = ?1 where id in (?2)", status, ids);
     }
 }

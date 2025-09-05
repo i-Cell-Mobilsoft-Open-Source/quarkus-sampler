@@ -32,6 +32,11 @@ public class PanacheServicePath extends ServicePath {
      */
     public static final String REST_PANACHE_SERVICE = REST + "/panacheService";
 
+    public static final String REST_PANACHE_SERVICE_MODIFY = REST_PANACHE_SERVICE + "/modify";
+    public static final String REST_PANACHE_SERVICE_PROJECTION = REST_PANACHE_SERVICE + "/projection";
+    public static final String REST_PANACHE_SERVICE_QUERY = REST_PANACHE_SERVICE + "/query";
+    public static final String REST_PANACHE_SERVICE_TRANSACTION = REST_PANACHE_SERVICE + "/transaction";
+
     private PanacheServicePath() {
         super();
     }
