@@ -21,7 +21,7 @@
         <!-- Coffee dependencies -->
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
-            <artifactId>coffee-module-etcd</artifactId>
+            <artifactId>coffee-module-etcd-extension</artifactId>
         </dependency>
         <dependency>
             <groupId>hu.icellmobilsoft.coffee</groupId>
