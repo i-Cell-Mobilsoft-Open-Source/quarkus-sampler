@@ -29,9 +29,6 @@ import org.apache.commons.lang3.RandomUtils;
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
-import hu.icellmobilsoft.coffee.jpa.helper.TransactionHelper;
-import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
-import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
 import hu.icellmobilsoft.quarkus.sampler.common.rest.action.BaseAction;
 import hu.icellmobilsoft.quarkus.sampler.mongodb.entity.MongoSampleEntity;
@@ -54,7 +51,6 @@ public class MongoTransactionAction extends BaseAction {
     AppLogger log;
 
     MongoSampleService service;
-    TransactionHelper transactionHelper;
 
     /**
      * Constructor with dependencies.
@@ -63,13 +59,10 @@ public class MongoTransactionAction extends BaseAction {
      *            Logger instance for logging messages.
      * @param service
      *            Service for managing MongoSampleEntity operations.
-     * @param transactionHelper
-     *            Helper for managing transactions.
      */
-    public MongoTransactionAction(@ThisLogger AppLogger log, MongoSampleService service, TransactionHelper transactionHelper) {
+    public MongoTransactionAction(@ThisLogger AppLogger log, MongoSampleService service) {
         this.log = log;
         this.service = service;
-        this.transactionHelper = transactionHelper;
     }
 
     /**
@@ -110,73 +103,12 @@ public class MongoTransactionAction extends BaseAction {
      * Saves a new MongoSampleEntity within a transaction.
      *
      * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if any exception occurs during the transaction.
      */
-    public BaseResponse postSuccessSave() throws BaseException {
+    public BaseResponse postSuccessSave() {
 
         log.info("Creating a new MongoSampleEntity in transaction...");
-        MongoSampleEntity entity = transactionHelper.executeWithTransaction(() -> service.save(createMongoSampleEntity()));
+        MongoSampleEntity entity = service.save(createMongoSampleEntity());
         log.info("MongoSampleEntity created: " + entity);
-
-        return createBaseResponse();
-    }
-
-    /**
-     * Creates multiple MongoSampleEntity instances in a single transaction.
-     *
-     * @param count
-     *            number of entities to create
-     * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if any exception occurs during the transaction.
-     */
-    public BaseResponse postSuccessSaveMultiple(@ParamName("count") int count) throws BaseException {
-
-        log.info("Creating {0} new MongoSampleEntity instances in transaction...", count);
-        var entities = transactionHelper.executeWithTransaction(() -> {
-            var createdEntities = new java.util.ArrayList<MongoSampleEntity>();
-            for (int i = 0; i < count; i++) {
-                createdEntities.add(service.save(createMongoSampleEntity()));
-            }
-            return createdEntities;
-        });
-        log.info("MongoSampleEntity instances created: {0}", entities.size());
-
-        return createBaseResponse();
-    }
-
-    /**
-     * Updates and deletes entities in a single transaction.
-     *
-     * @param updateUserName
-     *            the user name to search for entities to update
-     * @param deleteUserName
-     *            the user name to search for entities to delete
-     * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if any exception occurs during the transaction.
-     */
-    public BaseResponse postUpdateAndDeleteInTransaction(@ParamName("updateUserName") String updateUserName,
-            @ParamName("deleteUserName") String deleteUserName) throws BaseException {
-
-        log.info("Updating entities with userName={0} and deleting entities with userName={1} in transaction...", updateUserName, deleteUserName);
-        transactionHelper.executeWithTransaction(() -> {
-            // Update entities
-            var entitiesToUpdate = service.findAll().stream().filter(entity -> updateUserName.equals(entity.getUserName())).toList();
-            for (MongoSampleEntity entity : entitiesToUpdate) {
-                entity.setInputValue("UPDATED_" + System.currentTimeMillis());
-                service.save(entity);
-            }
-            log.info("Updated {0} entities", entitiesToUpdate.size());
-
-            // Delete entities
-            var entitiesToDelete = service.findAll().stream().filter(entity -> deleteUserName.equals(entity.getUserName())).toList();
-            for (MongoSampleEntity entity : entitiesToDelete) {
-                service.delete(entity);
-            }
-            log.info("Deleted {0} entities", entitiesToDelete.size());
-        });
 
         return createBaseResponse();
     }

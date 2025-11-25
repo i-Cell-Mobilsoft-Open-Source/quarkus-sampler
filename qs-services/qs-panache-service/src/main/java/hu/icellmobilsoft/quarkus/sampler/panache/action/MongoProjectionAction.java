@@ -121,35 +121,4 @@ public class MongoProjectionAction extends BaseAction {
         }
         return createBaseResponse();
     }
-
-    /**
-     * Gets count of entities by status.
-     *
-     * @param status
-     *            the status to count entities by
-     * @return a BaseResponse containing the count
-     */
-    public BaseResponse getCountByStatus(@ParamName("status") SampleStatusEnumType status) {
-        log.info("countByStatus: status={0}", status);
-        SampleStatus sampleStatus = EnumUtil.convert(status, SampleStatus.class);
-        long count = service.findAll().stream().filter(e -> e.getStatus() == sampleStatus).count();
-        log.info("Found {0} items with status {1}", count, status);
-        return createBaseResponse();
-    }
-
-    /**
-     * Gets distinct user names from all entities.
-     *
-     * @return a BaseResponse containing the list of distinct user names
-     */
-    public BaseResponse getDistinctUserNames() {
-        log.info("Getting distinct user names...");
-        List<String> userNames = service.findAll().stream().map(MongoSampleEntity::getUserName).distinct().sorted().toList();
-        if (CollectionUtils.isNotEmpty(userNames)) {
-            log.info("Found {0} distinct user names: {1}", userNames.size(), String.join(", ", userNames));
-        } else {
-            log.info("No user names found");
-        }
-        return createBaseResponse();
-    }
 }

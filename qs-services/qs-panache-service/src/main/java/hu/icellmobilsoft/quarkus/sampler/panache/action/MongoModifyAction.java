@@ -29,7 +29,6 @@ import org.apache.commons.collections.CollectionUtils;
 import hu.icellmobilsoft.coffee.cdi.logger.AppLogger;
 import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
-import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.quarkus.sample.common.util.enums.EnumUtil;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
@@ -73,10 +72,8 @@ public class MongoModifyAction extends BaseAction {
      * Creates a new MongoSampleEntity, modifies its status, and saves the changes.
      *
      * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if any operation fails.
      */
-    public BaseResponse putModify() throws BaseException {
+    public BaseResponse putModify() {
 
         log.info("Creating MongoSampleEntity...");
         MongoSampleEntity entity = new MongoSampleEntity();
@@ -105,11 +102,8 @@ public class MongoModifyAction extends BaseAction {
      * @param status
      *            New status to set for the specified entities.
      * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if the update operation fails.
      */
-    public BaseResponse putBulkUpdateStatus(@ParamName("ids") List<String> ids, @ParamName("status") SampleStatusEnumType status)
-            throws BaseException {
+    public BaseResponse putBulkUpdateStatus(@ParamName("ids") List<String> ids, @ParamName("status") SampleStatusEnumType status) {
 
         log.info("Updating MongoSampleEntity entities...");
         SampleStatus sampleStatus = EnumUtil.convert(status, SampleStatus.class);
@@ -147,10 +141,8 @@ public class MongoModifyAction extends BaseAction {
      * @param id
      *            The ObjectId of the entity to delete (as String).
      * @return A BaseResponse indicating the result of the operation.
-     * @throws BaseException
-     *             if the delete operation fails.
      */
-    public BaseResponse deleteById(@ParamName("id") String id) throws BaseException {
+    public BaseResponse deleteById(@ParamName("id") String id) {
         service.deleteByIdString(id);
         return createBaseResponse();
     }
