@@ -1,22 +1,3 @@
-/*-
- * #%L
- * Quarkus-sampler
- * %%
- * Copyright (C) 2024 i-Cell Mobilsoft Zrt.
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
 package hu.icellmobilsoft.quarkus.sampler.common.core.exceptionhandling;
 
 import java.lang.reflect.Parameter;
@@ -102,9 +83,11 @@ public class HandleServiceExceptionsInterceptor {
         try {
             return ctx.proceed();
         } catch (NoResultException e) {
-            throw wrap(notFound(methodInfo, paramsValue));
+            throw wrap(notFound(e, methodInfo, paramsValue));
+        } catch (BONotFoundException e) {
+            throw wrap(e);
         } catch (OptimisticLockException e) {
-            throw wrap(handleOptimisticLockException(methodInfo, e));
+            throw wrap(handleOptimisticLockException(e, methodInfo));
         } catch (Exception e) {
             throw wrap(repositoryFailed(e, methodInfo, paramsValue));
         }
@@ -128,29 +111,33 @@ public class HandleServiceExceptionsInterceptor {
     /**
      * Constructs a {@link BONotFoundException} for missing entity scenarios.
      *
+     * @param e
+     *            the original exception.
      * @param methodInfo
      *            the method where the exception occurred.
      * @param params
      *            parameters involved in the method call.
      * @return a properly formatted exception.
      */
-    private BONotFoundException notFound(String methodInfo, Object... params) {
+    private BONotFoundException notFound(Exception e, String methodInfo, Object... params) {
         return new BONotFoundException(
                 CoffeeFaultType.ENTITY_NOT_FOUND,
-                MessageFormat.format("Entry for {0} not found! {1}", methodInfo, prepareParametersToLog(params)));
+                MessageFormat.format("Entry for {0} not found! {1}", methodInfo, prepareParametersToLog(params)),
+                e);
     }
 
     /**
      * Constructs an {@link OptimisticLockException} with additional context.
      *
-     * @param methodInfo
-     *            the method where the exception occurred.
      * @param e
      *            the original exception.
+     * @param methodInfo
+     *            the method where the exception occurred.
+     *
      * @return an enriched optimistic lock exception.
      */
-    private hu.icellmobilsoft.coffee.dto.exception.OptimisticLockException handleOptimisticLockException(String methodInfo,
-            OptimisticLockException e) {
+    private hu.icellmobilsoft.coffee.dto.exception.OptimisticLockException handleOptimisticLockException(OptimisticLockException e,
+            String methodInfo) {
         return new hu.icellmobilsoft.coffee.dto.exception.OptimisticLockException(
                 CoffeeFaultType.OPTIMISTIC_LOCK_EXCEPTION,
                 MessageFormat.format("Optimistic Lock Error in {0}: {1}", methodInfo, e.getLocalizedMessage()),
@@ -171,7 +158,7 @@ public class HandleServiceExceptionsInterceptor {
     private TechnicalException repositoryFailed(Exception e, String methodInfo, Object... params) {
         return new TechnicalException(
                 CoffeeFaultType.REPOSITORY_FAILED,
-                MessageFormat.format("Error in {0}: {1}", methodInfo, prepareParametersToLog(params)),
+                MessageFormat.format("Error in {0}: {1}", methodInfo, Arrays.toString(prepareParametersToLog(params))),
                 e);
     }
 

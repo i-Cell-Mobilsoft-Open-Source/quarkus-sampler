@@ -19,6 +19,8 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.core.parameter;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.Collection;
 import java.util.Objects;
@@ -28,9 +30,6 @@ import jakarta.annotation.Priority;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
-
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.tool.utils.validation.ParamValidatorUtil;
@@ -95,25 +94,55 @@ public class ValidateIncomingParametersInterceptor {
      */
     @AroundInvoke
     public Object handleParameters(final InvocationContext ctx) throws Exception {
-        var annotation = ctx.getMethod().getAnnotation(ValidateIncomingParameters.class);
-        if (Objects.isNull(annotation) || BooleanUtils.isFalse(annotation.validate())) {
+
+        Method method = ctx.getMethod();
+        Class<?> originalClass = ctx.getTarget().getClass();
+
+        if (!isValidationEnabled(originalClass, method)) {
             return ctx.proceed();
         }
 
         try {
-            var parameters = ctx.getMethod().getParameters();
+            var parameters = method.getParameters();
             var values = ctx.getParameters();
 
             for (int i = 0; i < values.length; i++) {
-                var name = getName(parameters[i]);
+                Parameter parameter = parameters[i];
+                var name = getName(parameter);
+                var allowEmptyCollection = isEmptyCollectionAllowed(parameter);
                 var value = values[i];
 
-                validateParameter(name, value);
+                validateParameter(name, value, allowEmptyCollection);
             }
-            return ctx.proceed();
         } catch (BaseException e) {
             throw new BaseRuntimeException(e);
         }
+        return ctx.proceed();
+    }
+
+    private boolean isValidationEnabled(Class<?> originalClass, Method method) {
+
+        int modifiers = method.getModifiers();
+        if (Modifier.isPublic(modifiers)) {
+            return true;
+        }
+
+        return isValidateNonPublicMethods(originalClass, method);
+    }
+
+    private boolean isValidateNonPublicMethods(Class<?> originalClass, Method method) {
+
+        ValidateIncomingParameters validateIncomingParameters = method.getAnnotation(ValidateIncomingParameters.class);
+        if (Objects.nonNull(validateIncomingParameters)) {
+            return validateIncomingParameters.validateNonPublicMethods();
+        }
+
+        validateIncomingParameters = originalClass.getAnnotation(ValidateIncomingParameters.class);
+        if (Objects.nonNull(validateIncomingParameters)) {
+            return validateIncomingParameters.validateNonPublicMethods();
+        }
+
+        return false;
     }
 
     /**
@@ -123,15 +152,26 @@ public class ValidateIncomingParametersInterceptor {
      *            The parameter name.
      * @param value
      *            The parameter value.
-     * @throws BaseException
+     * @param allowEmptyCollection
+     **            Whether an empty collection is allowed; if true, empty collections are permitted (only null is disallowed), otherwise collections
+     *            must be non\-empty.
+     * @throws BaseRuntimeException
      *             if validation fails.
      */
-    private void validateParameter(String name, Object value) throws BaseException {
+    private void validateParameter(String name, Object value, boolean allowEmptyCollection) throws BaseException {
         switch (value) {
             case String sv -> ParamValidatorUtil.requireNonBlank(sv, name);
-            case Collection<?> cv -> ParamValidatorUtil.requireNonEmpty(cv, name);
+            case Collection<?> cv -> validateCollectionParameter(name, cv, allowEmptyCollection);
             case Optional<?> ov -> ParamValidatorUtil.requireNonEmpty(ov, name);
             case null, default -> ParamValidatorUtil.requireNonNull(value, name);
+        }
+    }
+
+    private void validateCollectionParameter(String name, Collection<?> cv, boolean allowEmptyCollection) throws BaseException {
+        if (allowEmptyCollection) {
+            ParamValidatorUtil.requireNonNull(cv, name);
+        } else {
+            ParamValidatorUtil.requireNonEmpty(cv, name);
         }
     }
 
@@ -144,6 +184,12 @@ public class ValidateIncomingParametersInterceptor {
      */
     private String getName(final Parameter parameter) {
         ParamName annotation = parameter.getAnnotation(ParamName.class);
-        return (Objects.nonNull(annotation) && StringUtils.isNotBlank(annotation.value())) ? annotation.value() : parameter.getName();
+        return (Objects.nonNull(annotation)) ? annotation.value() : parameter.getName();
     }
+
+    private boolean isEmptyCollectionAllowed(Parameter parameter) {
+        AllowEmptyCollection allowEmptyCollection = parameter.getAnnotation(AllowEmptyCollection.class);
+        return Objects.nonNull(allowEmptyCollection);
+    }
+
 }

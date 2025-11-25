@@ -62,10 +62,9 @@ import jakarta.interceptor.InterceptorBinding;
 public @interface ValidateIncomingParameters {
 
     /**
-     * Indicates whether parameter validation should be enabled. Defaults to {@code true}, but can be set to {@code false} to disable validation on
-     * specific methods.
+     * Incoming parameters will be validated in case of non-public method invocations as well.
      *
-     * @return {@code true} if validation is enabled, otherwise {@code false}
+     * @return <code>true</code> if non-public method parameters must be validated, <code>false</code> otherwise
      */
-    boolean validate() default true;
+    boolean validateNonPublicMethods() default false;
 }

@@ -38,4 +38,18 @@ import jakarta.interceptor.InterceptorBinding;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.TYPE })
 public @interface LogMethodEntryAndExit {
+
+    /**
+     * Method entry and exit logging is enabled.
+     *
+     * @return <code>true</code> if enabled, <code>false</code> otherwise
+     */
+    boolean enabled() default true;
+
+    /**
+     * Method entry and exit will be logged in case of non-public method invocations as well.
+     *
+     * @return <code>true</code> if non-public methods must be logged, <code>false</code> otherwise
+     */
+    boolean logNonPublicMethods() default false;
 }
