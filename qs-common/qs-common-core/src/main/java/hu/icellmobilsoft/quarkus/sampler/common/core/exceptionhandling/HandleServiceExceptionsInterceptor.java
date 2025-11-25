@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.panache.interceptor;
+package hu.icellmobilsoft.quarkus.sampler.common.core.exceptionhandling;
 
 import java.lang.reflect.Parameter;
 import java.text.MessageFormat;
@@ -39,8 +39,7 @@ import hu.icellmobilsoft.coffee.dto.exception.BONotFoundException;
 import hu.icellmobilsoft.coffee.dto.exception.enums.CoffeeFaultType;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 import hu.icellmobilsoft.coffee.se.api.exception.TechnicalException;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.BaseRuntimeException;
-import hu.icellmobilsoft.quarkus.sampler.panache.annotation.HandleServiceExceptions;
+import hu.icellmobilsoft.qs.common.se.exception.BaseRuntimeException;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 
 /**

@@ -86,6 +86,11 @@
             </dependency>
             <dependency>
                 <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+                <artifactId>qs-common-mongodb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
                 <artifactId>qs-common-se-api</artifactId>
                 <version>${project.version}</version>
             </dependency>

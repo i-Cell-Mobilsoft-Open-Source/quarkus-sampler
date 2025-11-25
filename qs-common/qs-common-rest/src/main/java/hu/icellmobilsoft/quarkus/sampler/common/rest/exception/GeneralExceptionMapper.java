@@ -31,7 +31,7 @@ import hu.icellmobilsoft.coffee.cdi.logger.ThisLogger;
 import hu.icellmobilsoft.coffee.dto.exception.BaseExceptionWrapper;
 import hu.icellmobilsoft.coffee.rest.exception.DefaultGeneralExceptionMapper;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
-import hu.icellmobilsoft.quarkus.sampler.api.jakarta.dto.exception.BaseRuntimeException;
+import hu.icellmobilsoft.qs.common.se.exception.BaseRuntimeException;
 
 /**
  * Exception mapper for non-handled exception throwing

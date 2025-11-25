@@ -17,60 +17,60 @@
  * limitations under the License.
  * #L%
  */
-package hu.icellmobilsoft.quarkus.sampler.panache.service;
+package hu.icellmobilsoft.quarkus.sampler.mongodb.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import jakarta.inject.Inject;
 
-import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
+import org.bson.types.ObjectId;
+
 import hu.icellmobilsoft.quarkus.sampler.common.core.exceptionhandling.HandleServiceExceptions;
+import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import hu.icellmobilsoft.quarkus.sampler.mongodb.entity.AbstractMongoEntity;
+import hu.icellmobilsoft.quarkus.sampler.mongodb.entity.MongoSampleEntity;
+import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import io.quarkus.panache.common.Page;
 
 /**
- * Base service class for handling common CRUD operations using PanacheRepository.
+ * Base service class for handling common CRUD operations using PanacheMongoRepository for MongoDB.
  *
  * @param <E>
- *            The entity type, which extends AbstractIdentifiedAuditEntity.
+ *            The MongoDB entity type that extends MongoSampleEntity.
  * @param <R>
- *            The Panache repository type managing the entity.
+ *            The PanacheMongoRepository type managing the entity.
  */
 @LogMethodEntryAndExit
 @ValidateIncomingParameters
 @HandleServiceExceptions
-public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity, R extends PanacheRepositoryBase<E, String>> {
+public abstract class BasePanacheMongoService<E extends AbstractMongoEntity, R extends PanacheMongoRepository<E>> {
 
     @Inject
     protected R repository;
 
     /**
-     * Saves or updates an entity in the database. If the entity is new, it will be persisted; otherwise, it will be merged.
+     * Saves or updates an entity in the MongoDB database. If the entity is new, it will be persisted; otherwise, it will be merged.
      *
      * @param entity
      *            The entity to save.
      * @return The saved or updated entity.
      */
     public E save(@ParamName("entity") E entity) {
-        var em = repository.getEntityManager();
-        E savedEntity = em.merge(entity);
-        em.flush();
-        em.refresh(savedEntity);
-        return savedEntity;
+        repository.persistOrUpdate(entity);
+        return entity;
     }
 
     /**
      * Retrieves an entity by its unique identifier.
      *
      * @param id
-     *            The entity's ID.
+     *            The entity's ObjectId ID.
      * @return The entity if found, otherwise {@code null}.
      */
-    public E findById(@ParamName("id") String id) {
+    public E findById(@ParamName("id") ObjectId id) {
         return repository.findById(id);
     }
 
@@ -78,20 +78,20 @@ public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity
      * Retrieves an entity by its unique identifier as an {@link Optional}.
      *
      * @param id
-     *            The entity's ID.
+     *            The entity's ObjectId ID.
      * @return An {@link Optional} containing the entity if found, otherwise empty.
      */
-    public Optional<E> findByIdOptional(@ParamName("id") String id) {
-        return repository.findByIdOptional(id);
+    public Optional<E> findByIdOptional(@ParamName("id") ObjectId id) {
+        return Optional.ofNullable(repository.findById(id));
     }
 
     /**
-     * Retrieves all entities from the database.
+     * Retrieves all entities from the MongoDB database.
      *
      * @return A list of all entities.
      */
     public List<E> findAll() {
-        return repository.findAll().list();
+        return repository.listAll();
     }
 
     /**
@@ -111,15 +111,15 @@ public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity
      * Deletes an entity by its ID.
      *
      * @param id
-     *            The ID of the entity to delete.
+     *            The ObjectId ID of the entity to delete.
      * @return {@code true} if deletion was successful, otherwise {@code false}.
      */
-    public boolean deleteById(@ParamName("id") String id) {
+    public boolean deleteById(@ParamName("id") ObjectId id) {
         return repository.deleteById(id);
     }
 
     /**
-     * Deletes the given entity from the database.
+     * Deletes the given entity from the MongoDB database.
      *
      * @param entity
      *            The entity to delete.
@@ -129,11 +129,43 @@ public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity
     }
 
     /**
-     * Counts the number of entities in the database.
+     * Counts the number of entities in the MongoDB database.
      *
      * @return The total count of entities.
      */
     public long count() {
         return repository.count();
+    }
+
+    /**
+     * Finds an entity by String ID (converts to ObjectId).
+     *
+     * @param idString
+     *            The entity's ID as String.
+     * @return The entity if found, otherwise {@code null}.
+     */
+    public E findByIdString(@ParamName("idString") String idString) {
+        try {
+            ObjectId id = new ObjectId(idString);
+            return repository.findById(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Deletes an entity by String ID (converts to ObjectId).
+     *
+     * @param idString
+     *            The entity's ID as String.
+     * @return {@code true} if deletion was successful, otherwise {@code false}.
+     */
+    public boolean deleteByIdString(@ParamName("idString") String idString) {
+        try {
+            ObjectId id = new ObjectId(idString);
+            return repository.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

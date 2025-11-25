@@ -56,6 +56,9 @@ quarkus:
     mapping:
       timezone:
         default-storage: normalize-utc
+  mongodb:
+    hosts: qs-mongodb:27017
+    database: qs_service
   arc:
     #    remove-unused-beans: false
     remove-unused-beans: true

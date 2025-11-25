@@ -24,6 +24,11 @@
 
         <dependency>
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+            <artifactId>qs-common-mongodb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-rest</artifactId>
         </dependency>
 
@@ -82,7 +87,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
-
 
         <!--  Quarkus dependecies - JaxRS implementation - resteasy -->
         <dependency>
