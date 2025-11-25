@@ -27,7 +27,6 @@ import java.util.Objects;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
 
 import com.mongodb.client.model.Filters;
 

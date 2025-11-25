@@ -19,14 +19,25 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.mongodb.codec;
 
-import org.bson.*;
-import org.bson.codecs.*;
-import org.bson.codecs.configuration.CodecConfigurationException;
-
-import java.time.OffsetDateTime;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
+import org.bson.BsonReader;
+import org.bson.BsonType;
+import org.bson.BsonWriter;
+import org.bson.codecs.Codec;
+import org.bson.codecs.DecoderContext;
+import org.bson.codecs.EncoderContext;
+import org.bson.codecs.configuration.CodecConfigurationException;
+
+/**
+ * MongoDB codec for encoding and decoding {@link OffsetDateTime} objects. This codec converts OffsetDateTime to MongoDB's DateTime format (UTC
+ * timestamp in milliseconds) and vice versa.
+ *
+ * @author balazs.joo
+ * @since 0.1.0
+ */
 public class OffsetDateTimeCodec implements Codec<OffsetDateTime> {
 
     @Override
@@ -50,9 +61,7 @@ public class OffsetDateTimeCodec implements Codec<OffsetDateTime> {
         }
 
         if (bsonType != BsonType.DATE_TIME) {
-            throw new CodecConfigurationException(
-                    "Expected DATE_TIME for OffsetDateTime but got: " + bsonType
-            );
+            throw new CodecConfigurationException("Expected DATE_TIME for OffsetDateTime but got: " + bsonType);
         }
 
         long millis = reader.readDateTime();

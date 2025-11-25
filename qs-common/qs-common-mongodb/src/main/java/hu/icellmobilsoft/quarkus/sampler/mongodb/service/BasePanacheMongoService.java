@@ -31,7 +31,6 @@ import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndEx
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
 import hu.icellmobilsoft.quarkus.sampler.mongodb.entity.AbstractMongoEntity;
-import hu.icellmobilsoft.quarkus.sampler.mongodb.entity.MongoSampleEntity;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import io.quarkus.panache.common.Page;
 
@@ -39,9 +38,12 @@ import io.quarkus.panache.common.Page;
  * Base service class for handling common CRUD operations using PanacheMongoRepository for MongoDB.
  *
  * @param <E>
- *            The MongoDB entity type that extends MongoSampleEntity.
+ *            The MongoDB entity type that extends AbstractMongoEntity.
  * @param <R>
  *            The PanacheMongoRepository type managing the entity.
+ *
+ * @author balazs.joo
+ * @since 0.1.0
  */
 @LogMethodEntryAndExit
 @ValidateIncomingParameters
@@ -143,6 +145,7 @@ public abstract class BasePanacheMongoService<E extends AbstractMongoEntity, R e
      * @param idString
      *            The entity's ID as String.
      * @return The entity if found, otherwise {@code null}.
+     * @since 0.1.0
      */
     public E findByIdString(@ParamName("idString") String idString) {
         try {
@@ -159,6 +162,7 @@ public abstract class BasePanacheMongoService<E extends AbstractMongoEntity, R e
      * @param idString
      *            The entity's ID as String.
      * @return {@code true} if deletion was successful, otherwise {@code false}.
+     * @since 0.1.0
      */
     public boolean deleteByIdString(@ParamName("idString") String idString) {
         try {

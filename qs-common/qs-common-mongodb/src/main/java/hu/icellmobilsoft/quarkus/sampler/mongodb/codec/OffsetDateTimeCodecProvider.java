@@ -19,11 +19,19 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.mongodb.codec;
 
-import org.bson.codecs.*;
-import org.bson.codecs.configuration.*;
-
 import java.time.OffsetDateTime;
 
+import org.bson.codecs.Codec;
+import org.bson.codecs.configuration.CodecProvider;
+import org.bson.codecs.configuration.CodecRegistry;
+
+/**
+ * Codec provider for {@link OffsetDateTime} objects in MongoDB. This provider supplies the {@link OffsetDateTimeCodec} when requested for
+ * OffsetDateTime class.
+ *
+ * @author balazs.joo
+ * @since 0.1.0
+ */
 public class OffsetDateTimeCodecProvider implements CodecProvider {
 
     private final OffsetDateTimeCodec codec = new OffsetDateTimeCodec();

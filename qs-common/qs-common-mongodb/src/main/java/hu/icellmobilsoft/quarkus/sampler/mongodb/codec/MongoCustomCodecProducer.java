@@ -19,11 +19,20 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.mongodb.codec;
 
-import com.mongodb.MongoClientSettings;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
+
 import org.bson.codecs.configuration.CodecRegistries;
 
+import com.mongodb.MongoClientSettings;
+
+/**
+ * CDI producer for custom MongoDB codec registry. This producer configures MongoDB client settings with custom codecs, including the
+ * {@link OffsetDateTimeCodec} for proper OffsetDateTime handling.
+ *
+ * @author balazs.joo
+ * @since 0.1.0
+ */
 @ApplicationScoped
 public class MongoCustomCodecProducer {
 
@@ -33,8 +42,6 @@ public class MongoCustomCodecProducer {
                 .codecRegistry(
                         CodecRegistries.fromRegistries(
                                 MongoClientSettings.getDefaultCodecRegistry(),
-                                CodecRegistries.fromProviders(new OffsetDateTimeCodecProvider())
-                        )
-                );
+                                CodecRegistries.fromProviders(new OffsetDateTimeCodecProvider())));
     }
 }

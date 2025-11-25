@@ -22,7 +22,10 @@ package hu.icellmobilsoft.quarkus.sampler.mongodb.entity;
 import org.bson.types.ObjectId;
 
 /**
+ * Abstract base class for MongoDB entities. Provides common fields and functionality for all MongoDB document entities.
  *
+ * @author balazs.joo
+ * @since 0.1.0
  */
 public abstract class AbstractMongoEntity {
 
@@ -31,10 +34,21 @@ public abstract class AbstractMongoEntity {
      */
     public ObjectId id;
 
+    /**
+     * Gets the unique identifier.
+     *
+     * @return the ObjectId identifier
+     */
     public ObjectId getId() {
         return id;
     }
 
+    /**
+     * Sets the unique identifier.
+     *
+     * @param id
+     *            the ObjectId identifier to set
+     */
     public void setId(ObjectId id) {
         this.id = id;
     }
