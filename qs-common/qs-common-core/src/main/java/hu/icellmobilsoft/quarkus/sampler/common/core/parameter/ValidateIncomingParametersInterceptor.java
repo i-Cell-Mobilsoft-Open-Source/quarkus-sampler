@@ -20,7 +20,6 @@
 package hu.icellmobilsoft.quarkus.sampler.common.core.parameter;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.Collection;
 import java.util.Objects;
@@ -96,11 +95,6 @@ public class ValidateIncomingParametersInterceptor {
     public Object handleParameters(final InvocationContext ctx) throws Exception {
 
         Method method = ctx.getMethod();
-        Class<?> originalClass = ctx.getTarget().getClass();
-
-        if (!isValidationEnabled(originalClass, method)) {
-            return ctx.proceed();
-        }
 
         try {
             var parameters = method.getParameters();
@@ -118,31 +112,6 @@ public class ValidateIncomingParametersInterceptor {
             throw new BaseRuntimeException(e);
         }
         return ctx.proceed();
-    }
-
-    private boolean isValidationEnabled(Class<?> originalClass, Method method) {
-
-        int modifiers = method.getModifiers();
-        if (Modifier.isPublic(modifiers)) {
-            return true;
-        }
-
-        return isValidateNonPublicMethods(originalClass, method);
-    }
-
-    private boolean isValidateNonPublicMethods(Class<?> originalClass, Method method) {
-
-        ValidateIncomingParameters validateIncomingParameters = method.getAnnotation(ValidateIncomingParameters.class);
-        if (Objects.nonNull(validateIncomingParameters)) {
-            return validateIncomingParameters.validateNonPublicMethods();
-        }
-
-        validateIncomingParameters = originalClass.getAnnotation(ValidateIncomingParameters.class);
-        if (Objects.nonNull(validateIncomingParameters)) {
-            return validateIncomingParameters.validateNonPublicMethods();
-        }
-
-        return false;
     }
 
     /**

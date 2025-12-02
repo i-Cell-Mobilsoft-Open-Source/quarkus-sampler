@@ -46,10 +46,4 @@ public @interface LogMethodEntryAndExit {
      */
     boolean enabled() default true;
 
-    /**
-     * Method entry and exit will be logged in case of non-public method invocations as well.
-     *
-     * @return <code>true</code> if non-public methods must be logged, <code>false</code> otherwise
-     */
-    boolean logNonPublicMethods() default false;
 }

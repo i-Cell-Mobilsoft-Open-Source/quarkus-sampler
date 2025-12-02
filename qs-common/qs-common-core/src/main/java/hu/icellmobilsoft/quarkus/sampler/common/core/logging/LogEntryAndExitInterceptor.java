@@ -20,7 +20,6 @@
 package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -65,7 +64,7 @@ public class LogEntryAndExitInterceptor {
         Method method = ctx.getMethod();
         Class<?> originalClass = ctx.getTarget().getClass();
 
-        if (!isLogEnabled(originalClass, method)) {
+        if (!isAnnotationEnabled(originalClass, method)) {
             return ctx.proceed();
         }
 
@@ -84,20 +83,6 @@ public class LogEntryAndExitInterceptor {
         }
     }
 
-    private boolean isLogEnabled(Class<?> clazz, Method method) {
-
-        if (!isAnnotationEnabled(clazz, method)) {
-            return false;
-        }
-
-        int modifiers = method.getModifiers();
-        if (Modifier.isPublic(modifiers)) {
-            return true;
-        }
-
-        return isLogNonPublicMethods(clazz, method);
-    }
-
     private boolean isAnnotationEnabled(Class<?> clazz, Method method) {
 
         LogMethodEntryAndExit logMethodEntryAndExit = method.getAnnotation(LogMethodEntryAndExit.class);
@@ -108,21 +93,6 @@ public class LogEntryAndExitInterceptor {
         logMethodEntryAndExit = clazz.getAnnotation(LogMethodEntryAndExit.class);
         if (Objects.nonNull(logMethodEntryAndExit)) {
             return logMethodEntryAndExit.enabled();
-        }
-
-        return false;
-    }
-
-    private boolean isLogNonPublicMethods(Class<?> originalClass, Method method) {
-
-        LogMethodEntryAndExit logMethodEntryAndExit = method.getAnnotation(LogMethodEntryAndExit.class);
-        if (Objects.nonNull(logMethodEntryAndExit)) {
-            return logMethodEntryAndExit.logNonPublicMethods();
-        }
-
-        logMethodEntryAndExit = originalClass.getAnnotation(LogMethodEntryAndExit.class);
-        if (Objects.nonNull(logMethodEntryAndExit)) {
-            return logMethodEntryAndExit.logNonPublicMethods();
         }
 
         return false;

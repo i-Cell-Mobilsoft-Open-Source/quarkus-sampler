@@ -60,11 +60,4 @@ import jakarta.interceptor.InterceptorBinding;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.TYPE, ElementType.PARAMETER })
 public @interface ValidateIncomingParameters {
-
-    /**
-     * Incoming parameters will be validated in case of non-public method invocations as well.
-     *
-     * @return <code>true</code> if non-public method parameters must be validated, <code>false</code> otherwise
-     */
-    boolean validateNonPublicMethods() default false;
 }
