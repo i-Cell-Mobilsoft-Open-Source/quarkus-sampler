@@ -70,7 +70,9 @@ public interface SampleEntityRepository extends EntityRepository<SampleEntity, S
      *            to select
      * @return list of sample entities
      */
-    @Query(value = "SELECT s FROM SampleEntity s WHERE s.status = :status")
+    @Query(value = "SELECT s FROM SampleEntity s WHERE s.status = :status", hints = @QueryHint(name = HibernateHints.HINT_COMMENT,
+            value = APPLICATION + CONTROLLER + ACTION + "route='findAllByStatus', " + FRAMEWORK + DB_DRIVER))
     List<SampleEntity> findAllByStatus(@QueryParam("status") SampleStatus status);
+
 
 }

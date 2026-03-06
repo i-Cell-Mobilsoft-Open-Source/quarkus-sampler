@@ -50,13 +50,12 @@ public class SampleContainerEntityRepository implements PanacheRepositoryBase<Sa
      * @return A list of matching entity IDs.
      */
     public List<String> getAllIdsBetweenSampleEntityCreation(OffsetDateTime from, OffsetDateTime to) {
-        return getEntityManager()
-                .createQuery(
-                        "SELECT sce.id FROM SampleContainerEntity sce join sce.sampleEntity se WHERE se.creationDate BETWEEN :from AND :to",
-                        String.class)
-                .setParameter(FROM_PARAM, from)
-                .setParameter(TO_PARAM, to)
-                .getResultList();
+        return getEntityManager().createQuery("""
+                SELECT sce.id
+                FROM SampleContainerEntity sce
+                JOIN sce.sampleEntity se
+                WHERE se.creationDate BETWEEN :from AND :to
+                """, String.class).setParameter(FROM_PARAM, from).setParameter(TO_PARAM, to).getResultList();
     }
 
 }

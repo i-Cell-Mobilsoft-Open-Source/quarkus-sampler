@@ -22,7 +22,6 @@ package hu.icellmobilsoft.quarkus.sampler.panache.rest;
 import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Model;
 
 import hu.icellmobilsoft.coffee.dto.common.commonservice.BaseResponse;
 import hu.icellmobilsoft.coffee.rest.rest.BaseRestService;

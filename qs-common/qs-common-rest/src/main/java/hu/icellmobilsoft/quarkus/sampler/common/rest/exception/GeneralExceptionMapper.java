@@ -76,6 +76,16 @@ public class GeneralExceptionMapper extends DefaultGeneralExceptionMapper {
         return Objects.requireNonNullElseGet(result, () -> this.handleException(e));
     }
 
+    /**
+     * Handles exceptions that are wrapped in a BaseRuntimeException. If the cause of the wrapped exception is a BaseException, it will be handled
+     * accordingly. Otherwise, the original wrapped exception will be logged and returned.
+     *
+     * @param wrappedException
+     *            The exception that is wrapped in a BaseRuntimeException.
+     * @return The unwrapped exception if it is a BaseException, or the original wrapped exception if it is not.
+     * @param <W>
+     *            The type of the wrapped exception, which must extend BaseRuntimeException.
+     */
     protected <W extends BaseRuntimeException> Exception unwrapRuntimeException(W wrappedException) {
         if (wrappedException.getCause() instanceof BaseException be) {
             this.log.trace("Wrapped BaseException cause.");

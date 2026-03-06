@@ -24,11 +24,12 @@ import java.util.Optional;
 
 import jakarta.inject.Inject;
 
-import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
-import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
 import hu.icellmobilsoft.quarkus.sampler.common.core.exceptionhandling.HandleServiceExceptions;
+import hu.icellmobilsoft.quarkus.sampler.common.core.logging.LogMethodEntryAndExit;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ParamName;
 import hu.icellmobilsoft.quarkus.sampler.common.core.parameter.ValidateIncomingParameters;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity;
+import hu.icellmobilsoft.quarkus.sampler.model.jpatest.AbstractIdentifiedAuditEntity_;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import io.quarkus.panache.common.Page;
 
@@ -71,7 +72,7 @@ public abstract class BasePanacheService<E extends AbstractIdentifiedAuditEntity
      * @return The entity if found, otherwise {@code null}.
      */
     public E findById(@ParamName("id") String id) {
-        return repository.findById(id);
+        return repository.find(AbstractIdentifiedAuditEntity_.ID, id).singleResult();
     }
 
     /**
