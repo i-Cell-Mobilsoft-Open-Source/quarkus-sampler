@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
 import jakarta.interceptor.InterceptorBinding;
 
 /**
- * Annotation of interctor of Logging entry and exit event at a class' method
+ * Annotation of interceptor of Logging entry and exit event at a class' method
  *
  * @author speter555
  * @since 0.1.0
@@ -38,4 +38,12 @@ import jakarta.interceptor.InterceptorBinding;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.TYPE })
 public @interface LogMethodEntryAndExit {
+
+    /**
+     * Method entry and exit logging is enabled.
+     *
+     * @return <code>true</code> if enabled, <code>false</code> otherwise
+     */
+    boolean enabled() default true;
+
 }

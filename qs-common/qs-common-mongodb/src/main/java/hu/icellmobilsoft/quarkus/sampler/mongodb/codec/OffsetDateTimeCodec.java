@@ -1,0 +1,75 @@
+/*-
+ * #%L
+ * Quarkus-sampler
+ * %%
+ * Copyright (C) 2024 - 2025 i-Cell Mobilsoft Zrt.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package hu.icellmobilsoft.quarkus.sampler.mongodb.codec;
+
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
+import org.bson.BsonReader;
+import org.bson.BsonType;
+import org.bson.BsonWriter;
+import org.bson.codecs.Codec;
+import org.bson.codecs.DecoderContext;
+import org.bson.codecs.EncoderContext;
+import org.bson.codecs.configuration.CodecConfigurationException;
+
+/**
+ * MongoDB codec for encoding and decoding {@link OffsetDateTime} objects. This codec converts OffsetDateTime to MongoDB's DateTime format (UTC
+ * timestamp in milliseconds) and vice versa.
+ *
+ * @author balazs.joo
+ * @since 0.1.0
+ */
+public class OffsetDateTimeCodec implements Codec<OffsetDateTime> {
+
+    @Override
+    public void encode(BsonWriter writer, OffsetDateTime value, EncoderContext encoderContext) {
+        if (value == null) {
+            writer.writeNull();
+            return;
+        }
+        // MongoDB benn UTC timestampet tároljon (long)
+        long epochMillis = value.toInstant().toEpochMilli();
+        writer.writeDateTime(epochMillis);
+    }
+
+    @Override
+    public OffsetDateTime decode(BsonReader reader, DecoderContext decoderContext) {
+        BsonType bsonType = reader.getCurrentBsonType();
+
+        if (bsonType == BsonType.NULL) {
+            reader.readNull();
+            return null;
+        }
+
+        if (bsonType != BsonType.DATE_TIME) {
+            throw new CodecConfigurationException("Expected DATE_TIME for OffsetDateTime but got: " + bsonType);
+        }
+
+        long millis = reader.readDateTime();
+        return Instant.ofEpochMilli(millis).atOffset(ZoneOffset.UTC);
+    }
+
+    @Override
+    public Class<OffsetDateTime> getEncoderClass() {
+        return OffsetDateTime.class;
+    }
+}

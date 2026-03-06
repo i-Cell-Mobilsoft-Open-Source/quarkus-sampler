@@ -19,7 +19,9 @@
  */
 package hu.icellmobilsoft.quarkus.sampler.common.core.logging;
 
+import java.lang.reflect.Method;
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import jakarta.annotation.Priority;
@@ -46,9 +48,10 @@ public class LogEntryAndExitInterceptor {
     public LogEntryAndExitInterceptor() {
         // Default constructor for java 21
     }
+
     /**
      * Logging enter and exit from context. Log contains class name, method, parameters names, parameters values
-     * 
+     *
      * @param ctx
      *            invocation context
      * @return called methods return answer
@@ -57,19 +60,42 @@ public class LogEntryAndExitInterceptor {
      */
     @AroundInvoke
     public Object loggingEntryAndExitLogging(final InvocationContext ctx) throws Exception {
-        Class<?> originalClass = ctx.getMethod().getDeclaringClass();
-        String methodName = ctx.getMethod().getName();
-        String[] paramsName = Stream.of(ctx.getMethod().getParameters())
+
+        Method method = ctx.getMethod();
+        Class<?> originalClass = ctx.getTarget().getClass();
+
+        if (!isAnnotationEnabled(originalClass, method)) {
+            return ctx.proceed();
+        }
+
+        String methodName = method.getName();
+        String[] paramsName = Stream.of(method.getParameters())
                 .map(parameter -> MessageFormat.format("{0} [{1}]", parameter.getName(), parameter.getType().getName()))
                 .toArray(String[]::new);
         Object[] paramsValue = ctx.getParameters();
         String methodInfo = getCalledMethodWithOnlyPathParams(originalClass, methodName, paramsName);
+
         logEnter(originalClass, methodInfo, paramsValue);
         try {
             return ctx.proceed();
         } finally {
             logReturn(originalClass, methodInfo, paramsValue);
         }
+    }
+
+    private boolean isAnnotationEnabled(Class<?> clazz, Method method) {
+
+        LogMethodEntryAndExit logMethodEntryAndExit = method.getAnnotation(LogMethodEntryAndExit.class);
+        if (Objects.nonNull(logMethodEntryAndExit)) {
+            return logMethodEntryAndExit.enabled();
+        }
+
+        logMethodEntryAndExit = clazz.getAnnotation(LogMethodEntryAndExit.class);
+        if (Objects.nonNull(logMethodEntryAndExit)) {
+            return logMethodEntryAndExit.enabled();
+        }
+
+        return false;
     }
 
     private String getCalledMethodWithOnlyPathParams(Class<?> originalClass, String methodName, String... paramNames) {

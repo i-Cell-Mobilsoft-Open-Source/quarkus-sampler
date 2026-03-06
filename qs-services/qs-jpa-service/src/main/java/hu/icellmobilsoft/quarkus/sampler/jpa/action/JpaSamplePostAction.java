@@ -178,7 +178,7 @@ public class JpaSamplePostAction extends BaseAction {
     }
 
     /**
-     * Creates the given entity by {@link BatchService#batchInsertNative(Collection, Class)}. Need transaction for success.
+     * Creates the given entity by {@link ProjectHibernateBatchService#batchInsertNative(Collection, Class)}. Need transaction for success.
      * 
      * @param sampleEntity
      *            the entity to create
@@ -201,7 +201,7 @@ public class JpaSamplePostAction extends BaseAction {
     }
 
     /**
-     * Updates one entity by {@link BatchService#batchUpdateNative(Collection, Class)}. Need transaction for success.
+     * Updates one entity by {@link ProjectHibernateBatchService#batchUpdateNative(Collection, Class)}. Need transaction for success.
      * 
      * @param sampleEntity
      *            the entity to update

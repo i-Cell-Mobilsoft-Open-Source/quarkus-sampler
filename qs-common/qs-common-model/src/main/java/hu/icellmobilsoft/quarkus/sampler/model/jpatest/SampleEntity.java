@@ -46,7 +46,7 @@ public class SampleEntity extends AbstractIdentifiedAuditEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Sample enum stutus
+     * Sample enum status
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", length = 10)
@@ -113,5 +113,11 @@ public class SampleEntity extends AbstractIdentifiedAuditEntity {
 
     public void setModLocalDate(LocalDate modLocalDate) {
         this.modLocalDate = modLocalDate;
+    }
+
+    @Override
+    public String toString() {
+        return "SampleEntity{" + "status=" + status + ", value=" + value + ", inputValue='" + inputValue + '\'' + ", localDateTime=" + localDateTime
+                + ", modLocalDate=" + modLocalDate + '}';
     }
 }

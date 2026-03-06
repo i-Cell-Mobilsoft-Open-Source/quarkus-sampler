@@ -17,6 +17,10 @@
             <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
             <artifactId>qs-common-util</artifactId>
         </dependency>
+        <dependency>
+            <groupId>hu.icellmobilsoft.quarkus.sampler</groupId>
+            <artifactId>qs-common-se-api</artifactId>
+        </dependency>
 
         <!-- Coffee dependencies -->
         <dependency>

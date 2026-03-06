@@ -30,7 +30,8 @@ import hu.icellmobilsoft.coffee.rest.validation.xml.JaxbTool;
 import hu.icellmobilsoft.coffee.se.api.exception.BaseException;
 
 /**
- * JaxbTool alternative with override {@link JaxbTool#getRequestVersion(InputStream)} method without inputStream read
+ * Alternative JaxbTool for project, which override method without inputStream read, because in this project we do not use inputStream read, only
+ * string read.
  *
  * @since 1.1.0
  * @author speter555
@@ -47,6 +48,15 @@ public class ProjectJaxbTool extends JaxbTool {
         super();
     }
 
+    /**
+     * Override method without inputStream read
+     *
+     * @param entityStream
+     *            input stream
+     * @return null
+     * @throws BaseException
+     *             on error
+     */
     public String getRequestVersion(InputStream entityStream) throws BaseException {
         if (entityStream == null) {
             throw new InvalidParameterException("entityStream is null!");

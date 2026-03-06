@@ -10,6 +10,10 @@ sampler:
 
 testsuite:
   rest:
+    panacheService:
+      postPanacheMethods:
+        baseUriKey: sampler.service.sample.base.uri
+        path: /test/panacheService
     sampleService:
       sample:
         baseUriKey: sampler.service.sample.base.uri

@@ -26,6 +26,8 @@ import java.lang.annotation.Target;
 
 import org.hibernate.annotations.IdGeneratorType;
 
+import hu.icellmobilsoft.coffee.model.base.generator.EntityIdGenerator;
+
 /**
  * Coffee id annotation
  *
@@ -34,6 +36,6 @@ import org.hibernate.annotations.IdGeneratorType;
  */
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@IdGeneratorType(CoffeeIdGenerator.class)
+@IdGeneratorType(EntityIdGenerator.class)
 public @interface CoffeeId {
 }
